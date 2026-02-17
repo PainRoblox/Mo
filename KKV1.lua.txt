@@ -412,6 +412,4 @@ Tabs. Shop:AddButton({
 
 
 
-local Section = Tab1:AddSection({"Blox fruit"})
-
 
