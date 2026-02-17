@@ -1916,7 +1916,6 @@ ImageButton.Size = UDim2.new(0, 50, 0, 50)
 ImageButton.ZIndex = 10
 ImageButton.Image = "rbxassetid://119980166507719"
 
--- Khi bấm thì thu nhỏ window
 ImageButton.MouseButton1Click:Connect(function()
     pcall(function()
         if Window and Window.Minimize then
@@ -1927,56 +1926,10 @@ end)
 
 UICorner.CornerRadius = UDim.new(1, 0)
 UICorner.Parent = ImageButton
-UIStroke.Color = Color3.fromRGB(0, 250, 255)
+
+UIStroke.Color = Color3.fromRGB(0, 255, 255)
 UIStroke.Thickness = 1.5
 UIStroke.Parent = ImageButton
-
--- ================= DRAG SYSTEM =================
-local UIS = game:GetService("UserInputService")
-
-local dragging = false
-local dragInput
-local dragStart
-local startPos
-
-local function update(input)
-    local delta = input.Position - dragStart
-    ImageButton.Position = UDim2.new(
-        startPos.X.Scale,
-        startPos.X.Offset + delta.X,
-        startPos.Y.Scale,
-        startPos.Y.Offset + delta.Y
-    )
-end
-
-ImageButton.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 
-    or input.UserInputType == Enum.UserInputType.Touch then
-        
-        dragging = true
-        dragStart = input.Position
-        startPos = ImageButton.Position
-
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then
-                dragging = false
-            end
-        end)
-    end
-end)
-
-ImageButton.InputChanged:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseMovement 
-    or input.UserInputType == Enum.UserInputType.Touch then
-        dragInput = input
-    end
-end)
-
-UIS.InputChanged:Connect(function(input)
-    if dragging and input == dragInput then
-        update(input)
-    end
-end)
 local Codes = {
     "WildDares",
     "BossBuild",
