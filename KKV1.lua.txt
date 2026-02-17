@@ -8,11 +8,10 @@ local Window = redzlib:MakeWindow({
 Window:AddMinimizeButton({
     Button = { 
         Image = "rbxassetid://119980166507719",
-        BackgroundTransparency = 0,
-        Size = UDim2.new(0, 30, 0, 30) 
+        BackgroundTransparency = 1
     },
     Corner = { 
-        CornerRadius = UDim.new(0,5) 
+        CornerRadius = UDim.new(0,5)
     },
 })
 local TweenService = game:GetService("TweenService")
@@ -26,7 +25,7 @@ task.spawn(function()
             local originalSize = v.Size
             v.Size = UDim2.new(originalSize.X.Scale * 0.8,0, originalSize.Y.Scale * 0.8,0)
 
-            TweenService:Create( 
+            TweenService:Create(
                 v,
                 TweenInfo.new(0.35, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
                 {Size = originalSize}
