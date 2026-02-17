@@ -35,7 +35,7 @@ Tabs.Discord:AddDiscordInvite({
     Invite = "ko có gì"
 })
 
-local Section = Tabs.Farm:AddSection({"Farm chính"})
+Tabs.Farm:AddSection({"Farm chính"})
 local Codes = {
     "WildDares",
     "BossBuild",
@@ -61,7 +61,7 @@ local Codes = {
 }
 Shop:AddButton({
     Name = "Redeem Code",
-    
+    Debounce = 0.5,
     Callback = function()
         function RedeemCode(Value)
             game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer(Value)
@@ -73,43 +73,50 @@ Shop:AddButton({
 })
 Shop:AddButton({
     Name = "Teleport Old World",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
     end
 })
 Shop:AddButton({
     Name = "Teleport New World",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
     end
 })
 Shop:AddButton({
     Name = "Teleport Third Sea",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
     end
 })
-Shop:AddSection("Fighting Shop")
+Tabs.Shop:AddSection("Melee Shop")
 Shop:AddButton({
     Name = "Black Leg",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
     end
 })
 Shop:AddButton({
     Name = "Fishman Karate",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyFishmanKarate")
     end
 })
 Shop:AddButton({
     Name = "Electro",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
     end
 })
 Shop:AddButton({
     Name = "Dragon Breath",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","DragonClaw","1")
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","DragonClaw","2")
@@ -117,18 +124,21 @@ Shop:AddButton({
 })
 Shop:AddButton({
     Name = "SuperHuman",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman")
     end
 })
 Shop:AddButton({
     Name = "Death Step",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
     end
 })
 Shop:AddButton({
     Name = "Sharkman Karate",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate",true)
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate")
@@ -136,86 +146,100 @@ Shop:AddButton({
 })
 Shop:AddButton({
     Name = "Electric Claw",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
     end
 })
 Shop:AddButton({
     Name = "Dragon Talon",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
     end
 })
 Shop:AddButton({
     Name = "God Human",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
     end
 })
 Shop:AddButton({
     Name = "Sanguine Art",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt", true)
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt")
     end
 })
-Shop:AddSection("Sword")
+Tabs.Shop:AddSection("Kiếm shop")
 Shop:AddButton({
     Name = "Cutlass [ 1,000 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Cutlass")
     end
 })
 Shop:AddButton({
     Name = "Katana [ 1,000 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Katana")
     end
 })
 Shop:AddButton({
     Name = "Iron Mace [ 25,000 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Iron Mace")
     end
 })
 Shop:AddButton({
     Name = "Dual Katana [ 12,000 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Duel Katana")
     end
 })
 Shop:AddButton({
     Name = "Triple Katana [ 60,000 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Triple Katana")
     end
 })
 Shop:AddButton({
     Name = "Pipe [ 100,000 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Pipe")
     end
 })
 Shop:AddButton({
     Name = "Dual-Headed Blade [ 400,000 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Dual-Headed Blade")
     end
 })
 Shop:AddButton({
     Name = "Bisento [ 1,200,000 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Bisento")
     end
 })
 Shop:AddButton({
     Name = "Soul Cane [ 750,000 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Soul Cane")
     end
 })
 Shop:AddButton({
     Name = "Pole v.2 [ 5,000 Fragments ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ThunderGodTalk")
     end
@@ -223,30 +247,35 @@ Shop:AddButton({
 Shop:AddSection("Gun")
 Shop:AddButton({
     Name = "Slingshot [ 5,000 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Slingshot")
     end
 })
 Shop:AddButton({
     Name = "Musket [ 8,000 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Musket")
     end
 })
 Shop:AddButton({
     Name = "Flintlock [ 10,500 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Flintlock")
     end
 })
 Shop:AddButton({
     Name = "Refined Slingshot [ 30,000 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Refined Flintlock")
     end
 })
 Shop:AddButton({
     Name = "Refined Flintlock [ 65,000 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         local args = {
             [1] = "BuyItem",
@@ -257,12 +286,14 @@ Shop:AddButton({
 })
 Shop:AddButton({
     Name = "Cannon [ 100,000 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem", "Cannon")
     end
 })
 Shop:AddButton({
     Name = "Kabucha [ 1,500 Fragments]",
+    Debounce = 0.5,
     Callback = function()
         local Remote = game:GetService("ReplicatedStorage").Remotes.CommF_
         Remote:InvokeServer("BlackbeardReward", "Slingshot", "1")
@@ -271,6 +302,7 @@ Shop:AddButton({
 })
 Shop:AddButton({
     Name = "Bizarre Rifle [ 250 Ectoplasm ]",
+    Debounce = 0.5,
     Callback = function()
         local Remote = game:GetService("ReplicatedStorage").Remotes.CommF_
         local args = { "Ectoplasm", "Buy", 1 }
@@ -278,34 +310,39 @@ Shop:AddButton({
         Remote:InvokeServer(unpack(args))
     end
 })
-Shop:AddSection("Abilities Shop")
+Tabs.Shop:AddSection("haki Shop")
 Shop:AddButton({
     Name = "Skyjump [ $10,000 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Geppo")
     end
 })
 Shop:AddButton({
     Name = "Buso Haki [ $25,000 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Buso")
     end
 })
 Shop:AddButton({
     Name = "Observation haki [ $750,000 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("KenTalk", "Buy")
     end
 })
 Shop:AddButton({
     Name = "Soru [ $100,000 Beli ]",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Soru")
     end
 })
-Shop:AddSection("Misc Shop")
+Tabs.Shop:AddSection("Cửa hàng khác")
 Shop:AddButton({
     Name = "Buy Refund Stat (2500F)",
+    Debounce = 0.5,
     Callback = function()
         local Remote = game:GetService("ReplicatedStorage").Remotes.CommF_
         Remote:InvokeServer("BlackbeardReward", "Refund", "1")
@@ -314,6 +351,7 @@ Shop:AddButton({
 })
 Shop:AddButton({
     Name = "Buy Reroll Race (3000F)",
+    Debounce = 0.5,
     Callback = function()
         local Remote = game:GetService("ReplicatedStorage").Remotes.CommF_
         Remote:InvokeServer("BlackbeardReward", "Reroll", "1")
@@ -322,6 +360,7 @@ Shop:AddButton({
 })
 Shop:AddButton({
     Name = "Buy Draco",
+    Debounce = 0.5,
     Callback = function()
         topos(CFrame.new(5814.42724609375, 1208.3267822265625, 884.5785522460938))
         local targetPosition = Vector3.new(5814.42724609375, 1208.3267822265625, 884.5785522460938)
@@ -340,6 +379,7 @@ Shop:AddButton({
 })
 Shop:AddButton({
     Name = "Buy Ghoul Race",
+    Debounce = 0.5,
     Callback = function()
         local args = {
             [1] = "Ectoplasm",
@@ -351,6 +391,7 @@ Shop:AddButton({
 })
 Shop:AddButton({
     Name = "Buy Cyborg Race (2500F)",
+    Debounce = 0.5,
     Callback = function()
         local args = {
             [1] = "CyborgTrainer",
@@ -361,13 +402,7 @@ Shop:AddButton({
 })
 
 
-Tab:AddButton({
-  Name = "My Button",
-  Debounce = 0.5,
-  Callback = function()
-    
-  end
-})
+
 
 
 
