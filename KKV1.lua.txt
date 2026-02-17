@@ -14,18 +14,6 @@ Window:AddMinimizeButton({
         CornerRadius = UDim.new(0,5)
     },
 })
-task.wait(0.5)
-
-for _,v in pairs(game.CoreGui:GetDescendants()) do
-    if v:IsA("Frame") and v.Size.X.Scale > 0.3 then
-        
-        local stroke = Instance.new("UIStroke")
-        stroke.Color = Color3.fromRGB(0,170,255) -- màu viền cửa sổ
-        stroke.Thickness = 3
-        stroke.Parent = v
-        
-    end
-end
 local TweenService = game:GetService("TweenService")
 
 task.spawn(function()
