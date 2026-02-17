@@ -4,6 +4,11 @@ local Window = Library:MakeWindow({
   SubTitle = "",
   SaveFolder = "OK  Hub | Blox Fruits.lua"
 })
+Window:AddMinimizeButton({
+    Button = { Image = "rbxassetid://119980166507", BackgroundTransparency = 1 },
+    Corner = { CornerRadius = UDim.new(35, 1) },
+})
+
 local Discord = Window:MakeTab({
   Title = "Tab Discord",
   Icon = "Info"
@@ -20,19 +25,19 @@ local TabLocalPlayer = Window:MakeTab({
   Title = "Tab Local Player",
   Icon = "rbxassetid://13075651575"
 })
-local Setting = Window:MakeTab({
+local TabSetting = Window:MakeTab({
   Title = "Setting Farm",
   Icon = "rbxassetid://7734053495"
 })
-local Farm = Window:MakeTab({
+local TabFarm = Window:MakeTab({
   Title = "Tab Farming",
   Icon = "rbxassetid://7733960981"
 })
-local Stack = Window:MakeTab({
+local TabStack = Window:MakeTab({
   Title = "Tab Stack Farm",
   Icon = "rbxassetid://13075622619"
 })
-local Other = Window:MakeTab({
+local TabOther: = Window:MakeTab({
   Title = "Tab Farming Other",
   Icon = "rbxassetid://10723405360"
 })
@@ -64,35 +69,7 @@ local Player = Window:MakeTab({
   Title = "Tab PVP",
   Icon = "rbxassetid://7251993295"
 })
-local ScreenGui = Instance.new("ScreenGui")
-local ImageButton = Instance.new("ImageButton")
-local UICorner = Instance.new("UICorner")
-local UIStroke = Instance.new("UIStroke")
-ScreenGui.Name = "ImageButton"
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-ScreenGui.ResetOnSpawn = false
-ScreenGui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-ImageButton.Parent = ScreenGui
-ImageButton.Active = true
-ImageButton.AutoButtonColor = true
-ImageButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-ImageButton.BorderSizePixel = 0
-ImageButton.Position = UDim2.new(0, 20, 0.1, -6)
-ImageButton.Size = UDim2.new(0, 50, 0, 50)
-ImageButton.ZIndex = 10
-ImageButton.Image = "rbxassetid://119980166507"
-ImageButton.MouseButton1Click:Connect(function()
-    pcall(function()
-        if Window and Window.Minimize then
-            Window:Minimize()
-        end
-    end)
-end)
-UICorner.CornerRadius = UDim.new(1, 0)
-UICorner.Parent = ImageButton
-UIStroke.Color = Color3.fromRGB(136, 0, 0)
-UIStroke.Thickness = 1.5
-UIStroke.Parent = ImageButton
+
 Discord:AddDiscordInvite({
     Name = "OK  Hub",
     Description = "",
@@ -2718,13 +2695,13 @@ Status:AddButton({
         end)
     end
 })
-LocalPlayer:AddButton({
+TabLocalPlayer:AddButton({
     Name = "Stop Tween",
     Callback = function()
         StopTween()
     end
 })
-LocalPlayer:AddButton({
+TabLocalPlayer:AddButton({
     Name = "Open Devil Fruit Shop",
     Callback = function()
         local a = game
@@ -2737,7 +2714,7 @@ LocalPlayer:AddButton({
         require(g):Open()
     end
 })
-LocalPlayer:AddButton({
+TabLocalPlayer:AddButton({
     Name = "Open Title",
     Callback = function()
         local args = {
@@ -2747,26 +2724,26 @@ LocalPlayer:AddButton({
         game.Players.LocalPlayer.PlayerGui.Main.Titles.Visible = true
     end
 })
-LocalPlayer:AddButton({
+TabLocalPlayer:AddButton({
     Name = "Open Awakening",
     Callback = function()
         game:GetService("Players").LocalPlayer.PlayerGui.Main.AwakeningToggler.Visible = true
     end
 })
-LocalPlayer:AddButton({
+TabLocalPlayer:AddButton({
     Name = "Boost FPS",
     Callback = function()
         FPSBooster()
     end
 })
-LocalPlayer:AddDropdown({
+TabLocalPlayer:AddDropdown({
     Name = "Select Haki State",
     Options = {"State 0", "State 1", "State 2", "State 3", "State 4", "State 5"},
     Callback = function(Value)
         getgenv().SelectStateHaki = Value
     end
 })
-LocalPlayer:AddButton({
+TabLocalPlayer:AddButton({
     Name = "Change Buso Haki State",
     Callback = function()
         if getgenv().SelectStateHaki == "State 0" then
@@ -2784,7 +2761,7 @@ LocalPlayer:AddButton({
         end
     end
 })
-LocalPlayer:AddDropdown({
+TabLocalPlayer:AddDropdown({
     Name = "Select Stats",
     Options = {"Melee", "Defense", "Sword", "Gun", "Fruit"},
     Callback = function(Value)
@@ -2812,14 +2789,14 @@ spawn(function()
         end
     end
 end)
-LocalPlayer:AddToggle({
+TabLocalPlayer:AddToggle({
     Name = "Auto Stats",
     Default = false,
     Callback = function(Value)
         getgenv().AutoStats = Value
     end
 })
-LocalPlayer:AddToggle({
+TabLocalPlayer:AddToggle({
     Name = "Beautiful Graphics",
     Default = false,
     Callback = function(Value)
@@ -2910,7 +2887,7 @@ LocalPlayer:AddToggle({
         end
     end
 })
-LocalPlayer:AddToggle({
+TabLocalPlayer:AddToggle({
     Name = "White Screen",
     Default = false,
     Callback = function(Value)
@@ -2922,7 +2899,7 @@ LocalPlayer:AddToggle({
         end
     end
 })
-LocalPlayer:AddToggle({
+TabLocalPlayer:AddToggle({
     Name = "Black Screen",
     Default = false,
     Callback = function(Value)
@@ -2939,7 +2916,7 @@ spawn(function()
     end
 end)
 local StarterGui = game:GetService("StarterGui")
-LocalPlayer:AddToggle({
+TabLocalPlayer:AddToggle({
     Name = "Hide Chat",
     Default = false,
     Callback = function(Value)
@@ -2952,7 +2929,7 @@ LocalPlayer:AddToggle({
     end
 })
 local StarterGui = game:GetService("StarterGui")
-LocalPlayer:AddToggle({
+TabLocalPlayer:AddToggle({
     Name = "Hide LeaderBoard",
     Default = false,
     Callback = function(Value)
@@ -2963,7 +2940,7 @@ LocalPlayer:AddToggle({
         end
     end
 })
-LocalPlayer:AddToggle({
+TabLocalPlayer:AddToggle({
     Name = "Hide Mob",
     Default = false,
     Callback = function(Value)
@@ -2998,7 +2975,7 @@ spawn(function()
         end
     end
 end)
-LocalPlayer:AddToggle({
+TabLocalPlayer:AddToggle({
     Name = "Remove Dame Text",
     Default = false,
     Callback = function(Value)
@@ -3006,7 +2983,7 @@ LocalPlayer:AddToggle({
         game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = not getgenv().RemoveText
     end
 })
-LocalPlayer:AddToggle({
+TabLocalPlayer:AddToggle({
     Name = "Remove Notification",
     Default = false,
     Callback = function(Value)
@@ -3014,7 +2991,7 @@ LocalPlayer:AddToggle({
         game.Players.LocalPlayer.PlayerGui.Notifications.Enabled = not getgenv().RemoveNotification
     end
 })
-LocalPlayer:AddToggle({
+TabLocalPlayer:AddToggle({
     Name = "Auto Rejoin On Kick",
     Default = false,
     Callback = function(Value)
@@ -3035,7 +3012,7 @@ spawn(function()
     end
 end)
 if World1 then
-    LocalPlayer:AddDropdown({
+    TabLocalPlayer:AddDropdown({
         Name = "Select Island",
         Default = false,
         Options = {
@@ -3050,7 +3027,7 @@ if World1 then
     })
 end
 if World2 then
-    LocalPlayer:AddDropdown({
+    TabLocalPlayer:AddDropdown({
         Name = "Select Island",
         Default = false,
         Options = {
@@ -3065,7 +3042,7 @@ if World2 then
     })
 end
 if World3 then
-    LocalPlayer:AddDropdown({
+    TabLocalPlayer:AddDropdown({
         Name = "Select Island",
         Default = false,
         Options = {
@@ -3079,7 +3056,7 @@ if World3 then
         end
     })
 end
-LocalPlayer:AddToggle({
+TabLocalPlayer:AddToggle({
     Name = "Teleport Island",
     Default = false,
     Callback = function(Value)
@@ -3195,7 +3172,7 @@ LocalPlayer:AddToggle({
     end
 })
 if World1 then
-    LocalPlayer:AddDropdown({
+    TabLocalPlayer:AddDropdown({
         Name = "Select NPC",
         Default = false,
         Options = {
@@ -3213,7 +3190,7 @@ if World1 then
     })
 end
 if World2 then
-    LocalPlayer:AddDropdown({
+    TabLocalPlayer:AddDropdown({
         Name = "Select NPC",
         Default = false,
         Options = {
@@ -3242,7 +3219,7 @@ if World2 then
     })
 end
 if World3 then
-    LocalPlayer:AddDropdown({
+    TabLocalPlayer:AddDropdown({
         Name = "Select NPC",
         Default = false,
         Options = {
@@ -3263,7 +3240,7 @@ if World3 then
         end
     })
 end
-LocalPlayer:AddToggle({
+TabLocalPlayer:AddToggle({
     Name = "Teleport NPC",
     Default = false,
     Callback = function(Value)
@@ -3342,7 +3319,7 @@ LocalPlayer:AddToggle({
         StopTween(getgenv().TeleportNPC)
     end
 })
-Setting:AddDropdown({
+TabSetting:AddDropdown({
     Name = "Select Weapon",
     Options = { "Melee", "Sword", "Blox Fruit" },
     Default = "Melee",
@@ -3375,7 +3352,7 @@ spawn(function()
         end)
     end
 end)
-Setting:AddToggle({
+TabSetting:AddToggle({
     Name = "Auto Turn On Buso",
     Default = true,
     Callback = function(Value)
@@ -3394,7 +3371,7 @@ spawn(function()
         end
     end
 end)
-Setting:AddToggle({
+TabSetting:AddToggle({
     Name = "Auto Haki Observation",
     Default = false,
     Callback = function(Value)
@@ -3410,7 +3387,7 @@ spawn(function()
         end
     end
 end)
-Setting:AddToggle({
+TabSetting:AddToggle({
     Name = "Auto Turn On Race V4",
     Default = false,
     Callback = function(Value)
@@ -3433,7 +3410,7 @@ spawn(function()
         end
     end
 end)
-Setting:AddToggle({
+TabSetting:AddToggle({
     Name = "Auto Turn On Race V3",
     Default = false,
     Callback = function(Value)
@@ -3449,7 +3426,7 @@ spawn(function()
         end
     end)
 end)
-Setting:AddToggle({
+TabSetting:AddToggle({
     Name = "Anti AFK",
     Default = true,
     Callback = function(Value)
@@ -3464,7 +3441,7 @@ Setting:AddToggle({
         end
     end
 })
-Setting:AddToggle({
+TabSetting:AddToggle({
     Name = "Remove Hit Effect",
     Default = false,
     Callback = function(Value)
@@ -3485,14 +3462,14 @@ spawn(function()
         end
     end
 end)
-Setting:AddToggle({
+TabSetting:AddToggle({
     Name = "Auto Spin Position",
     Default = false,
     Callback = function(Value)
         RandomCFrame = Value
     end
 })
-Setting:AddToggle({
+TabSetting:AddToggle({
     Name = "Teleport Y if low Health",
     Default = false,
     Callback = function(Value)
@@ -3517,7 +3494,7 @@ spawn(function()
         end)
     end
 end)
-Setting:AddTextBox({
+TabSetting:AddTextBox({
     Name = "% Health player",
     Placeholder = "input",
     ClearOnFocus = true,
@@ -3525,7 +3502,7 @@ Setting:AddTextBox({
         getgenv().Safe = Value
     end
 })
-Setting:AddSlider({
+TabSetting:AddSlider({
     Name = "Distance Teleport Y",
     Min = -100,
     Max = 1000,
@@ -3535,7 +3512,7 @@ Setting:AddSlider({
         getgenv().PosYSafeHealth = Value
     end
 })
-Setting:AddToggle({
+TabSetting:AddToggle({
     Name = "Auto Set Spawn Point",
     Default = false,
     Callback = function(Value)
@@ -3547,7 +3524,7 @@ Setting:AddToggle({
         end
     end
 })
-Setting:AddToggle({
+TabSetting:AddToggle({
     Name = "Auto Request Temple of Time",
     Description = "Please Do Not Turn Off To Avoid Errors",
     Default = true,
@@ -3564,7 +3541,7 @@ spawn(function()
         end)
     end
 end)
-Setting:AddSlider({
+TabSetting:AddSlider({
     Name = "Time Hop Server",
     Min = 1,
     Max = 30,
@@ -3574,14 +3551,14 @@ Setting:AddSlider({
         HopDelay = Value
     end
 })
-Setting:AddToggle({
+TabSetting:AddToggle({
     Name = "Bring Mob",
     Default = true,
     Callback = function(Value)
         getgenv().BringMob = Value
     end
 })
-Setting:AddDropdown({
+TabSetting:AddDropdown({
     Name = "Bring Mob Speed",
     Options = {"50", "100", "150", "200", "250", "300", "350"},
     Default = "250",
@@ -3612,7 +3589,7 @@ spawn(function()
         end
     end
 end)
-Setting:AddToggle({
+TabSetting:AddToggle({
     Name = "Auto Anti - Admin Join Server",
     Description = "Please Do Not Turn Off To Avoid Errors",
     Default = true,
@@ -3639,13 +3616,13 @@ spawn(function()
         end)
     end
 end)
-Setting:AddButton({
+TabSetting:AddButton({
     Name = "Remove Fog [ Blind Bones ]",
     Callback = function()
         game:GetService("Lighting").BaseAtmosphere:Destroy()
     end
 })
-Farm:AddDropdown({
+TabFarm:AddDropdown({
     Name = "Select Method Farm",
     Options = { "Level Farm", "Farm Bones", "Farm Katakuri", "Farm Tyrant of the Skies", "Aura Farm" },
     Default = "Level Farm",
@@ -3869,7 +3846,7 @@ spawn(function()
         end
     end
 end)
-Farm:AddToggle({
+TabFarm:AddToggle({
     Name = "Start Farm",
     Default = false,
     Callback = function(Value)
@@ -3877,14 +3854,14 @@ Farm:AddToggle({
         StopTween(getgenv().AutoFarm)
     end
 })
-Farm:AddToggle({
+TabFarm:AddToggle({
     Name = "Get Quest Farm [Katakuri Or Bone]",
     Default = false,
     Callback = function(Value)
         getgenv().AcceptQuest = Value
     end
 })
-Farm:AddSection("Farming Material")
+TabFarm:AddSection("Farming Material")
 MaterialList = {}
 if World1 then
     MaterialList = {
@@ -3913,14 +3890,14 @@ elseif World3 then
         "Mini Tusk"
     }
 end
-Farm:AddDropdown({
+TabFarm:AddDropdown({
     Name = "Select Material",
     Options = MaterialList,
     Callback = function(Value)
         getgenv().SelectMaterial = Value
     end
 })
-Farm:AddToggle({
+TabFarm:AddToggle({
     Name = "Farm Material",
     Default = false,
     Callback = function(Value)
@@ -3970,15 +3947,15 @@ spawn(function()
         end
     end
 end)
-Farm:AddSection("Mastery Farm")
-Farm:AddDropdown({
+TabFarm:AddSection("Mastery Farm")
+TabFarm:AddDropdown({
     Name = "Select Method Mastery",
     Options = {"Cake", "Bone"},
     Callback = function(Value)
         getgenv().AutoMethodMastery = Value
     end
 })
-Farm:AddSlider({
+TabFarm:AddSlider({
     Name = "Health %",
     Min = 0,
     Max = 100,
@@ -3988,7 +3965,7 @@ Farm:AddSlider({
         getgenv().MasteryHealth = Value
     end
 })
-Farm:AddToggle({
+TabFarm:AddToggle({
     Name = "Auto Farm Mastery Fruit",
     Default = false,
     Callback = function(Value)
@@ -4049,7 +4026,7 @@ spawn(function()
         end
     end
 end)
-Farm:AddToggle({
+TabFarm:AddToggle({
     Name = "Auto Farm Mastery Gun",
     Default = false,
     Callback = function(Value)
@@ -4090,7 +4067,7 @@ spawn(function()
         end
     end
 end)
-Farm:AddToggle({
+TabFarm:AddToggle({
     Name = "Auto Farm Mastery All Sword",
     Default = false,
     Callback = function(Value)
@@ -4164,7 +4141,7 @@ spawn(function()
         end)
     end
 end)
-Stack:AddDropdown({
+TabStack:AddDropdown({
     Name = "Select Melee",
     Options = {
         "Superhuman",
@@ -4442,7 +4419,7 @@ spawn(function()
         end)
     end
 end)
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Auto Get Melee",
     Default = false,
     Callback = function(Value)
@@ -4450,7 +4427,7 @@ Stack:AddToggle({
         StopTween(getgenv().AutoGetMelee)
     end
 })
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Teleport To Fruit",
     Default = false,
     Callback = function(Value)
@@ -4469,7 +4446,7 @@ spawn(function()
         end
     end
 end)
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Teleport To Fruit [ Hop Server ]",
     Default = false,
     Callback = function(Value)
@@ -4490,7 +4467,7 @@ spawn(function()
         end
     end
 end)
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Auto New World",
     Default = false,
     Callback = function(Value)
@@ -4536,7 +4513,7 @@ spawn(function()
         end)
     end
 end)
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Auto Third World",
     Default = false,
     Callback = function(Value)
@@ -4677,7 +4654,7 @@ spawn(function()
         end)
     end
 end)
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Auto Bartilo",
     Default = false,
     Callback = function(Value)
@@ -4753,7 +4730,7 @@ spawn(function()
         end)
     end
 end)
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Auto Training Dummy",
     Default = false,
     Callback = function(Value)
@@ -4785,7 +4762,7 @@ spawn(function()
         end
     end
 end)
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Auto Factory",
     Default = false,
     Callback = function(Value)
@@ -4810,7 +4787,7 @@ spawn(function()
         end)
     end
 end)
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Auto Pirate Raid",
     Default = false,
     Callback = function(Value)
@@ -4863,7 +4840,7 @@ spawn(function()
         end
     end
 end)
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Auto Elite Hunter",
     Default = false,
     Callback = function(Value)
@@ -4916,14 +4893,14 @@ spawn(function()
         end
     end
 end)
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Hop Server Elite Hunter",
     Default = false,
     Callback = function(Value)
         getgenv().AutoEliteHunterHop = Value
     end
 })
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Auto Open Haki Pad",
     Default = false,
     Callback = function(Value)
@@ -4982,7 +4959,7 @@ spawn(function()
         end
     end
 end)
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Auto Attack Rip Indra",
     Default = false,
     Callback = function(Value)
@@ -5019,7 +4996,7 @@ spawn(function()
         end
     end)
 end)
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Auto Soul Reaper",
     Default = false,
     Callback = function(Value)
@@ -5058,7 +5035,7 @@ spawn(function()
         end
     end
 end)
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Auto Dough King",
     Default = false,
     Callback = function(Value)
@@ -5127,7 +5104,7 @@ spawn(function()
         end
     end
 end)
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Auto Attack Dough King",
     Default = false,
     Callback = function(Value)
@@ -5152,7 +5129,7 @@ spawn(function()
         end
     end
 end)
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Auto Phoenix Raid",
     Default = false,
     Callback = function(Value)
@@ -5190,7 +5167,7 @@ spawn(function()
         end
     end
 end)
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Auto Dark Blade V3",
     Default = false,
     Callback = function(Value)
@@ -5226,7 +5203,7 @@ spawn(function()
         end)
     end
 end)
-Stack:AddToggle({
+TabStack:AddToggle({
     Name = "Auto Darkbeard",
     Default = false,
     Callback = function(Value)
@@ -5259,7 +5236,7 @@ spawn(function()
         end
     end
 end)
-Other:AddSection("Fishing")
+TabOther:AddSection("Fishing")
 local Workspace = game:GetService("Workspace")
 local LocalPlayer = Players.LocalPlayer
 local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
@@ -5346,7 +5323,7 @@ local function CatchFish()
         FishingRequest:InvokeServer("Catch", 1)
     end)
 end
-Other:AddDropdown({
+TabOther:AddDropdown({
     Name = "Select Rod",
     Options = {"Fishing Rod", "Gold Rod", "Shark Rod", "Shell Rod", "Treasure Rod"},
     Default = "Fishing Rod",
@@ -5354,7 +5331,7 @@ Other:AddDropdown({
         getgenv().SelectedRod = Value
     end
 })
-Other:AddDropdown({
+TabOther:AddDropdown({
     Name = "Select Bait",
     Options = {"Basic Bait", "Kelp Bait", "Good Bait", "Abyssal Bait", "Frozen Bait", "Epic Bait", "Carnivore Bait"},
     Default = "Basic Bait",
@@ -5362,7 +5339,7 @@ Other:AddDropdown({
         getgenv().SelectedBait = Value
     end
 })
-Other:AddToggle({
+TabOther:AddToggle({
     Name = "Auto Fishing",
     Default = false,
     Callback = function(Value)
@@ -5391,8 +5368,8 @@ Other:AddToggle({
         end
     end
 })
-Other:AddSection("Quest Dragon")
-Other:AddToggle({
+TabOther:AddSection("Quest Dragon")
+TabOther:AddToggle({
     Name = "Auto Claim Dojo Belt",
     Default = false,
     Callback = function(Value)
@@ -5424,7 +5401,7 @@ spawn(function()
         end
     end
 end)
-Other:AddToggle({
+TabOther:AddToggle({
     Name = "Auto Claim Upgrade Dragon Talon",
     Default = false,
     Callback = function(Value)
@@ -5449,7 +5426,7 @@ spawn(function()
         end
     end
 end)
-Other:AddToggle({
+TabOther:AddToggle({
     Name = "Auto Collect Berry",
     Default = false,
     Callback = function(Value)
@@ -5493,15 +5470,15 @@ spawn(function()
         end
     end
 end)
-Other:AddToggle({
+TabOther:AddToggle({
     Name = "Hop Find Berry",
     Default = false,
     Callback = function(Value)
         getgenv().AutoHopBerry = Value
     end
 })
-Other:AddSection("Farm Chest")
-Other:AddToggle({
+TabOther:AddSection("Farm Chest")
+TabOther:AddToggle({
     Name = "Auto Chest",
     Default = false,
     Callback = function(Value)
@@ -5541,15 +5518,15 @@ spawn(function()
         end)
     end
 end)
-Other:AddToggle({
+TabOther:AddToggle({
     Name = "Auto Chest Hop",
     Default = false,
     Callback = function(Value)
         getgenv().AutoFarmChestHop = Value
     end
 })
-Other:AddSection("Raid Law")
-Other:AddToggle({
+TabOther:AddSection("Raid Law")
+TabOther:AddToggle({
     Name = "Auto Buy Chip And Attack Law",
     Default = false,
     Callback = function(Value)
@@ -5597,8 +5574,8 @@ spawn(function()
         end
     end)
 end)
-Other:AddSection("Farm Observation")
-local ObservationRange = Other:AddParagraph({
+TabOther:AddSection("Farm Observation")
+local ObservationRange = TabOther:AddParagraph({
     Title = "Observation Level",
     Desc = ""
 })
@@ -5614,7 +5591,7 @@ spawn(function()
         end)
     end
 end)
-Other:AddToggle({
+TabOther:AddToggle({
     Name = "Auto UP Observation V2",
     Default = false,
     Callback = function(Value)
@@ -5716,7 +5693,7 @@ spawn(function()
         end
     end
 end)
-Other:AddToggle({
+TabOther:AddToggle({
     Name = "Farm Observation",
     Default = false,
     Callback = function(Value)
@@ -5811,16 +5788,16 @@ spawn(function()
         end)
     end
 end)
-Other:AddToggle({
+TabOther:AddToggle({
     Name = "Farm Observation [ Hop Server ]",
     Default = false,
     Callback = function(Value)
         getgenv().AutoObservationHop = Value
     end
 })
-Other:AddSection("Auto Kill Mob")
+TabOther:AddSection("Auto Kill Mob")
 if World1 then
-    Other:AddDropdown({
+    TabOther:AddDropdown({
         Name = "Select Mob",
         Default = false,
         Options = {
@@ -5838,7 +5815,7 @@ if World1 then
     })
 end
 if World2 then
-    Other:AddDropdown({
+    TabOther:AddDropdown({
         Name = "Select Mob",
         Default = false,
         Options = {
@@ -5855,7 +5832,7 @@ if World2 then
     })
 end
 if World3 then
-    Other:AddDropdown({
+    TabOther:AddDropdown({
         Name = "Select Mob",
         Default = false,
         Options = {
@@ -5876,7 +5853,7 @@ if World3 then
         end
     })
 end
-Other:AddToggle({
+TabOther:AddToggle({
     Name = "Kill Mob",
     Default = false,
     Callback = function(Value)
@@ -5906,7 +5883,7 @@ spawn(function()
         end
     end
 end)
-Other:AddSection("Auto Boss")
+TabOther:AddSection("Auto Boss")
 BossList = {}
 if World1 then
     BossList = {
@@ -5926,14 +5903,14 @@ elseif World3 then
         "Cake Queen", "Cake Prince", "Dough King"
     }
 end
-Other:AddDropdown({
+TabOther:AddDropdown({
     Name = "Select Boss",
     Options = BossList,
     Callback = function(Value)
         getgenv().SelectBoss = Value
     end
 })
-Other:AddToggle({
+TabOther:AddToggle({
     Name = "Auto Kill Boss",
     Default = false,
     Callback = function(Value)
@@ -5964,7 +5941,7 @@ spawn(function()
         end
     end
 end)
-Other:AddToggle({
+TabOther:AddToggle({
     Name = "Auto Kill All Boss",
     Default = false,
     Callback = function(Value)
@@ -5997,7 +5974,7 @@ spawn(function()
         end
     end
 end)
-Other:AddToggle({
+TabOther:AddToggle({
     Name = "Auto Kill All Boss [ Hop Server ]",
     Default = false,
     Callback = function(Value)
