@@ -8,85 +8,68 @@ function topos(cf)
         plr.Character.HumanoidRootPart.CFrame = cf
     end
 end
-repeat
-    wait()
-until game:IsLoaded()
+
+Window:SelectTab(1);
+
+_G.SelectWeapon = "Melee"
+_G.FarmLevelMethod = "Quest"
+_G.MasteryMethod = "Quest"
+_G.FarmDistance = 35
+_G.PlayerTweenSpeed = 300
+_G.BringMob = true
+_G.BringMobMode = "Normal"
+_G.AttackAura = true
+
+
 if game.PlaceId == 2753915549 then
-    World1 = true
+	World1 = true;
 elseif game.PlaceId == 4442272183 then
-    World2 = true
+	World2 = true;
 elseif game.PlaceId == 7449423635 then
-    World3 = true
-end
-local function setTeam(teamName)
-    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam", teamName)
-end
-local player = game.Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
-if getgenv().Settings.JoinTeam then
-    local minimal = playerGui:FindFirstChild("Main (minimal)")
-    if minimal then
-        task.wait(5)
-        setTeam(getgenv().Settings.Team)
-    end
-end
-repeat
-    wait()
-until game.Players.LocalPlayer.Character
-getgenv().AutoFarm = true
-local plr = game.Players.LocalPlayer
-local VirtualUser = game:GetService("VirtualUser")
+	World3 = true;
+end;
 
-local function Attack()
-    local cam = workspace.CurrentCamera
-    if not cam then return end
-    
-    VirtualUser:CaptureController()
-    VirtualUser:Button1Down(Vector2.new(0,0), cam.CFrame)
-    task.wait(0.05)
-    VirtualUser:Button1Up(Vector2.new(0,0), cam.CFrame)
+-- [[ Declare Variables ]] --
+Workspace = game:GetService("Workspace");
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local Character
+local Humanoid
+local HumanoidRootPart
+local MyLevel
+
+local function SetupCharacter(char)
+    Character = char
+    Humanoid = char:WaitForChild("Humanoid")
+    HumanoidRootPart = char:WaitForChild("HumanoidRootPart")
 end
-spawn(function()
-    while task.wait(0.1) do
-        if not getgenv().AutoFarm then continue end
-        
-        CheckQuest()
 
-        local char = plr.Character
-        if not char or not char:FindFirstChild("HumanoidRootPart") then continue end
-        
-        -- ===== TỰ NHẬN QUEST =====
-        local questGui = plr.PlayerGui:FindFirstChild("Main")
-        if questGui then
-            local hasQuest = questGui:FindFirstChild("Quest")
-            
-            if not hasQuest or not hasQuest.Visible then
-                topos(CFrameQuest)
-                task.wait(1)
-                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(
-                    "StartQuest",
-                    NameQuest,
-                    LevelQuest
-                )
-                task.wait(1)
-            end
-        end
+if LocalPlayer.Character then
+    SetupCharacter(LocalPlayer.Character)
+end
 
-        -- ===== FARM ĐÚNG QUÁI =====
-        for _, enemy in pairs(workspace.Enemies:GetChildren()) do
-            if enemy:FindFirstChild("HumanoidRootPart")
-            and enemy:FindFirstChild("Humanoid")
-            and enemy.Humanoid.Health > 0
-            and enemy.Name == Mon then
-                
-                char.HumanoidRootPart.CFrame =
-                    enemy.HumanoidRootPart.CFrame * CFrame.new(0,20,0)
-                
-                Attack()
-            end
-        end
-    end
+LocalPlayer.CharacterAdded:Connect(function(char)
+    SetupCharacter(char)
 end)
+
+MyLevel = LocalPlayer:WaitForChild("Data"):WaitForChild("Level").Value
+
+ReplicatedStorage = game.ReplicatedStorage
+Remotes = ReplicatedStorage.Remotes
+Enemies = Workspace.Enemies
+RunService = game:GetService("RunService")
+TweenService = game:GetService("TweenService")
+VirtualInputManager = game:GetService("VirtualInputManager")
+TeleportService = game:GetService("TeleportService");
+
+function sendKeySkill(skill)
+    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode[skill], false, game)
+    task.wait(0.1)
+    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode[skill], false, game)
+end
+getgenv().AutoFarm = true
+
 function CheckQuest() 
     MyLevel = game:GetService("Players").LocalPlayer.Data.Level.Value
     if World1 then
