@@ -5,15 +5,43 @@ local Window = redzlib:MakeWindow({
   SubTitle = "blox fruit",
   SaveFolder = "Blox fruit"
 })
-Window:AddMinimizeButton({
-    Button = { 
-        Image = "rbxassetid://119980166507719",
-        BackgroundTransparency = 1
-    },
-    Corner = { 
-        CornerRadius = UDim.new(0,5)
-    },
-})
+task.wait(0.5)
+
+local strokes = {}
+
+-- Lấy tất cả UIStroke của nút và cửa sổ
+for _,v in pairs(game.CoreGui:GetDescendants()) do
+    if v:IsA("ImageButton") and v.Image == "rbxassetid://119980166507719" then
+        
+        local stroke = Instance.new("UIStroke")
+        stroke.Thickness = 2
+        stroke.Parent = v
+        table.insert(strokes, stroke)
+        
+    elseif v:IsA("Frame") and v.Size.X.Scale > 0.3 then
+        
+        local stroke = Instance.new("UIStroke")
+        stroke.Thickness = 3
+        stroke.Parent = v
+        table.insert(strokes, stroke)
+        
+    end
+end
+
+-- Hiệu ứng đổi màu liên tục
+spawn(function()
+    while true do
+        for hue = 0,1,0.01 do
+            local color = Color3.fromHSV(hue,1,1)
+            
+            for _,stroke in pairs(strokes) do
+                stroke.Color = color
+            end
+            
+            task.wait(0.03)
+        end
+    end
+end)
 local TweenService = game:GetService("TweenService")
 
 task.spawn(function()
