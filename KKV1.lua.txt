@@ -921,22 +921,13 @@ Tabs.Localplayer:AddButton({
     end
 })
 Tabs.Localplayer:AddButton({
-    Name = "Open Devil Fruit Shop",
-    Debounce = 0.5,
-    Callback = function()
-        local player = game.Players.LocalPlayer
-repeat task.wait() until player:FindFirstChild("PlayerGui")
-
-local gui = player.PlayerGui
-repeat task.wait() until gui:FindFirstChild("Main")
-
-local main = gui.Main
-repeat task.wait() until main:FindFirstChild("FruitShopAndDealer")
-
-local controller = main.FruitShopAndDealer:WaitForChild("Controller")
+    local player = game.Players.LocalPlayer
+local gui = player:WaitForChild("PlayerGui")
+local main = gui:WaitForChild("Main")
+local shop = main:WaitForChild("FruitShopAndDealer")
+local controller = shop:WaitForChild("Controller")
 
 require(controller):Open()
-
 Tabs.Localplayer:AddButton({
     Name = "Open Title",
     Debounce = 0.5,
