@@ -921,12 +921,15 @@ Tabs.Localplayer:AddButton({
     end
 })
 Tabs.Localplayer:AddButton({
-    local player = game.Players.LocalPlayer
+    Name = "Open Devil Fruit Shop",
+    Callback = function()
+        local player = game.Players.LocalPlayer
 local gui = player:WaitForChild("PlayerGui")
 local main = gui:WaitForChild("Main")
 local shop = main:WaitForChild("FruitShopAndDealer")
 local controller = shop:WaitForChild("Controller")
 
+require(controller):Open()
 require(controller):Open()
 Tabs.Localplayer:AddButton({
     Name = "Open Title",
