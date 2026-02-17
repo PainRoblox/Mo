@@ -32,7 +32,6 @@ end)
 local Tabs = {
     Discord = Window:MakeTab{Title = "Tab Discord",Icon = "info"},
     Shop = Window:MakeTab{Title = "Cửa hàng",Icon = "rbxassetid://6031265976"},
-    Status = Window:MakeTab{Title = "Trạng thái và sever",Icon = "rbxassetid://7040410130"},
     Localplayer = Window:MakeTab{Title = "Người chơi",Icon = "rbxassetid://13075651575"},
     Setting = Window:MakeTab{Title = "Cài đặt farm",Icon = "rbxassetid://7734053495"},
     Farm = Window:MakeTab{Title = "Farm chính",Icon = "rbxassetid://7733960981"},
@@ -909,7 +908,630 @@ Tabs.Discord:AddButton({
     end
 })
 
-
+Tabs.localplayer:AddButton({
+    Name = "Stop Tween",
+    Callback = function()
+        StopTween()
+    end
+})
+Tabs.localplayer:AddButton({
+    Name = "Open Devil Fruit Shop",
+    Callback = function()
+        local a = game
+        local b = a.Players
+        local c = b.LocalPlayer
+        local d = c.PlayerGui
+        local e = d:WaitForChild("Main")
+        local f = e:WaitForChild("FruitShopAndDealer")
+        local g = f:WaitForChild("Controller")
+        require(g):Open()
+    end
+})
+Tabs.localplayer:AddButton({
+    Name = "Open Title",
+    Callback = function()
+        local args = {
+            [1] = "getTitles"
+        }
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+        game.Players.LocalPlayer.PlayerGui.Main.Titles.Visible = true
+    end
+})
+Tabs.localplayer:AddButton({
+    Name = "Open Awakening",
+    Callback = function()
+        game:GetService("Players").LocalPlayer.PlayerGui.Main.AwakeningToggler.Visible = true
+    end
+})
+Tabs.localplayer:AddButton({
+    Name = "Boost FPS",
+    Callback = function()
+        FPSBooster()
+    end
+})
+Tabs.localplayer:AddDropdown({
+    Name = "Select Haki State",
+    Options = {"State 0", "State 1", "State 2", "State 3", "State 4", "State 5"},
+    Callback = function(Value)
+        getgenv().SelectStateHaki = Value
+    end
+})
+Tabs.localplayer:AddButton({
+    Name = "Change Buso Haki State",
+    Callback = function()
+        if getgenv().SelectStateHaki == "State 0" then
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ChangeBusoStage", 0)
+        elseif getgenv().SelectStateHaki == "State 1" then
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ChangeBusoStage", 1)
+        elseif getgenv().SelectStateHaki == "State 2" then
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ChangeBusoStage", 2)
+        elseif getgenv().SelectStateHaki == "State 3" then
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ChangeBusoStage", 3)
+        elseif getgenv().SelectStateHaki == "State 4" then
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ChangeBusoStage", 4)
+        elseif getgenv().SelectStateHaki == "State 5" then
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ChangeBusoStage", 5)
+        end
+    end
+})
+Tabs.localplayer:AddDropdown({
+    Name = "Select Stats",
+    Options = {"Melee", "Defense", "Sword", "Gun", "Fruit"},
+    Callback = function(Value)
+        getgenv().StatsMode = Value
+    end
+})
+spawn(function()
+    while wait() do
+        wait()
+        local player = game.Players.LocalPlayer
+        if player and player:FindFirstChild("Data") and player.Data:FindFirstChild("Points") then
+            if player.Data.Points.Value >= 1 and getgenv().AutoStats then
+                local statTypes = {
+                    Melee = "Melee",
+                    Defense = "Defense",
+                    Sword = "Sword",
+                    Gun = "Gun",
+                    Fruit = "Demon Fruit"
+                }
+                local selectedStat = statTypes[getgenv().StatsMode]
+                if selectedStat then
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint",selectedStat,PointStats)
+                end
+            end
+        end
+    end
+end)
+Tabs.localplayer:AddToggle({
+    Name = "Auto Stats",
+    Default = false,
+    Callback = function(Value)
+        getgenv().AutoStats = Value
+    end
+})
+Tabs.localplayer:AddToggle({
+    Name = "Beautiful Graphics",
+    Default = false,
+    Callback = function(Value)
+        local Lighting = game:GetService("Lighting")
+        local effectsToRemove = {
+            "BloomEffect_Graphic",
+            "ColorCorrectionEffect1_Graphic",
+            "ColorCorrectionEffect2_Graphic",
+            "ColorCorrectionEffect3_Graphic",
+            "SunRaysEffect_Graphic",
+            "DepthOfFieldEffect_Graphic"
+        }
+        for _, v in pairs(effectsToRemove) do
+            local obj = Lighting:FindFirstChild(v)
+            if obj then
+                obj:Destroy()
+            end
+        end
+        if Value then
+            getgenv().mode = "Autumn"
+            Lighting.Ambient = Color3.fromRGB(33, 33, 33)
+            Lighting.Brightness = 0.3
+            Lighting.ColorShift_Bottom = Color3.fromRGB(0, 0, 0)
+            Lighting.ColorShift_Top = Color3.fromRGB(255, 247, 237)
+            Lighting.EnvironmentDiffuseScale = 0.105
+            Lighting.EnvironmentSpecularScale = 0.522
+            Lighting.GlobalShadows = true
+            Lighting.OutdoorAmbient = Color3.fromRGB(51, 54, 67)
+            Lighting.ShadowSoftness = 0.04
+            Lighting.GeographicLatitude = -15.525
+            Lighting.ExposureCompensation = 0.75
+            local bloom = Instance.new("BloomEffect")
+            bloom.Name = "BloomEffect_Graphic"
+            bloom.Intensity = 0.04
+            bloom.Size = 1900
+            bloom.Threshold = 0.915
+            bloom.Parent = Lighting
+            local cc1 = Instance.new("ColorCorrectionEffect")
+            cc1.Name = "ColorCorrectionEffect1_Graphic"
+            cc1.Brightness = 0.176
+            cc1.Contrast = 0.39
+            cc1.Saturation = 0.2
+            cc1.Enabled = true
+            cc1.TintColor = getgenv().mode == "Summer"
+                and Color3.fromRGB(255, 220, 148)
+                or Color3.fromRGB(242, 193, 79)
+            cc1.Parent = Lighting
+            local dof = Instance.new("DepthOfFieldEffect")
+            dof.Name = "DepthOfFieldEffect_Graphic"
+            dof.Enabled = true
+            dof.FarIntensity = 0.077
+            dof.FocusDistance = 21.54
+            dof.InFocusRadius = 20.77
+            dof.NearIntensity = 0.277
+            dof.Parent = Lighting
+            local cc2 = Instance.new("ColorCorrectionEffect")
+            cc2.Name = "ColorCorrectionEffect2_Graphic"
+            cc2.Brightness = 0
+            cc2.Contrast = -0.07
+            cc2.Saturation = 0
+            cc2.TintColor = Color3.fromRGB(255, 247, 239)
+            cc2.Parent = Lighting
+            local cc3 = Instance.new("ColorCorrectionEffect")
+            cc3.Name = "ColorCorrectionEffect3_Graphic"
+            cc3.Brightness = 0.2
+            cc3.Contrast = 0.45
+            cc3.Saturation = -0.1
+            cc3.TintColor = Color3.fromRGB(255, 255, 255)
+            cc3.Parent = Lighting
+            local sun = Instance.new("SunRaysEffect")
+            sun.Name = "SunRaysEffect_Graphic"
+            sun.Enabled = false
+            sun.Intensity = 0.01
+            sun.Spread = 0.146
+            sun.Parent = Lighting
+        else
+            Lighting.Ambient = Color3.fromRGB(170, 170, 170)
+            Lighting.Brightness = 2
+            Lighting.ColorShift_Bottom = Color3.fromRGB(0, 0, 0)
+            Lighting.ColorShift_Top = Color3.fromRGB(0, 0, 0)
+            Lighting.EnvironmentDiffuseScale = 0.105
+            Lighting.EnvironmentSpecularScale = 0.522
+            Lighting.GlobalShadows = false
+            Lighting.OutdoorAmbient = Color3.fromRGB(127, 127, 127)
+            Lighting.ShadowSoftness = 0
+            Lighting.GeographicLatitude = 66
+            Lighting.ExposureCompensation = 0.2
+        end
+    end
+})
+Tabs.localplayer:AddToggle({
+    Name = "White Screen",
+    Default = false,
+    Callback = function(Value)
+        getgenv().WhiteScreen = Value
+        if Value then
+            game:GetService("RunService"):Set3dRenderingEnabled(false)
+        else
+            game:GetService("RunService"):Set3dRenderingEnabled(true)
+        end
+    end
+})
+Tabs.localplayer:AddToggle({
+    Name = "Black Screen",
+    Default = false,
+    Callback = function(Value)
+        getgenv().StartBlackScreen = Value
+    end
+})
+spawn(function()
+    while wait() do
+        if getgenv().StartBlackScreen then
+            game:GetService("Players").LocalPlayer.PlayerGui.Main.Blackscreen.Size = UDim2.new(500, 0, 500, 500)
+        else
+            game:GetService("Players").LocalPlayer.PlayerGui.Main.Blackscreen.Size = UDim2.new(1, 0, 500, 500)
+        end
+    end
+end)
+local StarterGui = game:GetService("StarterGui")
+Tabs.localplayer:AddToggle({
+    Name = "Hide Chat",
+    Default = false,
+    Callback = function(Value)
+        local HideChat = Value
+        if HideChat then
+            StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, false)
+        else
+            StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true)
+        end
+    end
+})
+local StarterGui = game:GetService("StarterGui")
+Tabs.localplayer:AddToggle({
+    Name = "Hide LeaderBoard",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false)
+        else
+            StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, true)
+        end
+    end
+})
+Tabs.localplayer:AddToggle({
+    Name = "Hide Mob",
+    Default = false,
+    Callback = function(Value)
+        getgenv().HideMob = Value
+    end
+})
+spawn(function()
+    while wait() do
+        if getgenv().HideMob then
+            pcall(function()
+                for _, v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+                    if v.ClassName == "MeshPart" then
+                        v.Transparency = 1
+                    end
+                end
+                for _, v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+                    if v.Name == "Head" then
+                        v.Transparency = 1
+                    end
+                end
+                for _, v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+                    if v.ClassName == "Accessory" then
+                        v.Handle.Transparency = 1
+                    end
+                end
+                for _, v in pairs(game:GetService("Workspace").Enemies:GetDescendants()) do
+                    if v.ClassName == "Decal" then
+                        v.Transparency = 1
+                    end
+                end
+            end)
+        end
+    end
+end)
+Tabs.localplayer:AddToggle({
+    Name = "Remove Dame Text",
+    Default = false,
+    Callback = function(Value)
+        getgenv().RemoveText = Value
+        game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = not getgenv().RemoveText
+    end
+})
+Tabs.localplayer:AddToggle({
+    Name = "Remove Notification",
+    Default = false,
+    Callback = function(Value)
+        getgenv().RemoveNotification = Value
+        game.Players.LocalPlayer.PlayerGui.Notifications.Enabled = not getgenv().RemoveNotification
+    end
+})
+Tabs.localplayer:AddToggle({
+    Name = "Auto Rejoin On Kick",
+    Default = false,
+    Callback = function(Value)
+        getgenv().AutoRejoinKick = Value
+    end
+})
+spawn(function()
+    while wait() do
+        if getgenv().AutoRejoinKick then
+            getgenv().rejoin = game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
+                if child.Name == 'ErrorPrompt' and 
+                   child:FindFirstChild('MessageArea') and 
+                   child.MessageArea:FindFirstChild("ErrorFrame") then
+                    game:GetService("TeleportService"):Teleport(game.PlaceId)
+                end
+            end)
+        end
+    end
+end)
+if World1 then
+    Tabs.localplayer:AddDropdown({
+        Name = "Select Island",
+        Default = false,
+        Options = {
+            "WindMill", "Marine", "Middle Town", "Jungle", "Pirate Village",
+            "Desert", "Snow Island", "MarineFord", "Colosseum", "Sky Island 1",
+            "Sky Island 2", "Sky Island 3", "Prison", "Magma Village",
+            "Under Water Island", "Fountain City", "Shank Room", "Mob Island",
+        },
+        Callback = function(Value)
+            getgenv().SelectIsland = Value
+        end
+    })
+end
+if World2 then
+    Tabs.localplayer:AddDropdown({
+        Name = "Select Island",
+        Default = false,
+        Options = {
+            "The Cafe", "Frist Spot", "Dark Area", "Flamingo Mansion", "Flamingo Room",
+            "Green Zone", "Factory", "Colossuim", "Zombie Island", "Two Snow Mountain",
+            "Punk Hazard", "Cursed Ship", "Ice Castle", "Forgotten Island",
+            "Ussop Island", "Mini Sky Island",
+        },
+        Callback = function(Value)
+            getgenv().SelectIsland = Value
+        end
+    })
+end
+if World3 then
+    Tabs.localplayer:AddDropdown({
+        Name = "Select Island",
+        Default = false,
+        Options = {
+            "Mansion", "Port Town", "Great Tree", "Castle On The Sea", "MiniSky",
+            "Hydra Island", "Floating Turtle", "Haunted Castle", "Ice Cream Island",
+            "Peanut Island", "Cake Island", "Cocoa Island", "Candy Island",
+            "Tiki Outpost", "Submerged Island",
+        },
+        Callback = function(Value)
+            getgenv().SelectIsland = Value
+        end
+    })
+end
+Tabs.localplayer:AddToggle({
+    Name = "Teleport Island",
+    Default = false,
+    Callback = function(Value)
+        getgenv().TeleportIsland = Value
+        if getgenv().TeleportIsland == true then
+            repeat
+                wait()
+                if getgenv().SelectIsland == "WindMill" then
+                    topos(CFrame.new(979.79895019531, 16.516613006592, 1429.0466308594))
+                elseif getgenv().SelectIsland == "Marine" then
+                    topos(CFrame.new(-2566.4296875, 6.8556680679321, 2045.2561035156))
+                elseif getgenv().SelectIsland == "Middle Town" then
+                    topos(CFrame.new(-690.33081054688, 15.09425163269, 1582.2380371094))
+                elseif getgenv().SelectIsland == "Jungle" then
+                    topos(CFrame.new(-1612.7957763672, 36.852081298828, 149.12843322754))
+                elseif getgenv().SelectIsland == "Pirate Village" then
+                    topos(CFrame.new(-1181.3093261719, 4.7514905929565, 3803.5456542969))
+                elseif getgenv().SelectIsland == "Desert" then
+                    topos(CFrame.new(944.15789794922, 20.919729232788, 4373.3002929688))
+                elseif getgenv().SelectIsland == "Snow Island" then
+                    topos(CFrame.new(1347.8067626953, 104.66806030273, -1319.7370605469))
+                elseif getgenv().SelectIsland == "MarineFord" then
+                    topos(CFrame.new(-4914.8212890625, 50.963626861572, 4281.0278320313))
+                elseif getgenv().SelectIsland == "Colosseum" then
+                    topos(CFrame.new(-1427.6203613281, 7.2881078720093, -2792.7722167969))
+                elseif getgenv().SelectIsland == "Sky Island 1" then
+                    topos(CFrame.new(-4869.1025390625, 733.46051025391, -2667.0180664063))
+                elseif getgenv().SelectIsland == "Sky Island 2" then
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-4607.82275, 872.54248, -1667.55688))
+                elseif getgenv().SelectIsland == "Sky Island 3" then
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
+                elseif getgenv().SelectIsland == "Prison" then
+                    topos(CFrame.new(4875.330078125, 5.6519818305969, 734.85021972656))
+                elseif getgenv().SelectIsland == "Magma Village" then
+                    topos(CFrame.new(-5247.7163085938, 12.883934020996, 8504.96875))
+                elseif getgenv().SelectIsland == "Under Water Island" then
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
+                elseif getgenv().SelectIsland == "Fountain City" then
+                    topos(CFrame.new(5127.1284179688, 59.501365661621, 4105.4458007813))
+                elseif getgenv().SelectIsland == "Shank Room" then
+                    topos(CFrame.new(-1442.16553, 29.8788261, -28.3547478))
+                elseif getgenv().SelectIsland == "Mob Island" then
+                    topos(CFrame.new(-2850.20068, 7.39224768, 5354.99268))
+                elseif getgenv().SelectIsland == "The Cafe" then
+                    topos(CFrame.new(-380.47927856445, 77.220390319824, 255.82550048828))
+                elseif getgenv().SelectIsland == "Frist Spot" then
+                    topos(CFrame.new(-11.311455726624, 29.276733398438, 2771.5224609375))
+                elseif getgenv().SelectIsland == "Dark Area" then
+                    topos(CFrame.new(3780.0302734375, 22.652164459229, -3498.5859375))
+                elseif getgenv().SelectIsland == "Flamingo Mansion" then
+                    topos(CFrame.new(-483.73370361328, 332.0383605957, 595.32708740234))
+                elseif getgenv().SelectIsland == "Flamingo Room" then
+                    topos(CFrame.new(2284.4140625, 15.152037620544, 875.72534179688))
+                elseif getgenv().SelectIsland == "Green Zone" then
+                    topos(CFrame.new(-2448.5300292969, 73.016105651855, -3210.6306152344))
+                elseif getgenv().SelectIsland == "Factory" then
+                    topos(CFrame.new(424.12698364258, 211.16171264648, -427.54049682617))
+                elseif getgenv().SelectIsland == "Colossuim" then
+                    topos(CFrame.new(-1503.6224365234, 219.7956237793, 1369.3101806641))
+                elseif getgenv().SelectIsland == "Zombie Island" then
+                    topos(CFrame.new(-5622.033203125, 492.19604492188, -781.78552246094))
+                elseif getgenv().SelectIsland == "Two Snow Mountain" then
+                    topos(CFrame.new(753.14288330078, 408.23559570313, -5274.6147460938))
+                elseif getgenv().SelectIsland == "Punk Hazard" then
+                    topos(CFrame.new(-6127.654296875, 15.951762199402, -5040.2861328125))
+                elseif getgenv().SelectIsland == "Cursed Ship" then
+                    topos(CFrame.new(923.40197753906, 125.05712890625, 32885.875))
+                elseif getgenv().SelectIsland == "Ice Castle" then
+                    topos(CFrame.new(6148.4116210938, 294.38687133789, -6741.1166992188))
+                elseif getgenv().SelectIsland == "Forgotten Island" then
+                    topos(CFrame.new(-3032.7641601563, 317.89672851563, -10075.373046875))
+                elseif getgenv().SelectIsland == "Ussop Island" then
+                    topos(CFrame.new(4816.8618164063, 8.4599885940552, 2863.8195800781))
+                elseif getgenv().SelectIsland == "Mini Sky Island" then
+                    topos(CFrame.new(-288.74060058594, 49326.31640625, -35248.59375))
+                elseif getgenv().SelectIsland == "Great Tree" then
+                    topos(CFrame.new(2681.2736816406, 1682.8092041016, -7190.9853515625))
+                elseif getgenv().SelectIsland == "Castle On The Sea" then
+                    topos(CFrame.new(-5074.45556640625, 314.5155334472656, -2991.054443359375))
+                elseif getgenv().SelectIsland == "MiniSky" then
+                    topos(CFrame.new(-260.65557861328, 49325.8046875, -35253.5703125))
+                elseif getgenv().SelectIsland == "Port Town" then
+                    topos(CFrame.new(-95, 11, 5455))
+                elseif getgenv().SelectIsland == "Hydra Island" then
+                    topos(CFrame.new(5433, 1062, 290))
+                elseif getgenv().SelectIsland == "Floating Turtle" then
+                    topos(CFrame.new(-13274.528320313, 531.82073974609, -7579.22265625))
+                elseif getgenv().SelectIsland == "Mansion" then
+                    topos(CFrame.new(-12551, 337, -7476))
+                elseif getgenv().SelectIsland == "Haunted Castle" then
+                    topos(CFrame.new(-9516, 142, 5537))
+                elseif getgenv().SelectIsland == "Ice Cream Island" then
+                    topos(CFrame.new(-874, 66, -10915))
+                elseif getgenv().SelectIsland == "Peanut Island" then
+                    topos(CFrame.new(-2062.7475585938, 50.473892211914, -10232.568359375))
+                elseif getgenv().SelectIsland == "Cake Island" then
+                    topos(CFrame.new(-1884.7747802734375, 19.327526092529297, -11666.8974609375))
+                elseif getgenv().SelectIsland == "Cocoa Island" then
+                    topos(CFrame.new(87.94276428222656, 73.55451202392578, -12319.46484375))
+                elseif getgenv().SelectIsland == "Candy Island" then
+                    topos(CFrame.new(-1014.4241943359375, 149.11068725585938, -14555.962890625))
+                elseif getgenv().SelectIsland == "Tiki Outpost" then
+                    topos(CFrame.new(-16101.1885, 12.8422165, 380.942291,0.194113985, 1.39194061e-08, -0.980978966,-9.82904691e-09, 1, 1.22443504e-08,0.980978966, 7.26528837e-09, 0.194113985))
+                elseif getgenv().SelectIsland == "Submerged Island" then
+                    topos(CFrame.new(-16269.7041, 25.2288494, 1373.65955,0.997390985, 1.47309942e-09, -0.0721890926,-4.00651912e-09, 0.99999994, -2.51183763e-09,0.0721890852, 5.75363091e-10, 0.997390926))
+                    task.wait(2)
+                    local args = {"TravelToSubmergedIsland"}
+                    game:GetService("ReplicatedStorage").Modules.Net:FindFirstChild("RF/SubmarineWorkerSpeak"):InvokeServer(unpack(args))
+                end
+            until not getgenv().TeleportIsland
+        end
+        StopTween(getgenv().TeleportIsland)
+    end
+})
+if World1 then
+    Tabs.localplayer:AddDropdown({
+        Name = "Select NPC",
+        Default = false,
+        Options = {
+            "Random Devil Fruit",
+            "Blox Fruits Dealer",
+            "Remove Devil Fruit",
+            "Ability Teacher",
+            "Dark Step",
+            "Electro",
+            "Fishman Karate"
+        },
+        Callback = function(Value)
+            getgenv().SelectNPC = Value
+        end
+    })
+end
+if World2 then
+    Tabs.localplayer:AddDropdown({
+        Name = "Select NPC",
+        Default = false,
+        Options = {
+            "Dargon Berath",
+            "Mtsterious Man",
+            "Mysterious Scientist",
+            "Awakening Expert",
+            "Nerd",
+            "Bar Manager",
+            "Blox Fruits Dealer",
+            "Trevor",
+            "Enhancement Editor",
+            "Pirate Recruiter",
+            "Marines Recruiter",
+            "Chemist",
+            "Cyborg",
+            "Ghoul Mark",
+            "Guashiem",
+            "El Admin",
+            "El Rodolfo",
+            "Arowe"
+        },
+        Callback = function(Value)
+            getgenv().SelectNPC = Value
+        end
+    })
+end
+if World3 then
+    Tabs.localplayer:AddDropdown({
+        Name = "Select NPC",
+        Default = false,
+        Options = {
+            "Blox Fruits Dealer",
+            "Remove Devil Fruit",
+            "Horned Man",
+            "Hungey Man",
+            "Previous Hero",
+            "Butler",
+            "Lunoven",
+            "Trevor",
+            "Elite Hunter",
+            "Player Hunter",
+            "Uzoth"
+        },
+        Callback = function(Value)
+            getgenv().SelectNPC = Value
+        end
+    })
+end
+Tabs.localplayer:AddToggle({
+    Name = "Teleport NPC",
+    Default = false,
+    Callback = function(Value)
+        getgenv().TeleportNPC = Value
+        if getgenv().TeleportNPC == true then
+            repeat wait()
+                if getgenv().SelectNPC == "Dargon Berath" then
+                    topos(CFrame.new(703.372986, 186.985519, 654.522034))
+                elseif getgenv().SelectNPC == "Mtsterious Man" then
+                    topos(CFrame.new(-2574.43335, 1627.92371, -3739.35767))
+                elseif getgenv().SelectNPC == "Mysterious Scientist" then
+                    topos(CFrame.new(-6437.87793, 250.645355, -4498.92773))
+                elseif getgenv().SelectNPC == "Awakening Expert" then
+                    topos(CFrame.new(-408.098846, 16.0459061, 247.432846))
+                elseif getgenv().SelectNPC == "Nerd" then
+                    topos(CFrame.new(-401.783722, 73.0859299, 262.306702))
+                elseif getgenv().SelectNPC == "Bar Manager" then
+                    topos(CFrame.new(-385.84726, 73.0458984, 316.088806))
+                elseif getgenv().SelectNPC == "Blox Fruits Dealer" then
+                    topos(CFrame.new(-12511, 337, -7448))
+                elseif getgenv().SelectNPC == "Trevor" then
+                    topos(CFrame.new(-341.498322, 331.886444, 643.024963))
+                elseif getgenv().SelectNPC == "Plokster" then
+                    topos(CFrame.new(-1885.16016, 88.3838196, -1912.28723))
+                elseif getgenv().SelectNPC == "Enhancement Editor" then
+                    topos(CFrame.new(-346.820221, 72.9856339, 1194.36218))
+                elseif getgenv().SelectNPC == "Pirate Recruiter" then
+                    topos(CFrame.new(-428.072998, 72.9495239, 1445.32422))
+                elseif getgenv().SelectNPC == "Marines Recruiter" then
+                    topos(CFrame.new(-1349.77295, 72.9853363, -1045.12964))
+                elseif getgenv().SelectNPC == "Chemist" then
+                    topos(CFrame.new(-2777.45288, 72.9919434, -3572.25732))
+                elseif getgenv().SelectNPC == "Ghoul Mark" then
+                    topos(CFrame.new(635.172546, 125.976357, 33219.832))
+                elseif getgenv().SelectNPC == "Cyborg" then
+                    topos(CFrame.new(629.146851, 312.307373, -531.624146))
+                elseif getgenv().SelectNPC == "Guashiem" then
+                    topos(CFrame.new(937.953003, 181.083359, 33277.9297))
+                elseif getgenv().SelectNPC == "El Admin" then
+                    topos(CFrame.new(1322.80835, 126.345039, 33135.8789))
+                elseif getgenv().SelectNPC == "El Rodolfo" then
+                    topos(CFrame.new(941.228699, 40.4686775, 32778.9922))
+                elseif getgenv().SelectNPC == "Arowe" then
+                    topos(CFrame.new(-1994.51038, 125.519142, -72.2622986))
+                elseif getgenv().SelectNPC == "Random Devil Fruit" then
+                    topos(CFrame.new(-12491, 337, -7449))
+                elseif getgenv().SelectNPC == "Remove Devil Fruit" then
+                    topos(CFrame.new(-5571, 1089, -2661))
+                elseif getgenv().SelectNPC == "Ability Teacher" then
+                    topos(CFrame.new(-1057.67822, 9.65220833, 1799.49146))
+                elseif getgenv().SelectNPC == "Dark Step" then
+                    topos(CFrame.new(-987.873047, 13.7778397, 3989.4978))
+                elseif getgenv().SelectNPC == "Electro" then
+                    topos(CFrame.new(-5389.49561, 13.283, -2149.80151))
+                elseif getgenv().SelectNPC == "Fishman Karate" then
+                    topos(CFrame.new(61581.8047, 18.8965912, 987.832703))
+                elseif getgenv().SelectNPC == "Horned Man" then
+                    topos(CFrame.new(-11890, 931, -8760))
+                elseif getgenv().SelectNPC == "Hungey Man" then
+                    topos(CFrame.new(-10919, 624, -10268))
+                elseif getgenv().SelectNPC == "Previous Hero" then
+                    topos(CFrame.new(-10368, 332, -10128))
+                elseif getgenv().SelectNPC == "Butler" then
+                    topos(CFrame.new(-5125, 316, -3130))
+                elseif getgenv().SelectNPC == "Lunoven" then
+                    topos(CFrame.new(-5117, 316, -3093))
+                elseif getgenv().SelectNPC == "Elite Hunter" then
+                    topos(CFrame.new(-5420, 314, -2828))
+                elseif getgenv().SelectNPC == "Player Hunter" then
+                    topos(CFrame.new(-5559, 314, -2840))
+                elseif getgenv().SelectNPC == "Uzoth" then
+                    topos(CFrame.new(-9785, 852, 6667))
+                end
+            until not getgenv().TeleportNPC
+        end
+        StopTween(getgenv().TeleportNPC)
+    end
+})
 
 
 
