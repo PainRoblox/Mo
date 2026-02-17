@@ -9,59 +9,59 @@ local Discord = Window:MakeTab({
   Icon = "Info"
 })
 local Shop = Window:MakeTab({
-  Title = "Cửa hàng",
+  Title = "Tab shop",
   Icon = "rbxassetid://6031265976"
 })
 local Status = Window:MakeTab({
-  Title = "Trạng thái và Server",
+  Title = "Tab Status And Server",
   Icon = "rbxassetid://7040410130"
 })
 local LocalPlayer = Window:MakeTab({
-  Title = "Nhân vật",
+  Title = "Tab Local Player ",
   Icon = "rbxassetid://13075651575"
 })
 local Setting = Window:MakeTab({
-  Title = "Cài đặt Farm",
+  Title = "Setting farm",
   Icon = "rbxassetid://7734053495"
 })
 local Farm = Window:MakeTab({
-  Title = "Farm level",
+  Title = "Tab Farming",
   Icon = "rbxassetid://7733960981"
 })
 local Stack = Window:MakeTab({
-  Title = "Farm gom quái",
+  Title = "Tab Stack Farm",
   Icon = "rbxassetid://13075622619"
 })
 local Other = Window:MakeTab({
-  Title = "Farm khác",
+  Title = "Tab Farming Other",
   Icon = "rbxassetid://10723405360"
 })
 local FruitRaid = Window:MakeTab({
-  Title = "Trái ác quỷ & Raid",
+  Title = "Tab Fruit And Raid",
   Icon = "rbxassetid://11155986081"
 })
 local Event = Window:MakeTab({
-  Title = "Sự kiện biển",
+  Title = "Tab Sea event",
   Icon = "rbxassetid://10709783577"
 })
 local Race = Window:MakeTab({
-  Title = "Nâng cấp tộc",
+  Title = "Tab upgrade race",
   Icon = "rbxassetid://11162889532"
 })
 local Get = Window:MakeTab({
-  Title = "Nhận & nâng cấp vật phẩm",
+  Title = "Tab Get/and upgrade items",
   Icon = "rbxassetid://11156061121"
 })
 local Volcano = Window:MakeTab({
-  Title = "Sự kiện núi lửa",
+  Title = "Tab Volcano event",
   Icon = "tent"
 })
 local ESP = Window:MakeTab({
-  Title = "Hiển thị ESP",
+  Title = "Tab ESP",
   Icon = "rbxassetid://11155851001"
 })
 local Player = Window:MakeTab({
-  Title = "PVP",
+  Title = "Tab PVP",
   Icon = "rbxassetid://7251993295"
 })
 local ScreenGui = Instance.new("ScreenGui")
@@ -158,7 +158,6 @@ function sendKeySkill(skill)
     VirtualInputManager:SendKeyEvent(false, Enum.KeyCode[skill], false, game)
 end
 
-getgenv().AutoFarm = true
 function CheckQuest() 
     MyLevel = game:GetService("Players").LocalPlayer.Data.Level.Value
     if World1 then
