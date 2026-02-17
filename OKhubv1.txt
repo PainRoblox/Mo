@@ -100,8 +100,6 @@ Discord:AddDiscordInvite({
     Invite = ""
 })
 
-Window:SelectTab(6)
-
 _G.SelectWeapon = "Melee"
 _G.FarmLevelMethod = "Quest"
 _G.MasteryMethod = "Quest"
