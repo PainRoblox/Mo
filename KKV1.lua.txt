@@ -3458,89 +3458,85 @@ spawn(function()
 end)
 
 Tabs.Other:AddSection("Fishing")
+
+-- Services
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Workspace = game:GetService("Workspace")
+
 local LocalPlayer = Players.LocalPlayer
-local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+
+-- Default values (tránh nil)
+getgenv().SelectedRod = getgenv().SelectedRod or "Fishing Rod"
+getgenv().SelectedBait = getgenv().SelectedBait or "Basic Bait"
+getgenv().AutoFishing = false
+
+-- Wait game load
+repeat task.wait() until LocalPlayer.Character
+
+local Character = LocalPlayer.Character
 local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+
+-- Modules
 local Modules = ReplicatedStorage:WaitForChild("Modules")
 local Net = Modules:WaitForChild("Net")
+
 local FishReplicated = ReplicatedStorage:WaitForChild("FishReplicated")
 local FishingRequest = FishReplicated:FindFirstChild("FishingRequest")
-local FishingRemote = FishReplicated:FindFirstChild("FishingRemote")
 local FishingClient = FishReplicated:WaitForChild("FishingClient")
+
 local Config = require(FishingClient:WaitForChild("Config"))
+
 local Util = ReplicatedStorage:WaitForChild("Util")
 local GetWaterHeightAtLocation = require(Util:WaitForChild("GetWaterHeightAtLocation"))
+
 local COMMF_ = Net:FindFirstChild("RF/JobsRemoteFunction")
 local CraftRF = Net:FindFirstChild("RF/Craft")
+
+---------------------------------------------------
+
 local function EnsureRodAndBait()
     if not COMMF_ then return end
+
     pcall(function()
         COMMF_:InvokeServer("FishingNPC", "FirstTimeFreeRod")
         COMMF_:InvokeServer("LoadItem", getgenv().SelectedRod, {"Gear"})
     end)
+
     task.wait(0.5)
-    local FishingData = LocalPlayer:FindFirstChild("Data") and LocalPlayer.Data:FindFirstChild("FishingData")
-    if FishingData and table.find({"None", nil}, FishingData:GetAttribute("SelectedBait")) then
-        local success, inventory = pcall(function()
-            return COMMF_:InvokeServer("getInventory")
-        end)
-        if success and inventory then
-            for _, v in pairs(inventory) do
-                if v.Type == "Bait" and v.Name == getgenv().SelectedBait then
-                    COMMF_:InvokeServer("LoadItem", v.Name, {"Usables"})
-                    return
-                end
-            end
-        end
-        if CraftRF then
-            CraftRF:InvokeServer("Craft", getgenv().SelectedBait)
-            task.wait(2)
-        end
-    end
 end
+
 local function EquipRod()
+    local Character = LocalPlayer.Character
+    if not Character then return end
+
     local Humanoid = Character:FindFirstChildOfClass("Humanoid")
+    if not Humanoid then return end
+
     if not Character:FindFirstChild(getgenv().SelectedRod) then
         local BackpackRod = LocalPlayer.Backpack:FindFirstChild(getgenv().SelectedRod)
-        if BackpackRod and Humanoid then
+        if BackpackRod then
             Humanoid:EquipTool(BackpackRod)
-            task.wait(0.3)
         end
     end
 end
-local function GetCastPosition()
-    local waterY = GetWaterHeightAtLocation(HumanoidRootPart.Position)
-    local direction = HumanoidRootPart.CFrame.LookVector * (Config.Rod.MaxLaunchDistance or 50)
-    local _, hitPos = Workspace:FindPartOnRayWithIgnoreList(
-        Ray.new(Character.Head.Position, direction),
-        {Character, Workspace.Characters, Workspace.Enemies}
-    )
-    if not hitPos then
-        return HumanoidRootPart.Position + Vector3.new(0, -10, 0)
-    end
-    local _, groundHit = Workspace:FindPartOnRayWithIgnoreList(
-        Ray.new(hitPos + Vector3.new(0, 3, 0), Vector3.new(0, -500, 0)),
-        {Character, Workspace.Characters, Workspace.Enemies}
-    )
-    if groundHit and groundHit.Y < waterY then
-        return Vector3.new(hitPos.X, math.max(groundHit.Y, waterY), hitPos.Z)
-    end
-    return hitPos
-end
+
 local function CastLine()
     if not FishingRequest then return end
+
     pcall(function()
         FishingRequest:InvokeServer("StartCasting")
         task.wait(0.7)
-        FishingRequest:InvokeServer("CastLineAtLocation", GetCastPosition(), 100, true)
+        FishingRequest:InvokeServer("CastLineAtLocation", HumanoidRootPart.Position - Vector3.new(0,5,0), 100, true)
     end)
 end
+
 local function CatchFish()
     if not FishingRequest then return end
+
     pcall(function()
         FishingRequest:InvokeServer("Catching", 1)
-        task.wait(0.25)
+        task.wait(0.2)
         FishingRequest:InvokeServer("Catch", 1)
     end)
 end
