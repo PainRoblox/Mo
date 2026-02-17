@@ -1,0 +1,72 @@
+local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Library/refs/heads/main/V5/Source.lua"))()
+
+local Window = redzlib:MakeWindow({
+  Title = "OK hub",
+  SubTitle = "blox fruit",
+  SaveFolder = "Blox fruit"
+})
+Window:Dialog({
+    Title = "Xin chào",
+    Content = "你喜欢咖啡吗",
+    Options = {
+        {
+            Name = "không(不对)",
+            Callback = function()
+                print("No clicked")
+            end
+        },
+        {
+            Name = "Có (对)",
+            Callback = function()
+                print("Có, wo xi huan he kafei")
+            end
+        }
+    }
+})
+Window:AddMinimizeButton({
+    Button = { Image = "rbxassetid://119980166507", BackgroundTransparency = 0 },
+    Corner = { CornerRadius = UDim.new(0,5) },
+})
+
+local Tabs = {
+    Discord = Window:MakeTab{Title = "Tab Discord",Icon = "info"},
+    Shop = Window:MakeTab{Title = "Cửa hàng",Icon = "rbxassetid://6031265976"},
+    Status = Window:MakeTab{Title = "Trạng thái và sever",Icon = "rbxassetid://7040410130"},
+    Localplayer = Window:MakeTab{Title = "Người chơi",Icon = "rbxassetid://13075651575"},
+    Setting = Window:MakeTab{Title = "Cài đặt farm",Icon = "rbxassetid://7734053495"},
+    Farm = Window:MakeTab{Title = "Farm chính",Icon = "rbxassetid://7733960981"},
+    Stack = Window:MakeTab{Title = "Gom quái (stack farm)",Icon = "rbxassetid://13075622619"},
+    Other = Window:MakeTab{Title = "Farm khác",Icon = "rbxassetid://10723405360"},
+    FruitRaid = Window:MakeTab{Title = "Trái ác quỷ và raid",Icon = "rbxassetid://11155986081"},
+    Event = Window:MakeTab{Title = "Sự kiện biển",Icon = "rbxassetid://10709783577"},
+    Race = Window:MakeTab{Title = "Nâng cấp tộc(Race)",Icon = "rbxassetid://11162889532"},
+    Get = Window:MakeTab{Title = "Nhận và nâng cấp items",Icon = "rbxassetid://11156061121"},
+    Volcano = Window:MakeTab{Title = "Sự kiện núi lửa",Icon = "rbxassetid://6031075938"},
+    ESP = Window:MakeTab{Title = "ESP",Icon = "rbxassetid://11155851001"},
+    Player = Window:MakeTab{Title = "PVP",Icon = "rbxassetid://7251993295"}
+}
+
+Tabs.Discord:AddDiscordInvite({
+    Name = "OK Hub",
+    Description = "",
+    Logo = "rbxassetid://119980166507",
+    Invite = "ko có gì"
+})
+
+local Section = Tabs.Farm:AddSection({"Farm"})
+
+
+
+
+
+
+
+
+
+
+
+
+
+local Section = Tab1:AddSection({"Blox fruit"})
+
+
