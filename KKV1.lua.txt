@@ -908,14 +908,16 @@ Tabs.Discord:AddButton({
     end
 })
 
-Tabs.localplayer:AddButton({
+Tabs.Localplayer:AddButton({
     Name = "Stop Tween",
+    Debounce = 0.5,
     Callback = function()
         StopTween()
     end
 })
-Tabs.localplayer:AddButton({
+Tabs.Localplayer:AddButton({
     Name = "Open Devil Fruit Shop",
+    Debounce = 0.5,
     Callback = function()
         local a = game
         local b = a.Players
@@ -927,8 +929,10 @@ Tabs.localplayer:AddButton({
         require(g):Open()
     end
 })
-Tabs.localplayer:AddButton({
+
+Tabs.Localplayer:AddButton({
     Name = "Open Title",
+    Debounce = 0.5,
     Callback = function()
         local args = {
             [1] = "getTitles"
@@ -937,27 +941,30 @@ Tabs.localplayer:AddButton({
         game.Players.LocalPlayer.PlayerGui.Main.Titles.Visible = true
     end
 })
-Tabs.localplayer:AddButton({
+Tabs.Localplayer:AddButton({
     Name = "Open Awakening",
+    Debounce = 0.5,
     Callback = function()
         game:GetService("Players").LocalPlayer.PlayerGui.Main.AwakeningToggler.Visible = true
     end
 })
-Tabs.localplayer:AddButton({
+Tabs.Localplayer:AddButton({
     Name = "Boost FPS",
+    Debounce = 0.5,
     Callback = function()
         FPSBooster()
     end
 })
-Tabs.localplayer:AddDropdown({
+Tabs.Localplayer:AddDropdown({
     Name = "Select Haki State",
     Options = {"State 0", "State 1", "State 2", "State 3", "State 4", "State 5"},
     Callback = function(Value)
         getgenv().SelectStateHaki = Value
     end
 })
-Tabs.localplayer:AddButton({
+Tabs.Localplayer:AddButton({
     Name = "Change Buso Haki State",
+    Debounce = 0.5,
     Callback = function()
         if getgenv().SelectStateHaki == "State 0" then
             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ChangeBusoStage", 0)
@@ -974,7 +981,7 @@ Tabs.localplayer:AddButton({
         end
     end
 })
-Tabs.localplayer:AddDropdown({
+Tabs.Localplayer:AddDropdown({
     Name = "Select Stats",
     Options = {"Melee", "Defense", "Sword", "Gun", "Fruit"},
     Callback = function(Value)
@@ -1002,14 +1009,14 @@ spawn(function()
         end
     end
 end)
-Tabs.localplayer:AddToggle({
+Tabs.Localplayer:AddToggle({
     Name = "Auto Stats",
     Default = false,
     Callback = function(Value)
         getgenv().AutoStats = Value
     end
 })
-Tabs.localplayer:AddToggle({
+Tabs.Localplayer:AddToggle({
     Name = "Beautiful Graphics",
     Default = false,
     Callback = function(Value)
@@ -1100,7 +1107,7 @@ Tabs.localplayer:AddToggle({
         end
     end
 })
-Tabs.localplayer:AddToggle({
+Tabs.Localplayer:AddToggle({
     Name = "White Screen",
     Default = false,
     Callback = function(Value)
@@ -1112,7 +1119,7 @@ Tabs.localplayer:AddToggle({
         end
     end
 })
-Tabs.localplayer:AddToggle({
+Tabs.Localplayer:AddToggle({
     Name = "Black Screen",
     Default = false,
     Callback = function(Value)
@@ -1129,7 +1136,7 @@ spawn(function()
     end
 end)
 local StarterGui = game:GetService("StarterGui")
-Tabs.localplayer:AddToggle({
+Tabs.Localplayer:AddToggle({
     Name = "Hide Chat",
     Default = false,
     Callback = function(Value)
@@ -1142,7 +1149,7 @@ Tabs.localplayer:AddToggle({
     end
 })
 local StarterGui = game:GetService("StarterGui")
-Tabs.localplayer:AddToggle({
+Tabs.Localplayer:AddToggle({
     Name = "Hide LeaderBoard",
     Default = false,
     Callback = function(Value)
@@ -1153,7 +1160,7 @@ Tabs.localplayer:AddToggle({
         end
     end
 })
-Tabs.localplayer:AddToggle({
+Tabs.Localplayer:AddToggle({
     Name = "Hide Mob",
     Default = false,
     Callback = function(Value)
@@ -1188,7 +1195,7 @@ spawn(function()
         end
     end
 end)
-Tabs.localplayer:AddToggle({
+Tabs.Localplayer:AddToggle({
     Name = "Remove Dame Text",
     Default = false,
     Callback = function(Value)
@@ -1196,7 +1203,7 @@ Tabs.localplayer:AddToggle({
         game:GetService("ReplicatedStorage").Assets.GUI.DamageCounter.Enabled = not getgenv().RemoveText
     end
 })
-Tabs.localplayer:AddToggle({
+Tabs.Localplayer:AddToggle({
     Name = "Remove Notification",
     Default = false,
     Callback = function(Value)
@@ -1204,7 +1211,7 @@ Tabs.localplayer:AddToggle({
         game.Players.LocalPlayer.PlayerGui.Notifications.Enabled = not getgenv().RemoveNotification
     end
 })
-Tabs.localplayer:AddToggle({
+Tabs.Localplayer:AddToggle({
     Name = "Auto Rejoin On Kick",
     Default = false,
     Callback = function(Value)
@@ -1225,7 +1232,7 @@ spawn(function()
     end
 end)
 if World1 then
-    Tabs.localplayer:AddDropdown({
+    Tabs.Localplayer:AddDropdown({
         Name = "Select Island",
         Default = false,
         Options = {
@@ -1240,7 +1247,7 @@ if World1 then
     })
 end
 if World2 then
-    Tabs.localplayer:AddDropdown({
+    Tabs.Localplayer:AddDropdown({
         Name = "Select Island",
         Default = false,
         Options = {
@@ -1255,7 +1262,7 @@ if World2 then
     })
 end
 if World3 then
-    Tabs.localplayer:AddDropdown({
+    Tabs.Localplayer:AddDropdown({
         Name = "Select Island",
         Default = false,
         Options = {
@@ -1269,7 +1276,7 @@ if World3 then
         end
     })
 end
-Tabs.localplayer:AddToggle({
+Tabs.Localplayer:AddToggle({
     Name = "Teleport Island",
     Default = false,
     Callback = function(Value)
@@ -1385,7 +1392,7 @@ Tabs.localplayer:AddToggle({
     end
 })
 if World1 then
-    Tabs.localplayer:AddDropdown({
+    Tabs.Localplayer:AddDropdown({
         Name = "Select NPC",
         Default = false,
         Options = {
@@ -1403,7 +1410,7 @@ if World1 then
     })
 end
 if World2 then
-    Tabs.localplayer:AddDropdown({
+    Tabs.Localplayer:AddDropdown({
         Name = "Select NPC",
         Default = false,
         Options = {
@@ -1432,7 +1439,7 @@ if World2 then
     })
 end
 if World3 then
-    Tabs.localplayer:AddDropdown({
+    Tabs.Localplayer:AddDropdown({
         Name = "Select NPC",
         Default = false,
         Options = {
@@ -1453,7 +1460,7 @@ if World3 then
         end
     })
 end
-Tabs.localplayer:AddToggle({
+Tabs.Localplayer:AddToggle({
     Name = "Teleport NPC",
     Default = false,
     Callback = function(Value)
