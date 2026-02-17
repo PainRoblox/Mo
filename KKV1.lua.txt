@@ -6888,7 +6888,7 @@ spawn(function()
         end)
     end
 end)
-ESP:AddToggle({
+Tabs.ESP:AddToggle({
     Name = "ESP Berry",
     Default = false,
     Callback = function(Value)
@@ -6906,7 +6906,7 @@ spawn(function()
         end
     end
 end)
-ESP:AddToggle({
+Tabs.ESP:AddToggle({
     Name = "ESP Island",
     Default = false,
     Callback = function(Value)
@@ -6924,7 +6924,7 @@ spawn(function()
         end
     end
 end)
-ESP:AddToggle({
+Tabs.ESP:AddToggle({
     Name = "ESP Fruit",
     Default = false,
     Callback = function(Value)
@@ -6942,7 +6942,7 @@ spawn(function()
         end
     end
 end)
-ESP:AddToggle({
+Tabs.ESP:AddToggle({
     Name = "ESP Player",
     Default = false,
     Callback = function(Value)
