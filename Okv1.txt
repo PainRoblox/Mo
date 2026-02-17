@@ -90,7 +90,7 @@ ImageButton.MouseButton1Click:Connect(function()
 end)
 UICorner.CornerRadius = UDim.new(1, 0)
 UICorner.Parent = ImageButton
-UIStroke.Color = Color3.fromRGB(0, 250, 250)
+UIStroke.Color = Color3.fromRGB(136, 0, 0)
 UIStroke.Thickness = 1.5
 UIStroke.Parent = ImageButton
 Discord:AddDiscordInvite({
