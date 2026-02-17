@@ -9,7 +9,26 @@ Window:AddMinimizeButton({
     Button = { Image = "rbxassetid://119980166507719", BackgroundTransparency = 0 },
     Corner = { CornerRadius = UDim.new(0,5) },
 })
+local TweenService = game:GetService("TweenService")
 
+task.spawn(function()
+    task.wait(0.3)
+
+    for _,v in pairs(game.CoreGui:GetDescendants()) do
+        if v:IsA("Frame") and v.Size.X.Scale > 0.3 then
+            
+            local originalSize = v.Size
+            v.Size = UDim2.new(originalSize.X.Scale * 0.8,0, originalSize.Y.Scale * 0.8,0)
+
+            TweenService:Create(
+                v,
+                TweenInfo.new(0.35, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+                {Size = originalSize}
+            ):Play()
+
+        end
+    end
+end)
 local Tabs = {
     Discord = Window:MakeTab{Title = "Tab Discord",Icon = "info"},
     Shop = Window:MakeTab{Title = "Cửa hàng",Icon = "rbxassetid://6031265976"},
@@ -400,7 +419,495 @@ Tabs. Shop:AddButton({
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
     end
 })
-
+local Time = Tabs.Discord:AddParagraph({
+    Title = "Time Zone",
+    Desc = ""
+})
+function UpdateOS()
+    date = os.date("*t")
+    hour = (date.hour) % 24
+    ampm = hour < 12 and "AM" or "PM"
+    timezone = string.format("%02i:%02i:%02i %s",((hour - 1) % 12) + 1,date.min,date.sec,ampm)
+    datetime = string.format("%02d/%02d/%04d", date.day, date.month, date.year)
+    LocalizationService = game:GetService("LocalizationService")
+    Players = game:GetService("Players")
+    player = Players.LocalPlayer
+    name = player.Name
+    result, code = pcall(function()
+        return LocalizationService:GetCountryRegionForPlayerAsync(player)
+    end)
+    Time:SetDesc(datetime .. " - " .. timezone .. " [ " .. code .. " ]")
+end
+spawn(function()
+    while wait() do
+        UpdateOS()
+        game:GetService("RunService").RenderStepped:Wait()
+    end
+end)
+local Timmessss = Tabs.Discord:AddParagraph({
+    Title = "Time",
+    Desc = ""
+})
+function UpdateTime()
+    GameTime = math.floor(workspace.DistributedGameTime + 0.5)
+    Hour = math.floor(GameTime / (60 ^ 2)) % 24
+    Minute = math.floor(GameTime / 60) % 60
+    Second = GameTime % 60
+    Timmessss:SetDesc(Hour .. " Hour (h) " ..Minute .. " Minute (m) " ..Second .. " Second (s) ")
+end
+spawn(function()
+    while wait() do
+        UpdateTime()
+        wait()
+    end
+end)
+local Miragecheck = Tabs.Discord:AddParagraph({
+    Title = "Mirage Island",
+    Desc = "Status: "
+})
+spawn(function()
+    pcall(function()
+        while wait() do
+            if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island') then
+                Miragecheck:SetDesc('✅️')
+            else
+                Miragecheck:SetDesc('❌️')
+            end
+        end
+    end)
+end)
+local Kitsunecheck = Tabs.Discord:AddParagraph({
+    Title = "Kitsune Island",
+    Desc = "Status: "
+})
+spawn(function()
+    pcall(function()
+        while wait() do
+            if game:GetService("Workspace").Map:FindFirstChild("KitsuneIsland") then
+                Kitsunecheck:SetDesc('✅️')
+            else
+                Kitsunecheck:SetDesc('❌️')
+            end
+        end
+    end)
+end)
+local CPrehistoriccheck = Tabs.Discord:AddParagraph({
+    Title = "Prehistoric Island",
+    Desc = "Status: "
+})
+spawn(function()
+    pcall(function()
+        while wait() do
+            if game.Workspace._WorldOrigin.Locations:FindFirstChild('Prehistoric Island') then
+                CPrehistoriccheck:SetDesc('✅️')
+            else
+                CPrehistoriccheck:SetDesc('❌️')
+            end
+        end
+    end)
+end)
+local FrozenIsland = Tabs.Discord:AddParagraph({
+    Title = "Frozen Dimension",
+    Desc = "Status: "
+})
+spawn(function()
+    pcall(function()
+        while wait() do
+            if game.Workspace._WorldOrigin.Locations:FindFirstChild('Frozen Dimension') then
+                FrozenIsland:SetDesc('✅️')
+            else
+                FrozenIsland:SetDesc('❌️')
+            end
+        end
+    end)
+end)
+local MobCakePrince = Tabs.Discord:AddParagraph({
+    Title = "Dimension Killed",
+    Desc = ""
+})
+spawn(function()
+    while wait() do
+        pcall(function()
+            local response = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CakePrinceSpawner")
+            local len = string.len(response)
+            if len == 88 then
+                MobCakePrince:SetDesc("Kill : " .. string.sub(response, 39, 41))
+            elseif len == 87 then
+                MobCakePrince:SetDesc("Kill : " .. string.sub(response, 39, 40))
+            elseif len == 86 then
+                MobCakePrince:SetDesc("Kill : " .. string.sub(response, 39, 39) .. " ")
+            else
+                MobCakePrince:SetDesc("Cake Prince : ✅️")
+            end
+        end)
+    end
+end)
+local TyrantStatus = Tabs.Discord:AddParagraph({
+    Title = "Tyrant of the Skies",
+    Desc = "Status: "
+})
+spawn(function()
+    pcall(function()
+        while wait() do
+            if game:GetService("Workspace").Enemies:FindFirstChild("Tyrant of the Skies") then
+                TyrantStatus:SetDesc("Status : ✅️")
+            else
+                TyrantStatus:SetDesc("Status : ❌️")
+            end
+        end
+    end)
+end)
+local CheckRip = Tabs.Discord:AddParagraph({
+    Title = "Rip_Indra",
+    Desc = "Status: "
+})
+spawn(function()
+    while wait() do
+        pcall(function()
+            if game:GetService("ReplicatedStorage"):FindFirstChild("rip_indra True Form") 
+            or game:GetService("Workspace").Enemies:FindFirstChild("rip_indra") then
+                CheckRip:SetDesc("Status : ✅️")
+            else
+                CheckRip:SetDesc("Status : ❌️")
+            end
+        end)
+    end
+end)
+local CheckDoughKing = Tabs.Discord:AddParagraph({
+    Title = "Dough King",
+    Desc = "Status: "
+})
+spawn(function()
+    while wait() do
+        pcall(function()
+            if game:GetService("ReplicatedStorage"):FindFirstChild("Dough King") 
+            or game:GetService("Workspace").Enemies:FindFirstChild("Dough King") then
+                CheckDoughKing:SetDesc("Status : ✅️")
+            else
+                CheckDoughKing:SetDesc("Status : ❌️")
+            end
+        end)
+    end
+end)
+local EliteHunter = Tabs.Discord:AddParagraph({
+    Title = "Elite Hunter",
+    Desc = "Status: "
+})
+spawn(function()
+    while wait() do
+        pcall(function()
+            local rs = game:GetService("ReplicatedStorage")
+            local ws = game:GetService("Workspace").Enemies
+            local progress = rs.Remotes.CommF_:InvokeServer("EliteHunter", "Progress")
+            if rs:FindFirstChild("Diablo") or rs:FindFirstChild("Deandre") or rs:FindFirstChild("Urban")
+            or ws:FindFirstChild("Diablo") or ws:FindFirstChild("Deandre") or ws:FindFirstChild("Urban") then
+                EliteHunter:SetDesc("Status : ✅️ | Killed: " .. progress)
+            else
+                EliteHunter:SetDesc("Status : ❌️ | Killed: " .. progress)
+            end
+        end)
+    end
+end)
+local Pullever = Tabs.Discord:AddParagraph({
+    Title = "Pull Lever",
+    Desc = "Status: "
+})
+spawn(function()
+    while wait() do
+        pcall(function()
+            if game.ReplicatedStorage.Remotes.CommF_:InvokeServer("CheckTempleDoor") then
+                Pullever:SetDesc("✅")
+            else
+                Pullever:SetDesc("❌")
+            end
+        end)
+    end
+end)
+local FM = Tabs.Discord:AddParagraph({
+    Title = "Full Moon",
+    Desc = ""
+})
+spawn(function()
+    while wait() do
+        pcall(function()
+            local moonId = game:GetService("Lighting").Sky.MoonTextureId
+            if moonId == "http://www.roblox.com/asset/?id=9709149431" then
+                FM:SetDesc("Moon: 5/5")
+            elseif moonId == "http://www.roblox.com/asset/?id=9709149052" then
+                FM:SetDesc("Moon: 4/5")
+            elseif moonId == "http://www.roblox.com/asset/?id=9709143733" then
+                FM:SetDesc("Moon: 3/5")
+            elseif moonId == "http://www.roblox.com/asset/?id=9709150401" then
+                FM:SetDesc("Moon: 2/5")
+            elseif moonId == "http://www.roblox.com/asset/?id=9709149680" then
+                FM:SetDesc("Moon: 1/5")
+            else
+                FM:SetDesc("Moon: 0/5")
+            end
+        end)
+    end
+end)
+local LegendarySword = Tabs.Discord:AddParagraph({
+    Title = "Legendary Sword",
+    Desc = "Status: "
+})
+spawn(function()
+    pcall(function()
+        while wait() do
+            local rs = game:GetService("ReplicatedStorage").Remotes.CommF_   
+            if rs:InvokeServer("LegendarySwordDealer", "1") then
+                LegendarySword:SetDesc("Shisui")
+            elseif rs:InvokeServer("LegendarySwordDealer", "2") then
+                LegendarySword:SetDesc("Wando")
+            elseif rs:InvokeServer("LegendarySwordDealer", "3") then
+                LegendarySword:SetDesc("Saddi")
+            else
+                LegendarySword:SetDesc("Not Found Legend Swords")
+            end
+        end
+    end)
+end)
+local Bone = Tabs.Discord:AddParagraph({
+    Title = "Bone",
+    Desc = ""
+})
+spawn(function()
+    pcall(function()
+        while wait() do
+            local bones = game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones", "Check")
+            Bone:SetDesc("You Have : " .. tostring(bones) .. " Bones")
+        end
+    end)
+end)
+Tabs.Discord:AddTextBox({
+    Name = "Input Job Id",
+    Placeholder = "Job ID",
+    ClearOnFocus = true,
+    Callback = function(Value)
+        getgenv().Job = Value
+    end
+})
+Tabs.Discord:AddToggle({
+    Name = "Spam Join",
+    Default = false,
+    Callback = function(Value)
+        getgenv().Join = Value
+    end
+})
+spawn(function()
+    while wait() do
+        if getgenv().Join then
+            game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId,getgenv().Job,game.Players.LocalPlayer)
+        end
+    end
+end)
+Tabs.Discord:AddButton({
+    Name = "Join Server",
+    Callback = function()
+        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId,getgenv().Job,game.Players.LocalPlayer)
+    end
+})
+Tabs.Discord:AddButton({
+    Name = "Copy JobId",
+    Callback = function()
+        setclipboard(tostring(game.JobId))
+    end
+})
+Tabs.Discord:AddButton({
+    Name = "Rejoin Server",
+    Callback = function()
+        game:GetService("TeleportService"):Teleport(game.PlaceId,game:GetService("Players").LocalPlayer)
+    end
+})
+Tabs.Discord:AddButton({
+    Name = "Hop Server",
+    Callback = function()
+        Hop()
+    end
+})
+Tabs.Discord:AddButton({
+    Name = "Hop Server Less People",
+    Callback = function()
+        local Http = game:GetService("HttpService")
+        local TPS = game:GetService("TeleportService")
+        local Players = game:GetService("Players")
+        local plr = Players.LocalPlayer
+        local Api = "https://games.roblox.com/v1/games/"
+        local _place = game.PlaceId
+        local _servers = Api .. _place .. "/servers/Public?sortOrder=Asc&limit=100"
+        local function ListServers(cursor)
+            local Raw = game:HttpGet(_servers .. ((cursor and "&cursor=" .. cursor) or ""))
+            return Http:JSONDecode(Raw)
+        end
+        local Server, Next
+        repeat
+            local Servers = ListServers(Next)
+            Server = Servers.data[1]
+            Next = Servers.nextPageCursor
+        until Server
+        TPS:TeleportToPlaceInstance(_place, Server.id, plr)
+    end
+})
+Tabs.Discord:AddButton({
+    Name = "Hop Server Vip [No One Left]",
+    Callback = function()
+        local md5, hmac, base64 = {}, {}, {}
+        do
+            local T = {
+                0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee,
+                0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501,
+                0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be,
+                0x6b901122, 0xfd987193, 0xa679438e, 0x49b40821,
+                0xf61e2562, 0xc040b340, 0x265e5a51, 0xe9b6c7aa,
+                0xd62f105d, 0x02441453, 0xd8a1e681, 0xe7d3fbc8,
+                0x21e1cde6, 0xc33707d6, 0xf4d50d87, 0x455a14ed,
+                0xa9e3e905, 0xfcefa3f8, 0x676f02d9, 0x8d2a4c8a,
+                0xfffa3942, 0x8771f681, 0x6d9d6122, 0xfde5380c,
+                0xa4beea44, 0x4bdecfa9, 0xf6bb4b60, 0xbebfbc70,
+                0x289b7ec6, 0xeaa127fa, 0xd4ef3085, 0x04881d05,
+                0xd9d4d039, 0xe6db99e5, 0x1fa27cf8, 0xc4ac5665,
+                0xf4292244, 0x432aff97, 0xab9423a7, 0xfc93a039,
+                0x655b59c3, 0x8f0ccc92, 0xffeff47d, 0x85845dd1,
+                0x6fa87e4f, 0xfe2ce6e0, 0xa3014314, 0x4e0811a1,
+                0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391,
+            }
+            local function add(a, b)
+                local lsw = bit32.band(a, 0xFFFF) + bit32.band(b, 0xFFFF)
+                local msw = bit32.rshift(a, 16) + bit32.rshift(b, 16) + bit32.rshift(lsw, 16)
+                return bit32.bor(bit32.lshift(msw, 16), bit32.band(lsw, 0xFFFF))
+            end
+            local function rol(x, n)
+                return bit32.bor(bit32.lshift(x, n), bit32.rshift(x, 32 - n))
+            end
+            local function F(x, y, z) return bit32.bor(bit32.band(x, y), bit32.band(bit32.bnot(x), z)) end
+            local function G(x, y, z) return bit32.bor(bit32.band(x, z), bit32.band(y, bit32.bnot(z))) end
+            local function H(x, y, z) return bit32.bxor(x, bit32.bxor(y, z)) end
+            local function I(x, y, z) return bit32.bxor(y, bit32.bor(x, bit32.bnot(z))) end
+            function md5.sum(message)
+                local a, b, c, d = 0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476
+                local message_len = #message
+                local padded_message = message .. "\128"
+                while #padded_message % 64 ~= 56 do
+                    padded_message = padded_message .. "\0"
+                end
+                local len_bytes = ""
+                local len_bits = message_len * 8
+                for i = 0, 7 do
+                    len_bytes = len_bytes .. string.char(bit32.band(bit32.rshift(len_bits, i * 8), 0xFF))
+                end
+                padded_message = padded_message .. len_bytes
+                for i = 1, #padded_message, 64 do
+                    local chunk = padded_message:sub(i, i + 63)
+                    local X = {}
+                    for j = 0, 15 do
+                        local b1, b2, b3, b4 = chunk:byte(j * 4 + 1, j * 4 + 4)
+                        X[j] = bit32.bor(b1, bit32.lshift(b2, 8), bit32.lshift(b3, 16), bit32.lshift(b4, 24))
+                    end
+                    local aa, bb, cc, dd = a, b, c, d
+                    local s = {7, 12, 17, 22, 5, 9, 14, 20, 4, 11, 16, 23, 6, 10, 15, 21}
+                    for j = 0, 63 do
+                        local f, k, shift_index
+                        if j < 16 then
+                            f, k, shift_index = F(b, c, d), j, j % 4
+                        elseif j < 32 then
+                            f, k, shift_index = G(b, c, d), (1 + 5 * j) % 16, 4 + (j % 4)
+                        elseif j < 48 then
+                            f, k, shift_index = H(b, c, d), (5 + 3 * j) % 16, 8 + (j % 4)
+                        else
+                            f, k, shift_index = I(b, c, d), (7 * j) % 16, 12 + (j % 4)
+                        end
+                        local temp = add(a, f)
+                        temp = add(temp, X[k])
+                        temp = add(temp, T[j + 1])
+                        temp = rol(temp, s[shift_index + 1])
+                        local new_b = add(b, temp)
+                        a, b, c, d = d, new_b, b, c
+                    end
+                    a, b, c, d = add(a, aa), add(b, bb), add(c, cc), add(d, dd)
+                end
+                local function to_le_hex(n)
+                    local s = ""
+                    for i = 0, 3 do
+                        s = s .. string.char(bit32.band(bit32.rshift(n, i * 8), 0xFF))
+                    end
+                    return s
+                end
+                return to_le_hex(a) .. to_le_hex(b) .. to_le_hex(c) .. to_le_hex(d)
+            end
+        end
+        do
+            function hmac.new(key, msg, hash_func)
+                if #key > 64 then key = hash_func(key) end
+                local o_key_pad, i_key_pad = "", ""
+                for i = 1, 64 do
+                    local byte = (i <= #key and string.byte(key, i)) or 0
+                    o_key_pad = o_key_pad .. string.char(bit32.bxor(byte, 0x5C))
+                    i_key_pad = i_key_pad .. string.char(bit32.bxor(byte, 0x36))
+                end
+                return hash_func(o_key_pad .. hash_func(i_key_pad .. msg))
+            end
+        end
+        do
+            local b = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+            function base64.encode(data)
+                return (
+                    (data:gsub(".", function(x)
+                        local r, b_val = "", x:byte()
+                        for i = 8, 1, -1 do
+                            r = r .. (b_val % 2 ^ i - b_val % 2 ^ (i - 1) > 0 and "1" or "0")
+                        end
+                        return r
+                    end) .. "0000"):gsub("%d%d%d?%d?%d?%d?", function(x)
+                        if #x < 6 then return "" end
+                        local c = 0
+                        for i = 1, 6 do
+                            c = c + (x:sub(i, i) == "1" and 2 ^ (6 - i) or 0)
+                        end
+                        return b:sub(c + 1, c + 1)
+                    end) .. ({ "", "==", "=" })[#data % 3 + 1])
+            end
+        end
+        local function GenerateReservedServerCode(placeId)
+            local uuid = {}
+            for i = 1, 16 do
+                uuid[i] = math.random(0, 255)
+            end
+            uuid[7] = bit32.bor(bit32.band(uuid[7], 0x0F), 0x40)
+            uuid[9] = bit32.bor(bit32.band(uuid[9], 0x3F), 0x80)
+            local firstBytes = ""
+            for i = 1, 16 do
+                firstBytes = firstBytes .. string.char(uuid[i])
+            end
+            local gameCode = string.format("%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x",table.unpack(uuid))
+            local placeIdBytes, pIdRec = "", placeId
+            for _ = 1, 8 do
+                placeIdBytes = placeIdBytes .. string.char(pIdRec % 256)
+                pIdRec = math.floor(pIdRec / 256)
+            end
+            local content = firstBytes .. placeIdBytes
+            local SECRET_KEY = "e4Yn8ckbCJtw2sv7qmbg"
+            local signature = hmac.new(SECRET_KEY, content, md5.sum)
+            local accessCodeBytes = signature .. content
+            local accessCode = base64.encode(accessCodeBytes):gsub("+", "-"):gsub("/", "_")
+            local padding = 0
+            accessCode, _ = accessCode:gsub("=", function()
+                padding = padding + 1
+                return ""
+            end)
+            accessCode = accessCode .. tostring(padding)
+            return accessCode, gameCode
+        end
+        local function CanRunFunc()
+            return #game.Players:GetPlayers() > 1
+        end
+        task.delay(5, function()
+            if CanRunFunc() then
+                local accessCode = GenerateReservedServerCode(game.PlaceId)
+                game.RobloxReplicatedStorage.ContactListIrisInviteTeleport:FireServer(game.PlaceId, "", accessCode)
+            end
+        end)
+    end
+})
 
 
 
