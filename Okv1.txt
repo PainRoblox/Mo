@@ -5,79 +5,43 @@ local Window = Library:MakeWindow({
   SaveFolder = "OK  Hub | Blox Fruits.lua"
 })
 Window:AddMinimizeButton({
-    Button = { Image = "rbxassetid://119980166507", BackgroundTransparency = 1 },
+    Button = { Image = "rbxassetid://119980166507", BackgroundTransparency = 0 },
     Corner = { CornerRadius = UDim.new(35, 1) },
 })
+local Tabs = {
+    Discord = Window:MakeTab{Title = "Tab Discord",Icon = "info"},
+    Shop = Window:MakeTab{Title = "Cửa hàng",Icon = "rbxassetid://6031265976"},
+    Status = Window:MakeTab{Title = "Trạng thái và sever",Icon = "rbxassetid://7040410130"},
+    Localplayer = Window:MakeTab{Title = "Người chơi",Icon = "rbxassetid://13075651575"},
+    Setting = Window:MakeTab{Title = "Cài đặt farm",Icon = "rbxassetid://7734053495"},
+    Farm = Window:MakeTab{Title = "Farm chính",Icon = "rbxassetid://7733960981"},
+    Stack = Window:MakeTab{Title = "Gom quái (stack farm)",Icon = "rbxassetid://13075622619"},
+    Other = Window:MakeTab{Title = "Farm khác",Icon = "rbxassetid://10723405360"},
+    FruitRaid = Window:MakeTab{Title = "Trái ác quỷ và raid",Icon = "rbxassetid://11155986081"},
+    Event = Window:MakeTab{Title = "Sự kiện biển",Icon = "rbxassetid://10709783577"},
+    Race = Window:MakeTab{Title = "Nâng cấp tộc(Race)",Icon = "rbxassetid://11162889532"},
+    Get = Window:MakeTab{Title = "Nhận và nâng cấp items",Icon = "rbxassetid://11156061121"},
+    Volcano = Window:MakeTab{Title = "Sự kiện núi lửa",Icon = "rbxassetid://6031075938"},
+    ESP = Window:MakeTab{Title = "ESP",Icon = "rbxassetid://11155851001"},
+    Player = Window:MakeTab{Title = "PVP",Icon = "rbxassetid://7251993295"}
+}
 
-local Discord = Window:MakeTab({
-  Title = "Tab Discord",
-  Icon = "Info"
-})
-local Shop = Window:MakeTab({
-  Title = "Tab Shop",
-  Icon = "rbxassetid://6031265976"
-})
-local Status = Window:MakeTab({
-  Title = "Tab Status And Server",
-  Icon = "rbxassetid://7040410130"
-})
-local TabLocalPlayer = Window:MakeTab({
-  Title = "Tab Local Player",
-  Icon = "rbxassetid://13075651575"
-})
-local TabSetting = Window:MakeTab({
-  Title = "Setting Farm",
-  Icon = "rbxassetid://7734053495"
-})
-local TabFarm = Window:MakeTab({
-  Title = "Tab Farming",
-  Icon = "rbxassetid://7733960981"
-})
-local TabStack = Window:MakeTab({
-  Title = "Tab Stack Farm",
-  Icon = "rbxassetid://13075622619"
-})
-local TabOther: = Window:MakeTab({
-  Title = "Tab Farming Other",
-  Icon = "rbxassetid://10723405360"
-})
-local FruitRaid = Window:MakeTab({
-  Title = "Tab Fruit and Raid",
-  Icon = "rbxassetid://11155986081"
-})
-local Event = Window:MakeTab({
-  Title = "Tab Sea Event",
-  Icon = "rbxassetid://10709783577"
-})
-local Race = Window:MakeTab({
-  Title = "Tab Upgrade Race",
-  Icon = "rbxassetid://11162889532"
-})
-local Get = Window:MakeTab({
-  Title = "Tab Get\nand Upgrade Items",
-  Icon = "rbxassetid://11156061121"
-})
-local Volcano = Window:MakeTab({
-  Title = "Tab Volcano Event",
-  Icon = "tent"
-})
-local ESP = Window:MakeTab({
-  Title = "Tab ESP",
-  Icon = "rbxassetid://11155851001"
-})
-local Player = Window:MakeTab({
-  Title = "Tab PVP",
-  Icon = "rbxassetid://7251993295"
-})
-
-Discord:AddDiscordInvite({
-    Name = "OK  Hub",
+Tabs.Discord:AddDiscordInvite({
+    Name = "OK Hub",
     Description = "",
     Logo = "rbxassetid://119980166507",
-    Invite = "lon"
+    Invite = ""
 })
+
 Window:SelectTab(1)
 
+Tabs.Farm:AddToggle({
+    Name = "Auto Farm Level",
+    Default = false,
+    Callback = function(Value)
+        _G.AutoFarm = Value
+    end
+})
 _G.SelectWeapon = "Melee"
 _G.FarmLevelMethod = "Quest"
 _G.MasteryMethod = "Quest"
@@ -840,6 +804,15 @@ function CheckQuest()
         end
     end
 end
+spawn(function()
+    while task.wait(0.5) do
+        if _G.AutoFarm then
+            pcall(function()
+                CheckQuest()
+            end)
+        end
+    end
+end)
 MaterialMon = function()
     local a = game.Players.LocalPlayer
     local b = a.Character and a.Character:FindFirstChild("HumanoidRootPart")
