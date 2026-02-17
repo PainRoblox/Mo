@@ -923,14 +923,16 @@ Tabs.Localplayer:AddButton({
 Tabs.Localplayer:AddButton({
     Name = "Open Devil Fruit Shop",
     Callback = function()
-        local player = game.Players.LocalPlayer
-local gui = player:WaitForChild("PlayerGui")
-local main = gui:WaitForChild("Main")
-local shop = main:WaitForChild("FruitShopAndDealer")
-local controller = shop:WaitForChild("Controller")
-
-require(controller):Open()
-require(controller):Open()
+        local a = game
+        local b = a.Players
+        local c = b.LocalPlayer
+        local d = c.PlayerGui
+        local e = d:WaitForChild("Main")
+        local f = e:WaitForChild("FruitShopAndDealer")
+        local g = f:WaitForChild("Controller")
+        require(g):Open()
+    end
+})
 Tabs.Localplayer:AddButton({
     Name = "Open Title",
     Debounce = 0.5,
