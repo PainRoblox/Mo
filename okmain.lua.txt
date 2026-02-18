@@ -6762,6 +6762,66 @@ L_1_[93]["Settings"]:AddDropdown({
 		getgenv().MobM6 = tonumber(Value)
 	end
 })
+getgenv().MobM6 = getgenv().MobM6 or 6
+task.spawn(function()
+	while task.wait(0.1) do
+		
+		if not getgenv().AutoFarm or not getgenv().BringMob then
+			continue
+		end
+		
+		local player = game.Players.LocalPlayer
+		local char = player and player.Character
+		local root = char and char:FindFirstChild("HumanoidRootPart")
+		local enemies = workspace:FindFirstChild("Enemies")
+		
+		if not root or not enemies then
+			continue
+		end
+		
+		local count = 0
+		
+		for _, mob in pairs(enemies:GetChildren()) do
+			
+			if count >= (getgenv().MobM6 or 6) then
+				break
+			end
+			
+			local hum = mob:FindFirstChild("Humanoid")
+			local hrp = mob:FindFirstChild("HumanoidRootPart")
+			
+			if hum and hrp and hum.Health > 0 then
+				
+				-- Không kéo boss
+				if mob.Name:find("Boss") then
+					continue
+				end
+				
+				-- Check khoảng cách
+				if (hrp.Position - root.Position).Magnitude <= (getgenv().BringRange or 350) then
+					
+					-- Tắt va chạm
+					hrp.CanCollide = false
+					
+					-- 🔒 Giữ quái đứng yên
+					hum.WalkSpeed = 0
+					hum.JumpPower = 0
+					hum.AutoRotate = false
+					
+					hrp.Velocity = Vector3.new(0,0,0)
+					hrp.RotVelocity = Vector3.new(0,0,0)
+					
+					-- 📍 Kéo xuống dưới chân
+					hrp.CFrame = root.CFrame * CFrame.new(0,-2.5,0)
+					
+					count += 1
+				end
+			end
+		end
+		
+	end
+end)
+
 L_1_[93]["Settings"]:AddToggle({
 	["Name"] = "Auto Hop Server",
 	["Default"] = false;
