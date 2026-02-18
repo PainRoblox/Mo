@@ -6768,32 +6768,37 @@ getgenv().BringMob = true -- test thử
 task.spawn(function()
 	while task.wait(0.1) do
 		
-		if getgenv().BringMob then
+		-- ✅ Chỉ chạy khi AutoFarm bật
+		if not getgenv().AutoFarm then 
+			continue 
+		end
+		
+		local player = game.Players.LocalPlayer
+		local char = player and player.Character
+		local root = char and char:FindFirstChild("HumanoidRootPart")
+		
+		if not root then continue end
+		
+		local count = 0
+		
+		for _, mob in pairs(workspace.Enemies:GetChildren()) do
 			
-			local player = game.Players.LocalPlayer
-			local char = player and player.Character
-			local root = char and char:FindFirstChild("HumanoidRootPart")
+			if count >= getgenv().MobM then
+				break
+			end
 			
-			if root then
+			local hum = mob:FindFirstChild("Humanoid")
+			local hrp = mob:FindFirstChild("HumanoidRootPart")
+			
+			if hum and hrp and hum.Health > 0 then
 				
-				local count = 0
+				-- Tắt va chạm
+				hrp.CanCollide = false
 				
-				for _, mob in pairs(workspace.Enemies:GetChildren()) do
-					
-					if count >= getgenv().MobM then break end
-					
-					local hum = mob:FindFirstChild("Humanoid")
-					local hrp = mob:FindFirstChild("HumanoidRootPart")
-					
-					if hum and hrp and hum.Health > 0 then
-						
-						hrp.CanCollide = false
-						hrp.CFrame = root.CFrame * CFrame.new(0,-1.8,0)
-						
-						count += 1
-					end
-				end
+				-- TP dưới chân (cao nhẹ để đánh được)
+				hrp.CFrame = root.CFrame * CFrame.new(0, -1.8, 0)
 				
+				count += 1
 			end
 		end
 		
