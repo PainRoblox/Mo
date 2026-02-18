@@ -6764,36 +6764,54 @@ L_1_[93]["Settings"]:AddDropdown({
 		getgenv().MobM = tonumber(Value)
 	end
 })
+getgenv().MobM = getgenv().MobM or 6
 
--- Vòng lặp Bring Mob
-spawn(function()
-	while task.wait(0.1) do
-		if getgenv().BringMob then
+task.spawn(function()
+	while task.wait() do
+		if getgenv().BringMob and getgenv().AutoFarm then
+			
 			local player = game.Players.LocalPlayer
 			local char = player.Character
-			if not char or not char:FindFirstChild("HumanoidRootPart") then
-				continue
-			end
-
-			local root = char.HumanoidRootPart
+			if not char then continue end
+			
+			local root = char:FindFirstChild("HumanoidRootPart")
+			if not root then continue end
+			
 			local count = 0
-
-			for _, v in pairs(workspace.Enemies:GetChildren()) do
-				if count >= (getgenv().MobM or 6) then
-					break
-				end
-
-				if v:FindFirstChild("HumanoidRootPart")
-				and v:FindFirstChild("Humanoid")
-				and v.Humanoid.Health > 0 then
-
-					v.HumanoidRootPart.CFrame = root.CFrame * CFrame.new(0,0,-5)
+			
+			for _, mob in pairs(workspace.Enemies:GetChildren()) do
+				if mob:FindFirstChild("HumanoidRootPart")
+				and mob:FindFirstChild("Humanoid")
+				and mob.Humanoid.Health > 0 then
+					
+					if count >= (getgenv().MobM or 6) then
+						break
+					end
+					
+					local mobRoot = mob.HumanoidRootPart
+					
+					-- 🔒 Tắt va chạm toàn bộ mob
+					for _, part in pairs(mob:GetChildren()) do
+						if part:IsA("BasePart") then
+							part.CanCollide = false
+							part.Massless = true
+						end
+					end
+					
+					-- 📍 Vị trí cố định dưới chân (ổn định để đánh)
+					mobRoot.CFrame = CFrame.new(
+						root.Position.X,
+						root.Position.Y - 2,
+						root.Position.Z
+					)
+					
 					count += 1
 				end
 			end
 		end
 	end
 end)
+
 L_1_[93]["Settings"]:AddToggle({
 	["Name"] = "Auto Hop Server",
 	["Default"] = false;
@@ -17420,16 +17438,6 @@ walkWater = L_1_[93]["Misc"]:AddToggle({
 		else
 			(game:GetService("Workspace"))["Map"]["WaterBase-Plane"]["Size"] = Vector3["new"](1000, 80, 1000)
 		end
-	end
-})
-iceWalk = L_1_[93]["Misc"]:AddToggle({
-	["Name"] = "Turn on Ice Walk",
-	["Description"] = "",
-	["Default"] = false,
-	["Callback"] = function(L_1728_arg0)
-		local L_1729_ = {}
-		L_1729_[1] = L_1728_arg0
-		_G["WalkWater"] = L_1729_[1]
 	end
 })
 spawn(function()
