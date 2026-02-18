@@ -6762,13 +6762,12 @@ L_1_[93]["Settings"]:AddDropdown({
 		getgenv().MobM = tonumber(Value)
 	end
 })
-getgenv().MobM = 6
-getgenv().BringMob = true -- test thử
+getgenv().MobM = getgenv().MobM or 6
 
 task.spawn(function()
 	while task.wait(0.1) do
 		
-		-- ✅ Chỉ chạy khi AutoFarm bật
+		-- ❌ Không bật AutoFarm thì không làm gì
 		if not getgenv().AutoFarm then 
 			continue 
 		end
@@ -6776,7 +6775,6 @@ task.spawn(function()
 		local player = game.Players.LocalPlayer
 		local char = player and player.Character
 		local root = char and char:FindFirstChild("HumanoidRootPart")
-		
 		if not root then continue end
 		
 		local count = 0
@@ -6792,11 +6790,16 @@ task.spawn(function()
 			
 			if hum and hrp and hum.Health > 0 then
 				
-				-- Tắt va chạm
+				-- ❌ Bỏ qua Boss
+				if mob.Name:find("Boss") then
+					continue
+				end
+				
+				-- Tắt va chạm để không đẩy người
 				hrp.CanCollide = false
 				
-				-- TP dưới chân (cao nhẹ để đánh được)
-				hrp.CFrame = root.CFrame * CFrame.new(0, -1.8, 0)
+				-- 📍 Kéo xuống dưới chân
+				hrp.CFrame = root.CFrame * CFrame.new(0,-2.5,0)
 				
 				count += 1
 			end
