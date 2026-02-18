@@ -6801,7 +6801,7 @@ task.spawn(function()
 				-- 📍 Kéo xuống dưới chân
 				hrp.CFrame = root.CFrame * CFrame.new(0,-2.5,0)
 				
-				count += 1
+				count += 3
 			end
 		end
 		
