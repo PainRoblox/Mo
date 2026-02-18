@@ -6762,51 +6762,41 @@ L_1_[93]["Settings"]:AddDropdown({
 		getgenv().MobM = tonumber(Value)
 	end
 })
-getgenv().MobM = getgenv().MobM or 6
+getgenv().MobM = 6
+getgenv().BringMob = true -- test thử
 
 task.spawn(function()
-	while task.wait() do
-		if getgenv().BringMob and getgenv().AutoFarm then
+	while task.wait(0.1) do
+		
+		if getgenv().BringMob then
 			
 			local player = game.Players.LocalPlayer
-			local char = player.Character
-			if not char then continue end
+			local char = player and player.Character
+			local root = char and char:FindFirstChild("HumanoidRootPart")
 			
-			local root = char:FindFirstChild("HumanoidRootPart")
-			if not root then continue end
-			
-			local count = 0
-			
-			for _, mob in pairs(workspace.Enemies:GetChildren()) do
-				if mob:FindFirstChild("HumanoidRootPart")
-				and mob:FindFirstChild("Humanoid")
-				and mob.Humanoid.Health > 0 then
+			if root then
+				
+				local count = 0
+				
+				for _, mob in pairs(workspace.Enemies:GetChildren()) do
 					
-					if count >= (getgenv().MobM or 6) then
-						break
+					if count >= getgenv().MobM then break end
+					
+					local hum = mob:FindFirstChild("Humanoid")
+					local hrp = mob:FindFirstChild("HumanoidRootPart")
+					
+					if hum and hrp and hum.Health > 0 then
+						
+						hrp.CanCollide = false
+						hrp.CFrame = root.CFrame * CFrame.new(0,-1.8,0)
+						
+						count += 1
 					end
-					
-					local mobRoot = mob.HumanoidRootPart
-					
-					-- 🔒 Tắt va chạm để không đẩy nhân vật
-					for _, part in pairs(mob:GetChildren()) do
-						if part:IsA("BasePart") then
-							part.CanCollide = false
-							part.Massless = true
-						end
-					end
-					
-					-- 📍 TP ngay dưới chân (cao nhẹ để đánh trúng)
-					mobRoot.CFrame = CFrame.new(
-						root.Position.X,
-						root.Position.Y - 1.8, -- cao vừa đủ
-						root.Position.Z
-					)
-					
-					count += 1
 				end
+				
 			end
 		end
+		
 	end
 end)
 L_1_[93]["Settings"]:AddToggle({
