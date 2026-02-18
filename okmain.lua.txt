@@ -6710,6 +6710,53 @@ Bringmob = L_1_[93]["Settings"]:AddToggle({
 		_B = L_632_[2]
 	end
 })
+getgenv().MobM = getgenv().MobM or 6
+
+task.spawn(function()
+	while task.wait() do
+		if getgenv().BringMob and getgenv().AutoFarm then
+			
+			local player = game.Players.LocalPlayer
+			local char = player.Character
+			if not char then continue end
+			
+			local root = char:FindFirstChild("HumanoidRootPart")
+			if not root then continue end
+			
+			local count = 0
+			
+			for _, mob in pairs(workspace.Enemies:GetChildren()) do
+				if mob:FindFirstChild("HumanoidRootPart")
+				and mob:FindFirstChild("Humanoid")
+				and mob.Humanoid.Health > 0 then
+					
+					if count >= (getgenv().MobM or 6) then
+						break
+					end
+					
+					local mobRoot = mob.HumanoidRootPart
+					
+					-- 🔒 Tắt va chạm để không đẩy nhân vật
+					for _, part in pairs(mob:GetChildren()) do
+						if part:IsA("BasePart") then
+							part.CanCollide = false
+							part.Massless = true
+						end
+					end
+					
+					-- 📍 TP ngay dưới chân (cao nhẹ để đánh trúng)
+					mobRoot.CFrame = CFrame.new(
+						root.Position.X,
+						root.Position.Y - 1.8, -- cao vừa đủ
+						root.Position.Z
+					)
+					
+					count += 1
+				end
+			end
+		end
+	end
+end)
 L_1_[93]["Settings"]:AddDropdown({
 	["Name"] = "Bring Mob Mode";
 	["Description"] = "Adjust Range";
@@ -6764,53 +6811,6 @@ L_1_[93]["Settings"]:AddDropdown({
 		getgenv().MobM = tonumber(Value)
 	end
 })
-getgenv().MobM = getgenv().MobM or 6
-
-task.spawn(function()
-	while task.wait() do
-		if getgenv().BringMob and getgenv().AutoFarm then
-			
-			local player = game.Players.LocalPlayer
-			local char = player.Character
-			if not char then continue end
-			
-			local root = char:FindFirstChild("HumanoidRootPart")
-			if not root then continue end
-			
-			local count = 0
-			
-			for _, mob in pairs(workspace.Enemies:GetChildren()) do
-				if mob:FindFirstChild("HumanoidRootPart")
-				and mob:FindFirstChild("Humanoid")
-				and mob.Humanoid.Health > 0 then
-					
-					if count >= (getgenv().MobM or 6) then
-						break
-					end
-					
-					local mobRoot = mob.HumanoidRootPart
-					
-					-- 🔒 Tắt va chạm toàn bộ mob
-					for _, part in pairs(mob:GetChildren()) do
-						if part:IsA("BasePart") then
-							part.CanCollide = false
-							part.Massless = true
-						end
-					end
-					
-					-- 📍 Vị trí cố định dưới chân (ổn định để đánh)
-					mobRoot.CFrame = CFrame.new(
-						root.Position.X,
-						root.Position.Y - 2,
-						root.Position.Z
-					)
-					
-					count += 1
-				end
-			end
-		end
-	end
-end)
 
 L_1_[93]["Settings"]:AddToggle({
 	["Name"] = "Auto Hop Server",
