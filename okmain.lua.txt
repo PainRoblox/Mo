@@ -69,7 +69,7 @@ if _G.FastAttack then
 
     local Settings = {
         AutoClick = true,
-        ClickDelay = 0
+        ClickDelay = 0.01
     }
 
     local Module = {}
@@ -80,7 +80,7 @@ if _G.FastAttack then
         end
 
         local FastAttack = {
-            Distance = 100,
+            Distance = 90,
             attackMobs = true,
             attackPlayers = true,
             Equipped = nil
@@ -177,10 +177,15 @@ for _, v in next, ({game.ReplicatedStorage.Util, game.ReplicatedStorage.Common, 
     end)
 end
 task.spawn(function()
-    while task.wait(0.05) do
-        local char = game.Players.LocalPlayer.Character
-        local root = char and char:FindFirstChild("HumanoidRootPart")
-        local parts = {}
+    while task.wait() do
+        local player = game.Players.LocalPlayer
+        local char = player.Character
+
+        if char then
+            local root = char:FindFirstChild("HumanoidRootPart")
+
+            if root then
+                local parts = {}
         for _, x in ipairs({workspace.Enemies, workspace.Characters}) do
             for _, v in ipairs(x and x:GetChildren() or {}) do
                 local hrp = v:FindFirstChild("HumanoidRootPart")
@@ -6699,16 +6704,7 @@ end)
 L_1_[93]["Settings"]:AddSection({
 	"Settings / Configure"
 })
-Initialize = L_1_[93]["Settings"]:AddToggle({
-	["Name"] = "Fast Attack",
-	["Description"] = "",
-	["Default"] = true,
-	["Callback"] = function(L_629_arg0)
-		local L_630_ = {}
-		L_630_[2] = L_629_arg0
-		_G["Seriality"] = L_630_[2]
-	end
-})
+
 Bringmob = L_1_[93]["Settings"]:AddToggle({
 	["Name"] = "Bring Mobs";
 	["Description"] = "",
@@ -6755,23 +6751,54 @@ L_1_[93]["Settings"]:AddDropdown({
 		_G["SpeedB"] = tonumber(L_636_[2])
 	end
 })
+getgenv().BringMob = true
+getgenv().MobM = 6
+
 L_1_[93]["Settings"]:AddDropdown({
 	["Name"] = "Bring Mob Max",
-	["Description"] = "Adjust Mob";
+	["Description"] = "Adjust Mob",
 	["Default"] = "6",
 	["Options"] = {
-		"2";
-		"3";
-		"4";
-		"5";
+		"2",
+		"3",
+		"4",
+		"5",
 		"6"
-	};
-	["Callback"] = function(L_637_arg0)
-		local L_638_ = {}
-		L_638_[1] = L_637_arg0
-		_G["MobM"] = tonumber(L_638_[1])
+	},
+	["Callback"] = function(Value)
+		getgenv().MobM = tonumber(Value)
 	end
 })
+
+-- Vòng lặp Bring Mob
+spawn(function()
+	while task.wait(0.1) do
+		if getgenv().BringMob then
+			local player = game.Players.LocalPlayer
+			local char = player.Character
+			if not char or not char:FindFirstChild("HumanoidRootPart") then
+				continue
+			end
+
+			local root = char.HumanoidRootPart
+			local count = 0
+
+			for _, v in pairs(workspace.Enemies:GetChildren()) do
+				if count >= (getgenv().MobM or 6) then
+					break
+				end
+
+				if v:FindFirstChild("HumanoidRootPart")
+				and v:FindFirstChild("Humanoid")
+				and v.Humanoid.Health > 0 then
+
+					v.HumanoidRootPart.CFrame = root.CFrame * CFrame.new(0,0,-5)
+					count += 1
+				end
+			end
+		end
+	end
+end)
 L_1_[93]["Settings"]:AddToggle({
 	["Name"] = "Auto Hop Server",
 	["Default"] = false;
