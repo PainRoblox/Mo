@@ -6710,6 +6710,58 @@ Bringmob = L_1_[93]["Settings"]:AddToggle({
 		_B = L_632_[2]
 	end
 })
+L_1_[93]["Settings"]:AddDropdown({
+	["Name"] = "Bring Mob Mode";
+	["Description"] = "Adjust Range";
+	["Default"] = "350";
+	["Options"] = {
+		"250";
+		"300";
+		"350",
+		"400";
+		"450";
+		"500"
+	},
+	["Callback"] = function(L_633_arg0)
+		local L_634_ = {}
+		L_634_[2] = L_633_arg0
+		_G["BringRange"] = tonumber(L_634_[2])
+	end
+})
+L_1_[93]["Settings"]:AddDropdown({
+	["Name"] = "Bring Mob Speed";
+	["Description"] = "Adjust Speed";
+	["Default"] = "300";
+	["Options"] = {
+		"250";
+		"300",
+		"350";
+		"400";
+		"450";
+		"500"
+	},
+	["Callback"] = function(L_635_arg0)
+		local L_636_ = {}
+		L_636_[2] = L_635_arg0
+		_G["SpeedB"] = tonumber(L_636_[2])
+	end
+})
+
+L_1_[93]["Settings"]:AddDropdown({
+	["Name"] = "Bring Mob Max",
+	["Description"] = "Adjust Mob",
+	["Default"] = "6",
+	["Options"] = {
+		"2",
+		"3",
+		"4",
+		"5",
+		"6"
+	},
+	["Callback"] = function(Value)
+		getgenv().MobM = tonumber(Value)
+	end
+})
 getgenv().MobM = getgenv().MobM or 6
 
 task.spawn(function()
@@ -6757,61 +6809,6 @@ task.spawn(function()
 		end
 	end
 end)
-L_1_[93]["Settings"]:AddDropdown({
-	["Name"] = "Bring Mob Mode";
-	["Description"] = "Adjust Range";
-	["Default"] = "350";
-	["Options"] = {
-		"250";
-		"300";
-		"350",
-		"400";
-		"450";
-		"500"
-	},
-	["Callback"] = function(L_633_arg0)
-		local L_634_ = {}
-		L_634_[2] = L_633_arg0
-		_G["BringRange"] = tonumber(L_634_[2])
-	end
-})
-L_1_[93]["Settings"]:AddDropdown({
-	["Name"] = "Bring Mob Speed";
-	["Description"] = "Adjust Speed";
-	["Default"] = "300";
-	["Options"] = {
-		"250";
-		"300",
-		"350";
-		"400";
-		"450";
-		"500"
-	},
-	["Callback"] = function(L_635_arg0)
-		local L_636_ = {}
-		L_636_[2] = L_635_arg0
-		_G["SpeedB"] = tonumber(L_636_[2])
-	end
-})
-getgenv().BringMob = true
-getgenv().MobM = 6
-
-L_1_[93]["Settings"]:AddDropdown({
-	["Name"] = "Bring Mob Max",
-	["Description"] = "Adjust Mob",
-	["Default"] = "6",
-	["Options"] = {
-		"2",
-		"3",
-		"4",
-		"5",
-		"6"
-	},
-	["Callback"] = function(Value)
-		getgenv().MobM = tonumber(Value)
-	end
-})
-
 L_1_[93]["Settings"]:AddToggle({
 	["Name"] = "Auto Hop Server",
 	["Default"] = false;
