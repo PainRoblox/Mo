@@ -177,15 +177,10 @@ for _, v in next, ({game.ReplicatedStorage.Util, game.ReplicatedStorage.Common, 
     end)
 end
 task.spawn(function()
-    while task.wait() do
-        local player = game.Players.LocalPlayer
-        local char = player.Character
-
-        if char then
-            local root = char:FindFirstChild("HumanoidRootPart")
-
-            if root then
-                local parts = {}
+    while task.wait(0.03) do
+        local char = game.Players.LocalPlayer.Character
+        local root = char and char:FindFirstChild("HumanoidRootPart")
+        local parts = {}
         for _, x in ipairs({workspace.Enemies, workspace.Characters}) do
             for _, v in ipairs(x and x:GetChildren() or {}) do
                 local hrp = v:FindFirstChild("HumanoidRootPart")
