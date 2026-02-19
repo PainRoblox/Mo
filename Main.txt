@@ -132,7 +132,7 @@ function CheckQuest()
                                                 NameMon = "Prisoner"
                                                 CFrameQuest = CFrame.new(5308.93115, 1.65517521, 475.120514, -0.0894274712, -5.00292918E-9, -0.995993316, 1.60817859E-9, 1, -5.16744869E-9, 0.995993316, -2.06384709E-9, -0.0894274712)
                                                 CFrameMon = CFrame.new(5098.9736328125, -0.3204058110713959, 474.2373352050781)
-                                            elseif (MyLevel < 210 or MyLevel > 249) and SelectMonster ~= "Dangerous Prisoner" then
+                                            elseif (MyLevel < 210 or MyLevel > 249) and SelectMonster ~= "Dangerous Prisone" then
                                                 if MyLevel >= 250 and MyLevel <= 274 or SelectMonster == "Toga Warrior" then
                                                     Mon = "Toga Warrior"
                                                     LevelQuest = 1
@@ -495,6 +495,45 @@ function CheckQuest()
                                                                             CFrameMon = CFrame.new(-16855.043, 122.457253, 1478.15308, -0.999392271, -0, -0.0348687991, -0, 1, -0, 0.0348687991, -0, -0.999392271)
                                                                         end
                                                                     else
+                                                                    
+      elseif (MyLevel < 2600or MyLevel > 2624) and SelectMonster ~= "SubmergedQuest1" then
+      
+      if MyLevel >= 2575 or SelectMonster == "Reef Bandit" then
+                                                                
+        Mon = "Reef Bandit"
+        LevelQuest = 1
+        NameQuest = "SubmergedQuest1"
+        NameMon = "Reef Bandit"
+        CFrameQuest = CFrame.new(10882.264, -2086.322, 10034.226)
+        CFrameMon = CFrame.new(10736.6191, -2087.8439, 9338.4882)
+        
+        elseif (MyLevel < 2625or MyLevel > 2649) and SelectMonster ~= "SubmergedQuest2" then
+      
+      if MyLevel >= 2575 or SelectMonster == "Sea Chanter" then
+       
+            Mon = "Sea Chanter"
+            LevelQuest = 1
+            NameQuest = "SubmergedQuest2"
+            NameMon = "Sea Chanter"
+            CFrameQuest = CFrame.new(10882.264, -2086.322, 10034.226)
+            CFrameMon = CFrame.new(10621.0342, -2087.844, 10102.0332)
+        elseif l_Value_0 >= 2675 and l_Value_0 <= 2750 then
+            Mon = "Ocean Prophet"
+            LevelQuest = 2
+            NameQuest = "SubmergedQuest2"
+            NameMon = "Ocean Prophet"
+            CFrameQuest = CFrame.new(10882.264, -2086.322, 10034.226)
+            CFrameMon = CFrame.new(11056.1445, -2001.6717, 10117.4493)
+        end
+    else
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
                                                                         Mon = "Serpent Hunter"
                                                                         LevelQuest = 1
                                                                         NameQuest = "TikiQuest3"
@@ -3666,7 +3705,7 @@ end
 local v466 = loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Library/refs/heads/main/V5/Source.lua"))():MakeWindow({
     Title = "ok Hub",
     SubTitle = "blox fruit",
-    SaveFolder = "Ok | redz lib v5.lua"
+    SaveFolder = "OK | redz lib v5.lua"
 })
 local l_ScreenGui_0 = Instance.new("ScreenGui")
 l_ScreenGui_0.Name = "ControlGUI"
@@ -3754,8 +3793,8 @@ local v494 = v466:MakeTab({"PvP,Player", "user"})
 local v495 = v466:MakeTab({"Shop", "shoppingCart"})
 local v496 = v466:MakeTab({"Settings", "settings"})
 v484:AddDiscordInvite({
-    Name = "ok hub",
-    Description = "Link đéo",
+    Name = "Ok",
+    Description = "",
     Logo = "rbxassetid://119980166507719",
     Invite = "có cái con cặc"
 })
@@ -3908,6 +3947,52 @@ spawn(function()
                     end
                     if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude <= 20 then
                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, LevelQuest)
+                    end
+                end
+            end)
+        end
+    end
+end)
+spawn(function()
+    while task.wait() do
+        if _G.AutoFarmLevelNew then
+            pcall(function()
+                local l_Quest_0 = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
+                CheckQuestNew()
+                if l_Quest_0.Visible == false then
+                    StartBring = false
+                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuestNew.Position).Magnitude > 20 then
+                        TP1(CFrameQuestNew)
+                    else
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuestNew, LevelQuestNew)
+                    end
+                else
+                    for _, v519 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v519.Name == MonNew and v519:FindFirstChild("HumanoidRootPart") and v519:FindFirstChild("Humanoid") and v519.Humanoid.Health > 0 then
+                            if not string.find(l_Quest_0.Container.QuestTitle.Title.Text, NameMonNew) then
+                                StartBring = false
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                            else
+                                repeat
+                                    task.wait()
+                                    EquipWeapon(_G.SelectWeapon)
+                                    AutoHaki()
+                                    topos(v519.HumanoidRootPart.CFrame * CFrame.new(0, 30, 0))
+                                    v519.HumanoidRootPart.CanCollide = false
+                                    v519.Humanoid.WalkSpeed = 0
+                                    v519.Head.CanCollide = false
+                                    v519.HumanoidRootPart.Size = Vector3.new(70, 70, 70)
+                                    StartBring = true
+                                    MonFarmNew = v519.Name
+                                    game:GetService("VirtualUser"):CaptureController()
+                                    game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 672))
+                                until not _G.AutoFarmLevelNew or v519.Humanoid.Health <= 0 or not v519.Parent or l_Quest_0.Visible == false
+                            end
+                        end
+                    end
+                    if not game:GetService("Workspace").Enemies:FindFirstChild(MonNew) then
+                        TP1(CFrameMonNew)
+                        StartBring = false
                     end
                 end
             end)
@@ -6329,9 +6414,9 @@ if World3 then
                                     if not l_Character_7:FindFirstChild("Tushita") and not l_Backpack_1:FindFirstChild("Tushita") then
                                         if not v798 then
                                             game.StarterGui:SetCore("SendNotification", {
-                                                Title = "Ok",
+                                                Title = "NTTLOL",
                                                 Text = "Use! - Yama or Tushita",
-                                                con = "rbxassetid://119980166507719",
+                                                con = "rbxassetid://110657725541747",
                                                 Duration = 10
                                             })
                                             v798 = true
@@ -8313,8 +8398,49 @@ local function v1116(v1114)
         end
     end)
 end
-local v1117
-if World1 then
+local v1117 = nil
+if not World1 then
+    if World2 then
+        v1117 = {
+            "The Cafe",
+            "Frist Spot",
+            "Dark Area",
+            "Flamingo Mansion",
+            "Flamingo Room",
+            "Green Zone",
+            "Factory",
+            "Colossuim",
+            "Zombie Island",
+            "Two Snow Mountain",
+            "Punk Hazard",
+            "Cursed Ship",
+            "Ice Castle",
+            "Forgotten Island",
+            "Ussop Island",
+            "Mini Sky Island"
+        }
+    elseif World3 then
+        v1117 = {
+            "Mansion",
+            "Port Town",
+            "Great Tree",
+            "Castle On The Sea",
+            "MiniSky",
+            "Hydra Island",
+            "Floating Turtle",
+            "Haunted Castle",
+            "Ice Cream Island",
+            "Peanut Island",
+            "Cake Island",
+            "Cocoa Island",
+            "Candy Island",
+            "Tiki Outpost",
+            "Dragon Dojo"
+        }
+    else
+        v1117 = {"Spawn"}
+    end
+else
     v1117 = {
         "WindMill",
         "Marine",
@@ -8336,48 +8462,6 @@ if World1 then
         "Mob Island"
     }
 end
-
-elseif World2 then
-    v1117 = {
-        "The Cafe",
-        "Frist Spot",
-        "Dark Area",
-        "Flamingo Mansion",
-        "Flamingo Room",
-        "Green Zone",
-        "Factory",
-        "Colossuim",
-        "Zombie Island",
-        "Two Snow Mountain",
-        "Punk Hazard",
-        "Cursed Ship",
-        "Ice Castle",
-        "Forgotten Island",
-        "Ussop Island",
-        "Mini Sky Island"
-
-elseif World3 then
-    v1117 = {
-            "Mansion",
-            "Port Town",
-            "Great Tree",
-            "Castle On The Sea",
-            "MiniSky",
-            "Hydra Island",
-            "Floating Turtle",
-            "Haunted Castle",
-            "Ice Cream Island",
-            "Peanut Island",
-            "Cake Island",
-            "Cocoa Island",
-            "Candy Island",
-            "Tiki Outpost",
-            "Dragon Dojo"
-        }
-    else
-    v1117 = {"Spawn"}
-end
-
 v493:AddDropdown({
     Name = "Select Island",
     Description = "Ch\225\187\141n \196\145\225\186\163o \196\145\225\187\131 teleport",
@@ -8695,8 +8779,8 @@ if l_LocalPlayer_18.Character then
     v1135(l_LocalPlayer_18.Character)
 end
 v494:AddSlider({
-    Title = "Speed Chạy nhanh",
-    Min = 50,
+    Title = "Speed Ch\225\186\161y by NTT",
+    Min = 26,
     Max = 300,
     Default = getgenv().WalkSpeedValue,
     Callback = function(v1137)
@@ -8708,7 +8792,7 @@ v494:AddSlider({
     end
 })
 v494:AddSlider({
-    Title = "Nhảy Cao",
+    Title = "Nh\225\186\163y Cao by NTT",
     Min = 50,
     Max = 500,
     Default = getgenv().JumpValue,
@@ -8781,7 +8865,7 @@ v494:AddToggle({
 })
 v494:AddToggle({
     Title = "Esp Fruits",
-    Value = true,
+    Value = false,
     Callback = function(v1148)
         DevilFruitESP = v1148
         if DevilFruitESP then
@@ -8812,53 +8896,23 @@ v494:AddToggle({
         end
     end
 })
-
-local TweenService = game:GetService("TweenService")
-local CommF = game:GetService("ReplicatedStorage").Remotes.CommF_
-local plr = game.Players.LocalPlayer
-
-local function TweenTP(cf, speed)
-    local char = plr.Character
-    if not char or not char:FindFirstChild("HumanoidRootPart") then return end
-    
-    local hrp = char.HumanoidRootPart
-    local distance = (hrp.Position - cf.Position).Magnitude
-    local time = distance / speed
-
-    local tween = TweenService:Create(
-        hrp,
-        TweenInfo.new(time, Enum.EasingStyle.Linear),
-        {CFrame = cf}
-    )
-
-    tween:Play()
-    tween.Completed:Wait()
-end
-
-local function SmoothBuy(cf, func, ...)
-    TweenTP(cf,300)
-    task.wait(0.5)
-    return CommF:InvokeServer(func,...)
-end
-
-
 local _ = v495:AddSection({"Buy Melee V1"})
 v495:AddButton({
-    Title = "Buy Black Leg",
+    Title = "Buy Black Leg $150,000",
     Callback = function()
-        SmoothBuy(CFrame.new(-1347,71,-1325),"BuyBlackLeg")
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
     end
 })
 v495:AddButton({
-    Title = "Buy Electro",
+    Title = "Buy Electro $550,000",
     Callback = function()
-        SmoothBuy(CFrame.new(-7859,5545,-380),"BuyElectro")
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
     end
 })
 v495:AddButton({
-    Title = "Buy Water Kung Fu",
+    Title = "Buy Water Kung Fu $750,000",
     Callback = function()
-        SmoothBuy(CFrame.new(-3396,239,-10542),"BuyFishmanKarate")
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyFishmanKarate")
     end
 })
 v495:AddButton({
@@ -8872,49 +8926,45 @@ local _ = v495:AddSection({"Buy Melee V2"})
 v495:AddButton({
     Title = "Buy Superhuman $3,000,000",
     Callback = function()
-        SmoothBuy(CFrame.new(-260,73,-12240),"BuySuperhuman")
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman")
     end
 })
 v495:AddButton({
-    Title = "Buy Death Step",
+    Title = "Buy Death Step $5,000,000 5,000F",
     Callback = function()
-        SmoothBuy(CFrame.new(-9500,172,6150),"BuyDeathStep")
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
     end
 })
 v495:AddButton({
-    Title = "Buy Sharkman Karate",
+    Title = "Buy Sharkman Karate $2,500,000 5,000F",
     Callback = function()
-        TweenTP(CFrame.new(-260,73,-12240),300)
-        task.wait(0.5)
-        CommF:InvokeServer("BuySharkmanKarate",true)
-        CommF:InvokeServer("BuySharkmanKarate")
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true)
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate")
     end
 })
 v495:AddButton({
-    Title = "Buy Electric Claw",
+    Title = "Buy Electric Claw $3,000,000 5,000F",
     Callback = function()
-        SmoothBuy(CFrame.new(-10300,330,-10100),"BuyElectricClaw")
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
     end
 })
 v495:AddButton({
-    Title = "Buy Dragon Talon",
+    Title = "Buy Dragon Talon $3,000,000 5,000F",
     Callback = function()
-        SmoothBuy(CFrame.new(-12100,332,-10500),"BuyDragonTalon")
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
     end
 })
 v495:AddButton({
-    Title = "Buy Godhuman",
+    Title = "Buy God Human $5,000,000 5,000F",
     Callback = function()
-        SmoothBuy(CFrame.new(-14000,20,-15000),"BuyGodhuman")
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
     end
 })
 v495:AddButton({
-    Title = "Buy Sanguine Art",
+    Title = "Buy Sanguine Art $5,000,000 5,000F",
     Callback = function()
-        TweenTP(CFrame.new(-18000,20,-12000),300)
-        task.wait(0.5)
-        CommF:InvokeServer("BuySanguineArt",true)
-        CommF:InvokeServer("BuySanguineArt")
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt", true)
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt")
     end
 })
 local _ = v495:AddSection({"Buy Sea Event Crafting"})
@@ -9242,8 +9292,9 @@ spawn(function()
         end
     end
 end)
-v496:AddToggle({Title = "bật haki ",
-    Value = true, 
+v496:AddToggle({
+    Title = "Bật haki", 
+    Value = True, 
     Callback = function(v1170)
     _G.AutoHaki = v1170
 end})
@@ -9360,8 +9411,6 @@ spawn(function()
         end
     end
 end)
-
-
 v496:AddToggle({
     Name = "Walk on Water",
     Description = "",
@@ -9380,7 +9429,6 @@ spawn(function()
         end)
     end
 end)
-
 local _ = v496:AddSection({"Auto Increase Skill Points"})
 local l_Players_1 = game:GetService("Players")
 local l_ReplicatedStorage_1 = game:GetService("ReplicatedStorage")
