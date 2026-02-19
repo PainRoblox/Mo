@@ -7549,14 +7549,14 @@ local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
-getgenv().TweenGreatTree = false
+getgenv().UpGreatTree = false
 
 v490:AddToggle({
-    Name = "Bay thẳng đỉnh Great Tree",
+    Name = "Bay lên Great Tree",
     Default = false,
     Callback = function(Value)
 
-        getgenv().TweenGreatTree = Value
+        getgenv().UpGreatTree = Value
         
         if Value then
             task.spawn(function()
@@ -7564,34 +7564,32 @@ v490:AddToggle({
                 local char = player.Character or player.CharacterAdded:Wait()
                 local hrp = char:WaitForChild("HumanoidRootPart")
 
-                local target = CFrame.new(3030.3945, 2280.6171, -7320.1835)
+                local targetY = 2280.6171
+                local speed = 220 -- chậm vừa phải, không giật
 
-                local speed = 350
-                local maxStep = 1500
-
-                while getgenv().TweenGreatTree do
+                while getgenv().UpGreatTree do
                     
-                    local distance = (hrp.Position - target.Position).Magnitude
-                    if distance < 5 then
-                        hrp.CFrame = target
+                    if hrp.Position.Y >= targetY - 3 then
                         break
                     end
 
-                    local step = math.min(maxStep, distance)
-                    local direction = (target.Position - hrp.Position).Unit
-                    local nextPos = hrp.Position + direction * step
+                    local newPos = Vector3.new(
+                        hrp.Position.X,
+                        math.min(hrp.Position.Y + 200, targetY),
+                        hrp.Position.Z
+                    )
 
                     local tween = TweenService:Create(
                         hrp,
-                        TweenInfo.new(step / speed, Enum.EasingStyle.Linear),
-                        {CFrame = CFrame.new(nextPos)}
+                        TweenInfo.new(200 / speed, Enum.EasingStyle.Linear),
+                        {CFrame = CFrame.new(newPos)}
                     )
 
                     tween:Play()
                     tween.Completed:Wait()
                 end
 
-                getgenv().TweenGreatTree = false
+                getgenv().UpGreatTree = false
 
             end)
         end
