@@ -9180,18 +9180,27 @@ v496:AddToggle({
     Name = "Auto Spin Position",
     Default = true,
     Callback = function(v1169)
-        RandomCFrame = v1169
+       _G.RandomCFrame = v1169
     end
 })
-if RandomCFrame then
-            wait(0.5); topos(model.HumanoidRootPart.CFrame * CFrame.new(0, 30, 25))
-            wait(0.5); topos(model.HumanoidRootPart.CFrame * CFrame.new(25, 30, 0))
-            wait(0.5); topos(model.HumanoidRootPart.CFrame * CFrame.new(-25, 30, 0))
-            wait(0.5); topos(model.HumanoidRootPart.CFrame * CFrame.new(0, 30, 25))
-            wait(0.5); topos(model.HumanoidRootPart.CFrame * CFrame.new(-25, 30, 0))
-        end
+task.spawn(function()
+    while task.wait(0.5) do
+        if not _G.RandomCFrame then continue end
+        if not model then continue end
+        if not model:FindFirstChild("HumanoidRootPart") then continue end
+
+        local root = model.HumanoidRootPart
+
+        topos(root.CFrame * CFrame.new(0, 30, 25))
+        task.wait(0.4)
+        topos(root.CFrame * CFrame.new(25, 30, 0))
+        task.wait(0.4)
+        topos(root.CFrame * CFrame.new(-25, 30, 0))
+        task.wait(0.4)
+        topos(root.CFrame * CFrame.new(0, 30, -25))
+        task.wait(0.4)
     end
-end
+end)
 v496:AddToggle({
     Title = "Set Home Point",
     Description = "L\198\176u \196\144i\225\187\131m H\225\187\147i Sinh",
