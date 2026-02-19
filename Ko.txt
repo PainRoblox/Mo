@@ -3684,10 +3684,6 @@ local l_UIStroke_0 = Instance.new("UIStroke")
 l_UIStroke_0.Thickness = 2
 l_UIStroke_0.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 l_UIStroke_0.Parent = l_ImageButton_0
-
--- Màu xanh biển cố định
-l_ImageButton_0.ImageColor3 = Color3.fromRGB(0, 170, 255)
-l_UIStroke_0.Color = Color3.fromRGB(0, 170, 255)
 task.spawn(function()
     local v472 = 1
     while true do
@@ -9373,7 +9369,7 @@ spawn(function()
     end
 end)
 
-v4896:AddToggle({
+v496:AddToggle({
     Name = "Đi trên nước",
     Description = "",
     Default = true,
