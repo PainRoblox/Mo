@@ -7549,14 +7549,14 @@ local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
-getgenv().UpGreatTree = false
+getgenv().UpGreatTreeNPC = false
 
 v490:AddToggle({
-    Name = "Bay lên Great Tree",
+    Name = "Bay lên NPC Great Tree",
     Default = false,
     Callback = function(Value)
 
-        getgenv().UpGreatTree = Value
+        getgenv().UpGreatTreeNPC = Value
         
         if Value then
             task.spawn(function()
@@ -7564,32 +7564,35 @@ v490:AddToggle({
                 local char = player.Character or player.CharacterAdded:Wait()
                 local hrp = char:WaitForChild("HumanoidRootPart")
 
-                local targetY = 2280.6171
-                local speed = 220 -- chậm vừa phải, không giật
+                -- Tọa độ NPC trên đỉnh cây
+                local target = CFrame.new(3030.3945, 2280.6171, -7320.1835)
 
-                while getgenv().UpGreatTree do
+                local speed = 200
+                local maxStep = 500     -- bước nhỏ để không giật
+
+                while getgenv().UpGreatTreeNPC do
                     
-                    if hrp.Position.Y >= targetY - 3 then
+                    local distance = (hrp.Position - target.Position).Magnitude
+                    if distance < 5 then
+                        hrp.CFrame = target
                         break
                     end
 
-                    local newPos = Vector3.new(
-                        hrp.Position.X,
-                        math.min(hrp.Position.Y + 200, targetY),
-                        hrp.Position.Z
-                    )
+                    local step = math.min(maxStep, distance)
+                    local direction = (target.Position - hrp.Position).Unit
+                    local nextPos = hrp.Position + direction * step
 
                     local tween = TweenService:Create(
                         hrp,
-                        TweenInfo.new(200 / speed, Enum.EasingStyle.Linear),
-                        {CFrame = CFrame.new(newPos)}
+                        TweenInfo.new(step / speed, Enum.EasingStyle.Linear),
+                        {CFrame = CFrame.new(nextPos)}
                     )
 
                     tween:Play()
                     tween.Completed:Wait()
                 end
 
-                getgenv().UpGreatTree = false
+                getgenv().UpGreatTreeNPC = false
 
             end)
         end
