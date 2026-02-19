@@ -3289,11 +3289,8 @@ function CheckNearestTeleporter(v393)
     local l_PlaceId_1 = game.PlaceId
     local v398 = {}
    if l_PlaceId_1 == 2753915549 then
-    -- Sea 1
-elseif l_PlaceId_1 == 4442272183 then
-    -- Sea 2
-elseif l_PlaceId_1 == 7449423635 then
-    -- Sea 3
+    if l_PlaceId_1 == 4442272183 then
+        if l_PlaceId_1 == 7449423635 then
                 v398 = {
                     ["Floating Turtle"] = Vector3.new(-12462, 375, -7552),
                     ["Hydra Island"] = Vector3.new(5657.88623046875, 1013.0790405273438, -335.4996337890625),
