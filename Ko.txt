@@ -3288,8 +3288,8 @@ function CheckNearestTeleporter(v393)
     local v396 = nil
     local l_PlaceId_1 = game.PlaceId
     local v398 = {}
-   if l_PlaceId_1 == 2753915549 then
-    if l_PlaceId_1 == 4442272183 then
+   if l_PlaceId_1 ~= 2753915549 then
+    if l_PlaceId_1 ~= 4442272183 then
         if l_PlaceId_1 == 7449423635 then
                 v398 = {
                     ["Floating Turtle"] = Vector3.new(-12462, 375, -7552),
@@ -4844,58 +4844,33 @@ task.spawn(function()
     end
 end)
 local v658 = {}
+
 if World1 then
     v658 = {
-        "The Gorilla King",
-        "Bobby",
-        "Yeti",
-        "Mob Leader",
-        "Vice Admiral",
-        "Warden",
-        "Chief Warden",
-        "Swan",
-        "Magma Admiral",
-        "Fishman Lord",
-        "Wysper",
-        "Thunder God",
-        "Cyborg",
-        "Saber Expert"
+        "The Gorilla King","Bobby","Yeti","Mob Leader","Vice Admiral",
+        "Warden","Chief Warden","Swan","Magma Admiral","Fishman Lord",
+        "Wysper","Thunder God","Cyborg","Saber Expert"
     }
-elseif not World2 then
-    if World3 then
-        v658 = {
-            "",
-            "Tyrant of the Skies",
-            "Stone",
-            "Island Empress",
-            "Kilo Admiral",
-            "Captain Elephant",
-            "Beautiful Pirate",
-            "rip_indra True Form",
-            "Longma",
-            "Soul Reaper",
-            "Cake Queen"
-        }
-    end
-else
+
+elseif World2 then
     v658 = {
-        "Diamond",
-        "Jeremy",
-        "Fajita",
-        "Don Swan",
-        "Smoke Admiral",
-        "Cursed Captain",
-        "Darkbeard",
-        "Order",
-        "Awakened Ice Admiral",
-        "Tide Keeper"
+        "Diamond","Jeremy","Fajita","Don Swan","Smoke Admiral",
+        "Cursed Captain","Darkbeard","Order",
+        "Awakened Ice Admiral","Tide Keeper"
+    }
+
+elseif World3 then
+    v658 = {
+        "Tyrant of the Skies","Stone","Island Empress",
+        "Kilo Admiral","Captain Elephant","Beautiful Pirate",
+        "rip_indra True Form","Longma","Soul Reaper","Cake Queen"
     }
 end
 v485:AddDropdown({
     Name = "Auto Select Boss",
     Description = "Ch\225\187\141n Boss C\225\186\167n Farm",
     Options = v658,
-    Default = v658[1],
+    Default =_G.SelectBoss or v658[1],
     Callback = function(v659)
         _G.SelectBoss = v659
     end
@@ -8306,69 +8281,36 @@ local function v1116(v1114)
         end
     end)
 end
-local v1117 = nil
-if not World1 then
-    if World2 then
-        v1117 = {
-            "The Cafe",
-            "Frist Spot",
-            "Dark Area",
-            "Flamingo Mansion",
-            "Flamingo Room",
-            "Green Zone",
-            "Factory",
-            "Colossuim",
-            "Zombie Island",
-            "Two Snow Mountain",
-            "Punk Hazard",
-            "Cursed Ship",
-            "Ice Castle",
-            "Forgotten Island",
-            "Ussop Island",
-            "Mini Sky Island"
-        }
-    elseif World3 then
-        v1117 = {
-            "Mansion",
-            "Port Town",
-            "Great Tree",
-            "Castle On The Sea",
-            "MiniSky",
-            "Hydra Island",
-            "Floating Turtle",
-            "Haunted Castle",
-            "Ice Cream Island",
-            "Peanut Island",
-            "Cake Island",
-            "Cocoa Island",
-            "Candy Island",
-            "Tiki Outpost",
-            "Dragon Dojo"
-        }
-    else
-        v1117 = {"Spawn"}
-    end
-else
+local v1117 = {}
+
+if World1 then
     v1117 = {
-        "WindMill",
-        "Marine",
-        "Middle Town",
-        "Jungle",
-        "Pirate Village",
-        "Desert",
-        "Snow Island",
-        "MarineFord",
-        "Colosseum",
-        "Sky Island 1",
-        "Sky Island 2",
-        "Sky Island 3",
-        "Prison",
-        "Magma Village",
-        "Under Water Island",
-        "Fountain City",
-        "Shank Room",
-        "Mob Island"
+        "WindMill","Marine","Middle Town","Jungle","Pirate Village",
+        "Desert","Snow Island","MarineFord","Colosseum",
+        "Sky Island 1","Sky Island 2","Sky Island 3",
+        "Prison","Magma Village","Under Water Island",
+        "Fountain City","Shank Room","Mob Island"
     }
+
+elseif World2 then
+    v1117 = {
+        "The Cafe","Frist Spot","Dark Area","Flamingo Mansion",
+        "Flamingo Room","Green Zone","Factory","Colossuim",
+        "Zombie Island","Two Snow Mountain","Punk Hazard",
+        "Cursed Ship","Ice Castle","Forgotten Island",
+        "Ussop Island","Mini Sky Island"
+    }
+
+elseif World3 then
+    v1117 = {
+        "Mansion","Port Town","Great Tree","Castle On The Sea",
+        "MiniSky","Hydra Island","Floating Turtle","Haunted Castle",
+        "Ice Cream Island","Peanut Island","Cake Island",
+        "Cocoa Island","Candy Island","Tiki Outpost","Dragon Dojo"
+    }
+
+else
+    v1117 = {"Spawn"}
 end
 v493:AddDropdown({
     Name = "Select Island",
