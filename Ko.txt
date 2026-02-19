@@ -8080,20 +8080,7 @@ spawn(function()
 end)
 local lp = game.Players.LocalPlayer
 
-_G.AutoJoinDungeon = false
-_G.AutoDungeon = false
-_G.AutoPickCard = false
-
--- =====================================
--- SECTION
--- =====================================
-
 local _ = v491:AddSection({"Farm Dungeon"})
-
--- =====================================
--- TOGGLES
--- =====================================
-
 v491:AddToggle({
     Name = "Auto Join Dungeon",
     Default = false,
