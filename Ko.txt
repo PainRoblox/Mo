@@ -4355,7 +4355,7 @@ spawn(function()
                         TP1(l_v592_0)
                         wait(0.1)
                         for _ = 1, 8 do
-                            game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(l_v592_0)
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = (l_v592_0)
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
                             wait(0.1)
                         end
@@ -4383,21 +4383,35 @@ spawn(function()
                     else
                         for _, v598 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                             if (v598.Name == "Reborn Skeleton" or v598.Name == "Living Zombie" or v598.Name == "Demonic Soul" or v598.Name == "Posessed Mummy") and v598:FindFirstChild("Humanoid") and v598:FindFirstChild("HumanoidRootPart") and v598.Humanoid.Health > 0 then
-                                repeat
-                                    task.wait()
-                                    AutoHaki()
-                                    NoAttackAnimation = true
-                                    NeedAttacking = true
-                                    EquipWeapon(_G.SelectWeapon)
-                                    v598.HumanoidRootPart.CanCollide = false
-                                    v598.Humanoid.WalkSpeed = 0
-                                    v598.Head.CanCollide = false
-                                    StartBring = true
-                                    MonFarm = v598.Name
-                                    PosMon = v598.HumanoidRootPart.CFrame
-                                    topos(v598.HumanoidRootPart.CFrame * CFrame.new(0, 30, 0))
-                                    sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
-                                until not _G.FarmBone or not v598.Parent or v598.Humanoid.Health <= 0
+repeat task.wait(_G.Fast_Delay or 0.1)
+
+    AutoHaki()
+    NoAttackAnimation = true
+    NeedAttacking = true
+    EquipWeapon(_G.SelectWeapon)
+
+    -- Gom mob mạnh hơn
+    v598.HumanoidRootPart.Size = Vector3.new(60,60,60)
+    v598.HumanoidRootPart.Transparency = 1
+    v598.HumanoidRootPart.CanCollide = false
+
+    v598.Humanoid.WalkSpeed = 0
+    v598.Humanoid.JumpPower = 0
+
+    if v598:FindFirstChild("Head") then
+        v598.Head.CanCollide = false
+    end
+
+    StartBring = true
+    MonFarm = v598.Name
+    PosMon = v598.HumanoidRootPart.CFrame
+
+    topos(v598.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
+    sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
+
+until not _G.FarmBone 
+   or not v598.Parent 
+   or v598.Humanoid.Health <= 0
                             end
                         end
                     end
@@ -4405,7 +4419,7 @@ spawn(function()
             end
         end
     end
-end)
+end)+
 v485:AddToggle({
     Name = "Seperator Hallow Scythe",
     Description = "Tri\225\187\135u h\225\187\147i v\195\160 ti\195\170u di\225\187\135t Soul Reaper",
