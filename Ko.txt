@@ -7545,21 +7545,21 @@ spawn(function()
     end)
 end)
 local _ = v490:AddSection({"Teleport V4"})
-local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
-getgenv().FlyToGreatTree = false
-getgenv().SpeedGreatTree = 50
+getgenv().FastMoveGreatTree = false
+getgenv().MoveSpeed = 120
 
 local target = Vector3.new(3030.3945, 2280.6171, -7320.1835)
 
 v490:AddToggle({
-    Name = "Bay tới NPC Great Tree",
+    Name = "⚡ Move To Great Tree (Smooth)",
     Default = false,
     Callback = function(state)
 
-        getgenv().FlyToGreatTree = state
+        getgenv().FastMoveGreatTree = state
 
         if state then
             task.spawn(function()
@@ -7567,23 +7567,31 @@ v490:AddToggle({
                 local char = player.Character or player.CharacterAdded:Wait()
                 local hrp = char:WaitForChild("HumanoidRootPart")
 
-                local distance = (hrp.Position - target).Magnitude
+                local connection
+                connection = RunService.Heartbeat:Connect(function(dt)
 
-                local tween = TweenService:Create(
-                    hrp,
-                    TweenInfo.new(distance / getgenv().SpeedGreatTree, Enum.EasingStyle.Linear),
-                    {CFrame = CFrame.new(target)}
-                )
+                    if not getgenv().FastMoveGreatTree then
+                        connection:Disconnect()
+                        return
+                    end
 
-                tween:Play()
-                tween.Completed:Wait()
+                    local distance = (target - hrp.Position).Magnitude
 
-                getgenv().FlyToGreatTree = false
+                    if distance < 5 then
+                        hrp.CFrame = CFrame.new(target)
+                        getgenv().FastMoveGreatTree = false
+                        connection:Disconnect()
+                        return
+                    end
+
+                    local direction = (target - hrp.Position).Unit
+                    hrp.CFrame = hrp.CFrame + direction * getgenv().MoveSpeed * dt
+
+                end)
 
             end)
         end
     end
-})
 v490:AddButton({
     Title = "Teleport To Top GreatTree",
     Value = false,
