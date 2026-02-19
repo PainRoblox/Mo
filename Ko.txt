@@ -5118,9 +5118,9 @@ v486:AddDropdown({
     end
 })
 if World1 then
-    local _ = v487:AddSection({"Quest Sea 1"})
+    local _ = v487:AddSection({"Nhiệm vụ ở Sea 1"})
     v487:AddToggle({
-        Name = "AutoSecondSea",
+        Name = "Làm nhiệm vụ lên sea 2",
         Description = "T\225\187\177 \196\145\225\187\153ng Auto Quest Sea 2",
         Default = false,
         Callback = function(v693)
@@ -5176,9 +5176,9 @@ if World1 then
             end
         end
     end)
-    local _ = v487:AddSection({"Boss Greybeard"})
+    local _ = v487:AddSection({"Boss Râu xám"})
     v487:AddToggle({
-        Name = "Kill Greybeard",
+        Name = "Kill Râu xám",
         Description = "T\225\187\177 \196\145\225\187\153ng \196\144\195\161nh Greybeard",
         Default = false,
         Callback = function(v698)
@@ -7553,13 +7553,15 @@ local player = Players.LocalPlayer
 getgenv().TweenGreatTree = false
 
 v490:AddToggle({
-    Title = "Bay lên đỉnh cây đại thụ",
+    Name = "Bay lên đỉnh cây đại thụ",
     Default = false,
-    Callback = function()
-        getgenv().TweenGreatTree = state
+    Callback = function(Value) -- phải nhận Value
+
+        getgenv().TweenGreatTree = Value
         
-        if state then
+        if Value then
             task.spawn(function()
+
                 local char = player.Character or player.CharacterAdded:Wait()
                 local hrp = char:WaitForChild("HumanoidRootPart")
 
@@ -7578,6 +7580,7 @@ v490:AddToggle({
                 tween.Completed:Wait()
 
                 getgenv().TweenGreatTree = false
+
             end)
         end
     end
@@ -7589,52 +7592,7 @@ v490:AddButton({
         Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3030.39453125, 2280.6171875, -7320.18359375)
     end
 })
-local RunService = game:GetService("RunService")
-local player = game.Players.LocalPlayer
-
-getgenv().AutoTemple = false
 local TempleCF = CFrame.new(28286.35546875,14895.3017578125,102.62469482421875)
-
-v490:AddToggle({
-    Name = "⚡ Smooth Temple",
-    Default = false,
-    Callback = function(Value)
-        getgenv().AutoTemple = Value
-
-        if Value then
-            task.spawn(function()
-
-                local char = player.Character or player.CharacterAdded:Wait()
-                local hrp = char:WaitForChild("HumanoidRootPart")
-
-                local connection
-                connection = RunService.Heartbeat:Connect(function()
-
-                    if not getgenv().AutoTemple then
-                        connection:Disconnect()
-                        return
-                    end
-
-                    local distance = (TempleCF.Position - hrp.Position).Magnitude
-
-                    if distance < 5 then
-                        hrp.CFrame = TempleCF
-                        connection:Disconnect()
-                        getgenv().AutoTemple = false
-                        return
-                    end
-
-                    -- Di chuyển nhẹ hơn
-                    local speedStep = 350 -- giảm để bớt lag
-                    local direction = (TempleCF.Position - hrp.Position).Unit
-                    hrp.CFrame = hrp.CFrame + direction * speedStep
-
-                end)
-
-            end)
-        end
-    end
-})
 v490:AddButton({
     Title = "Teleport Lever Pull",
     Value = false,
