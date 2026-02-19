@@ -3290,7 +3290,7 @@ function CheckNearestTeleporter(v393)
     local v398 = {}
     if l_PlaceId_1 ~= 2753915549 then
         if l_PlaceId_1 ~= 4442272183 then
-            if l_PlaceId_1 == 7449423635 then
+            if l_PlaceId_1 ~= 7449423635 then
                 v398 = {
                     ["Floating Turtle"] = Vector3.new(-12462, 375, -7552),
                     ["Hydra Island"] = Vector3.new(5657.88623046875, 1013.0790405273438, -335.4996337890625),
@@ -6049,6 +6049,7 @@ if World2 then
         end
     end)
 end
+
 if World3 then
     local _ = v487:AddSection({"Quest Sea 3"})
     local _ = v487:AddSection({"Boss Rip indra"})
@@ -8326,7 +8327,7 @@ if not World1 then
             "Ussop Island",
             "Mini Sky Island"
         }
-    elseif World3 then
+    else if World3 then
         v1117 = {
             "Mansion",
             "Port Town",
