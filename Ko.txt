@@ -8076,7 +8076,7 @@ spawn(function()
         end
     end
 end)
-local lp = game.Players.LocalPlayer
+
 
 local _ = v491:AddSection({"Farm Dungeon"})
 v491:AddToggle({
