@@ -4947,90 +4947,91 @@ task.spawn(function()
     end
 end)
 local _ = v485:AddSection({"Material"})
+local v664 = {}
+if not World1 then
+    if World2 then
+        v664 = {"Radioactive", "Mystic Droplet", "Magma Ore", "Leather", "Ectoplasm", "Scrap Metal"}
+    elseif World3 then
+        v664 = {"Leather", "Scrap Metal", "Conjured Cocoa", "Dragon Scale", "Gunpowder", "Fish Tail", "Mini Tusk"}
+    end
+else
+    v664 = {"Magma Ore", "Angel Wings", "Leather", "Scrap Metal"}
+end
 function getConfigMaterial(v665)
-
-    -- SEA 1
-    if World1 then
-
-        if v665 == "Magma Ore" then
-            MaterialMon = {"Military Spy"}
-            MaterialPos = CFrame.new(-5850.28, 77.28, 8848.67)
-
-        elseif v665 == "Angel Wings" then
-            MaterialMon = {"Royal Soldier"}
-            MaterialPos = CFrame.new(-7827.15, 5606.91, -1705.58)
-
-        elseif v665 == "Leather" then
-            MaterialMon = {"Pirate"}
-            MaterialPos = CFrame.new(-1211.87, 4.78, 3916.83)
-
-        elseif v665 == "Scrap Metal" then
-            MaterialMon = {"Brute"}
-            MaterialPos = CFrame.new(-1132.42, 14.84, 4293.3)
-        end
-
-    -- SEA 2
-    elseif World2 then
-
-        if v665 == "Radioactive" then
-            MaterialMon = {"Factory Staff"}
-            MaterialPos = CFrame.new(-507.78, 73, -126.45)
-
-        elseif v665 == "Mystic Droplet" then
+    if v665 ~= "Radioactive" or not World2 then
+        if v665 ~= "Mystic Droplet" or not World2 then
+            if v665 == "Magma Ore" and World1 then
+                MaterialMon = {"Military Spy"}
+                MaterialPos = CFrame.new(-5850.28, 77.28, 8848.67)
+            elseif v665 ~= "Magma Ore" or not World2 then
+                if v665 ~= "Angel Wings" or not World1 then
+                    if v665 ~= "Leather" or not World1 then
+                        if v665 ~= "Leather" or not World2 then
+                            if v665 ~= "Leather" or not World3 then
+                                if v665 ~= "Ectoplasm" or not World2 then
+                                    if v665 ~= "Scrap Metal" or not World1 then
+                                        if v665 == "Scrap Metal" and World2 then
+                                            MaterialMon = {"Mercenary"}
+                                            MaterialPos = CFrame.new(-972.3, 73.04, 1419.29)
+                                        elseif v665 == "Scrap Metal" and World3 then
+                                            MaterialMon = {"Pirate Millionaire"}
+                                            MaterialPos = CFrame.new(-289.63, 43.82, 5583.66)
+                                        elseif v665 ~= "Conjured Cocoa" or not World3 then
+                                            if v665 == "Dragon Scale" and World3 then
+                                                MaterialMon = {"Dragon Crew Warrior"}
+                                                MaterialPos = CFrame.new(5824.06, 51.38, -1106.69)
+                                            elseif v665 == "Gunpowder" and World3 then
+                                                MaterialMon = {"Pistol Billionaire"}
+                                                MaterialPos = CFrame.new(-379.61, 73.84, 5928.52)
+                                            elseif v665 ~= "Fish Tail" or not World3 then
+                                                if v665 == "Mini Tusk" and World3 then
+                                                    MaterialMon = {"Mithological Pirate"}
+                                                    MaterialPos = CFrame.new(-13516.04, 469.81, -6899.16)
+                                                end
+                                            else
+                                                MaterialMon = {"Fishman Captain"}
+                                                MaterialPos = CFrame.new(-10961.01, 331.79, -8914.29)
+                                            end
+                                        else
+                                            MaterialMon = {"Chocolate Bar Battler"}
+                                            MaterialPos = CFrame.new(744.79, 24.76, -12637.72)
+                                        end
+                                    else
+                                        MaterialMon = {"Brute"}
+                                        MaterialPos = CFrame.new(-1132.42, 14.84, 4293.3)
+                                    end
+                                else
+                                    MaterialMon = {"Ship Deckhand", "Ship Engineer", "Ship Steward", "Ship Officer"}
+                                    MaterialPos = CFrame.new(911.35, 125.95, 33159.53)
+                                end
+                            else
+                                MaterialMon = {"Jungle Pirate"}
+                                MaterialPos = CFrame.new(-11975.78, 331.77, -10620.03)
+                            end
+                        else
+                            MaterialMon = {"Marine Captain"}
+                            MaterialPos = CFrame.new(-2010.5, 73, -3326.62)
+                        end
+                    else
+                        MaterialMon = {"Pirate"}
+                        MaterialPos = CFrame.new(-1211.87, 4.78, 3916.83)
+                    end
+                else
+                    MaterialMon = {"Royal Soldier"}
+                    MaterialPos = CFrame.new(-7827.15, 5606.91, -1705.58)
+                end
+            else
+                MaterialMon = {"Lava Pirate"}
+                MaterialPos = CFrame.new(-5234.6, 51.95, -4732.27)
+            end
+        else
             MaterialMon = {"Water Fighter"}
             MaterialPos = CFrame.new(-3352.9, 285.01, -10534.84)
-
-        elseif v665 == "Magma Ore" then
-            MaterialMon = {"Lava Pirate"}
-            MaterialPos = CFrame.new(-5234.6, 51.95, -4732.27)
-
-        elseif v665 == "Leather" then
-            MaterialMon = {"Marine Captain"}
-            MaterialPos = CFrame.new(-2010.5, 73, -3326.62)
-
-        elseif v665 == "Ectoplasm" then
-            MaterialMon = {"Ship Deckhand","Ship Engineer","Ship Steward","Ship Officer"}
-            MaterialPos = CFrame.new(911.35, 125.95, 33159.53)
-
-        elseif v665 == "Scrap Metal" then
-            MaterialMon = {"Mercenary"}
-            MaterialPos = CFrame.new(-972.3, 73.04, 1419.29)
         end
-
-    -- SEA 3
-    elseif World3 then
-
-        if v665 == "Leather" then
-            MaterialMon = {"Jungle Pirate"}
-            MaterialPos = CFrame.new(-11975.78, 331.77, -10620.03)
-
-        elseif v665 == "Scrap Metal" then
-            MaterialMon = {"Pirate Millionaire"}
-            MaterialPos = CFrame.new(-289.63, 43.82, 5583.66)
-
-        elseif v665 == "Conjured Cocoa" then
-            MaterialMon = {"Chocolate Bar Battler"}
-            MaterialPos = CFrame.new(744.79, 24.76, -12637.72)
-
-        elseif v665 == "Dragon Scale" then
-            MaterialMon = {"Dragon Crew Warrior"}
-            MaterialPos = CFrame.new(5824.06, 51.38, -1106.69)
-
-        elseif v665 == "Gunpowder" then
-            MaterialMon = {"Pistol Billionaire"}
-            MaterialPos = CFrame.new(-379.61, 73.84, 5928.52)
-
-        elseif v665 == "Fish Tail" then
-            MaterialMon = {"Fishman Captain"}
-            MaterialPos = CFrame.new(-10961.01, 331.79, -8914.29)
-
-        elseif v665 == "Mini Tusk" then
-            MaterialMon = {"Mythological Pirate"}
-            MaterialPos = CFrame.new(-13516.04, 469.81, -6899.16)
-        end
-
+    else
+        MaterialMon = {"Factory Staff"}
+        MaterialPos = CFrame.new(-507.78, 73, -126.45)
     end
-
 end
 v485:AddDropdown({
     Name = "Select Material",
