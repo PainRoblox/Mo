@@ -7545,7 +7545,6 @@ spawn(function()
     end)
 end)
 local _ = v490:AddSection({"Teleport V4"})
-
 local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
@@ -7553,9 +7552,9 @@ local player = Players.LocalPlayer
 getgenv().TweenGreatTree = false
 
 v490:AddToggle({
-    Name = "Bay lên đỉnh cây đại thụ",
+    Name = "Bay thẳng đỉnh Great Tree",
     Default = false,
-    Callback = function(Value) -- phải nhận Value
+    Callback = function(Value)
 
         getgenv().TweenGreatTree = Value
         
@@ -7567,17 +7566,30 @@ v490:AddToggle({
 
                 local target = CFrame.new(3030.3945, 2280.6171, -7320.1835)
 
-                local distance = (hrp.Position - target.Position).Magnitude
-                local speed = 300
+                local speed = 350
+                local maxStep = 1500
 
-                local tween = TweenService:Create(
-                    hrp,
-                    TweenInfo.new(distance / speed, Enum.EasingStyle.Linear),
-                    {CFrame = target}
-                )
+                while getgenv().TweenGreatTree do
+                    
+                    local distance = (hrp.Position - target.Position).Magnitude
+                    if distance < 5 then
+                        hrp.CFrame = target
+                        break
+                    end
 
-                tween:Play()
-                tween.Completed:Wait()
+                    local step = math.min(maxStep, distance)
+                    local direction = (target.Position - hrp.Position).Unit
+                    local nextPos = hrp.Position + direction * step
+
+                    local tween = TweenService:Create(
+                        hrp,
+                        TweenInfo.new(step / speed, Enum.EasingStyle.Linear),
+                        {CFrame = CFrame.new(nextPos)}
+                    )
+
+                    tween:Play()
+                    tween.Completed:Wait()
+                end
 
                 getgenv().TweenGreatTree = false
 
