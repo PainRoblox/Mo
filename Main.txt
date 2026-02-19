@@ -3757,7 +3757,7 @@ v484:AddDiscordInvite({
     Name = "ok hub",
     Description = "Link đéo",
     Logo = "rbxassetid://119980166507719",
-    Invite = ""
+    Invite = "có cái con cặc"
 })
 local _ = v485:AddSection({"Select Melee,Sword,Gun,Fruit"})
 _G.SelectWeapon = "Melee"
@@ -4853,6 +4853,7 @@ task.spawn(function()
     end
 end)
 local v658 = {}
+
 if World1 then
     v658 = {
         "The Gorilla King",
@@ -4870,23 +4871,8 @@ if World1 then
         "Cyborg",
         "Saber Expert"
     }
-elseif not World2 then
-    if World3 then
-        v658 = {
-            "",
-            "Tyrant of the Skies",
-            "Stone",
-            "Island Empress",
-            "Kilo Admiral",
-            "Captain Elephant",
-            "Beautiful Pirate",
-            "rip_indra True Form",
-            "Longma",
-            "Soul Reaper",
-            "Cake Queen"
-        }
-    end
-else
+
+elseif World2 then
     v658 = {
         "Diamond",
         "Jeremy",
@@ -4898,6 +4884,20 @@ else
         "Order",
         "Awakened Ice Admiral",
         "Tide Keeper"
+    }
+
+elseif World3 then
+    v658 = {
+        "Tyrant of the Skies",
+        "Stone",
+        "Island Empress",
+        "Kilo Admiral",
+        "Captain Elephant",
+        "Beautiful Pirate",
+        "rip_indra True Form",
+        "Longma",
+        "Soul Reaper",
+        "Cake Queen"
     }
 end
 v485:AddDropdown({
@@ -4947,91 +4947,90 @@ task.spawn(function()
     end
 end)
 local _ = v485:AddSection({"Material"})
-local v664 = {}
-if not World1 then
-    if World2 then
-        v664 = {"Radioactive", "Mystic Droplet", "Magma Ore", "Leather", "Ectoplasm", "Scrap Metal"}
-    elseif World3 then
-        v664 = {"Leather", "Scrap Metal", "Conjured Cocoa", "Dragon Scale", "Gunpowder", "Fish Tail", "Mini Tusk"}
-    end
-else
-    v664 = {"Magma Ore", "Angel Wings", "Leather", "Scrap Metal"}
-end
 function getConfigMaterial(v665)
-    if v665 ~= "Radioactive" or not World2 then
-        if v665 ~= "Mystic Droplet" or not World2 then
-            if v665 == "Magma Ore" and World1 then
-                MaterialMon = {"Military Spy"}
-                MaterialPos = CFrame.new(-5850.28, 77.28, 8848.67)
-            elseif v665 ~= "Magma Ore" or not World2 then
-                if v665 ~= "Angel Wings" or not World1 then
-                    if v665 ~= "Leather" or not World1 then
-                        if v665 ~= "Leather" or not World2 then
-                            if v665 ~= "Leather" or not World3 then
-                                if v665 ~= "Ectoplasm" or not World2 then
-                                    if v665 ~= "Scrap Metal" or not World1 then
-                                        if v665 == "Scrap Metal" and World2 then
-                                            MaterialMon = {"Mercenary"}
-                                            MaterialPos = CFrame.new(-972.3, 73.04, 1419.29)
-                                        elseif v665 == "Scrap Metal" and World3 then
-                                            MaterialMon = {"Pirate Millionaire"}
-                                            MaterialPos = CFrame.new(-289.63, 43.82, 5583.66)
-                                        elseif v665 ~= "Conjured Cocoa" or not World3 then
-                                            if v665 == "Dragon Scale" and World3 then
-                                                MaterialMon = {"Dragon Crew Warrior"}
-                                                MaterialPos = CFrame.new(5824.06, 51.38, -1106.69)
-                                            elseif v665 == "Gunpowder" and World3 then
-                                                MaterialMon = {"Pistol Billionaire"}
-                                                MaterialPos = CFrame.new(-379.61, 73.84, 5928.52)
-                                            elseif v665 ~= "Fish Tail" or not World3 then
-                                                if v665 == "Mini Tusk" and World3 then
-                                                    MaterialMon = {"Mithological Pirate"}
-                                                    MaterialPos = CFrame.new(-13516.04, 469.81, -6899.16)
-                                                end
-                                            else
-                                                MaterialMon = {"Fishman Captain"}
-                                                MaterialPos = CFrame.new(-10961.01, 331.79, -8914.29)
-                                            end
-                                        else
-                                            MaterialMon = {"Chocolate Bar Battler"}
-                                            MaterialPos = CFrame.new(744.79, 24.76, -12637.72)
-                                        end
-                                    else
-                                        MaterialMon = {"Brute"}
-                                        MaterialPos = CFrame.new(-1132.42, 14.84, 4293.3)
-                                    end
-                                else
-                                    MaterialMon = {"Ship Deckhand", "Ship Engineer", "Ship Steward", "Ship Officer"}
-                                    MaterialPos = CFrame.new(911.35, 125.95, 33159.53)
-                                end
-                            else
-                                MaterialMon = {"Jungle Pirate"}
-                                MaterialPos = CFrame.new(-11975.78, 331.77, -10620.03)
-                            end
-                        else
-                            MaterialMon = {"Marine Captain"}
-                            MaterialPos = CFrame.new(-2010.5, 73, -3326.62)
-                        end
-                    else
-                        MaterialMon = {"Pirate"}
-                        MaterialPos = CFrame.new(-1211.87, 4.78, 3916.83)
-                    end
-                else
-                    MaterialMon = {"Royal Soldier"}
-                    MaterialPos = CFrame.new(-7827.15, 5606.91, -1705.58)
-                end
-            else
-                MaterialMon = {"Lava Pirate"}
-                MaterialPos = CFrame.new(-5234.6, 51.95, -4732.27)
-            end
-        else
+
+    -- SEA 1
+    if World1 then
+
+        if v665 == "Magma Ore" then
+            MaterialMon = {"Military Spy"}
+            MaterialPos = CFrame.new(-5850.28, 77.28, 8848.67)
+
+        elseif v665 == "Angel Wings" then
+            MaterialMon = {"Royal Soldier"}
+            MaterialPos = CFrame.new(-7827.15, 5606.91, -1705.58)
+
+        elseif v665 == "Leather" then
+            MaterialMon = {"Pirate"}
+            MaterialPos = CFrame.new(-1211.87, 4.78, 3916.83)
+
+        elseif v665 == "Scrap Metal" then
+            MaterialMon = {"Brute"}
+            MaterialPos = CFrame.new(-1132.42, 14.84, 4293.3)
+        end
+
+    -- SEA 2
+    elseif World2 then
+
+        if v665 == "Radioactive" then
+            MaterialMon = {"Factory Staff"}
+            MaterialPos = CFrame.new(-507.78, 73, -126.45)
+
+        elseif v665 == "Mystic Droplet" then
             MaterialMon = {"Water Fighter"}
             MaterialPos = CFrame.new(-3352.9, 285.01, -10534.84)
+
+        elseif v665 == "Magma Ore" then
+            MaterialMon = {"Lava Pirate"}
+            MaterialPos = CFrame.new(-5234.6, 51.95, -4732.27)
+
+        elseif v665 == "Leather" then
+            MaterialMon = {"Marine Captain"}
+            MaterialPos = CFrame.new(-2010.5, 73, -3326.62)
+
+        elseif v665 == "Ectoplasm" then
+            MaterialMon = {"Ship Deckhand","Ship Engineer","Ship Steward","Ship Officer"}
+            MaterialPos = CFrame.new(911.35, 125.95, 33159.53)
+
+        elseif v665 == "Scrap Metal" then
+            MaterialMon = {"Mercenary"}
+            MaterialPos = CFrame.new(-972.3, 73.04, 1419.29)
         end
-    else
-        MaterialMon = {"Factory Staff"}
-        MaterialPos = CFrame.new(-507.78, 73, -126.45)
+
+    -- SEA 3
+    elseif World3 then
+
+        if v665 == "Leather" then
+            MaterialMon = {"Jungle Pirate"}
+            MaterialPos = CFrame.new(-11975.78, 331.77, -10620.03)
+
+        elseif v665 == "Scrap Metal" then
+            MaterialMon = {"Pirate Millionaire"}
+            MaterialPos = CFrame.new(-289.63, 43.82, 5583.66)
+
+        elseif v665 == "Conjured Cocoa" then
+            MaterialMon = {"Chocolate Bar Battler"}
+            MaterialPos = CFrame.new(744.79, 24.76, -12637.72)
+
+        elseif v665 == "Dragon Scale" then
+            MaterialMon = {"Dragon Crew Warrior"}
+            MaterialPos = CFrame.new(5824.06, 51.38, -1106.69)
+
+        elseif v665 == "Gunpowder" then
+            MaterialMon = {"Pistol Billionaire"}
+            MaterialPos = CFrame.new(-379.61, 73.84, 5928.52)
+
+        elseif v665 == "Fish Tail" then
+            MaterialMon = {"Fishman Captain"}
+            MaterialPos = CFrame.new(-10961.01, 331.79, -8914.29)
+
+        elseif v665 == "Mini Tusk" then
+            MaterialMon = {"Mythological Pirate"}
+            MaterialPos = CFrame.new(-13516.04, 469.81, -6899.16)
+        end
+
     end
+
 end
 v485:AddDropdown({
     Name = "Select Material",
@@ -8314,49 +8313,8 @@ local function v1116(v1114)
         end
     end)
 end
-local v1117 = nil
-if not World1 then
-    if World2 then
-        v1117 = {
-            "The Cafe",
-            "Frist Spot",
-            "Dark Area",
-            "Flamingo Mansion",
-            "Flamingo Room",
-            "Green Zone",
-            "Factory",
-            "Colossuim",
-            "Zombie Island",
-            "Two Snow Mountain",
-            "Punk Hazard",
-            "Cursed Ship",
-            "Ice Castle",
-            "Forgotten Island",
-            "Ussop Island",
-            "Mini Sky Island"
-        }
-    elseif World3 then
-        v1117 = {
-            "Mansion",
-            "Port Town",
-            "Great Tree",
-            "Castle On The Sea",
-            "MiniSky",
-            "Hydra Island",
-            "Floating Turtle",
-            "Haunted Castle",
-            "Ice Cream Island",
-            "Peanut Island",
-            "Cake Island",
-            "Cocoa Island",
-            "Candy Island",
-            "Tiki Outpost",
-            "Dragon Dojo"
-        }
-    else
-        v1117 = {"Spawn"}
-    end
-else
+local v1117
+if World1 then
     v1117 = {
         "WindMill",
         "Marine",
@@ -8378,6 +8336,48 @@ else
         "Mob Island"
     }
 end
+
+elseif World2 then
+    v1117 = {
+        "The Cafe",
+        "Frist Spot",
+        "Dark Area",
+        "Flamingo Mansion",
+        "Flamingo Room",
+        "Green Zone",
+        "Factory",
+        "Colossuim",
+        "Zombie Island",
+        "Two Snow Mountain",
+        "Punk Hazard",
+        "Cursed Ship",
+        "Ice Castle",
+        "Forgotten Island",
+        "Ussop Island",
+        "Mini Sky Island"
+
+elseif World3 then
+    v1117 = {
+            "Mansion",
+            "Port Town",
+            "Great Tree",
+            "Castle On The Sea",
+            "MiniSky",
+            "Hydra Island",
+            "Floating Turtle",
+            "Haunted Castle",
+            "Ice Cream Island",
+            "Peanut Island",
+            "Cake Island",
+            "Cocoa Island",
+            "Candy Island",
+            "Tiki Outpost",
+            "Dragon Dojo"
+        }
+    else
+    v1117 = {"Spawn"}
+end
+
 v493:AddDropdown({
     Name = "Select Island",
     Description = "Ch\225\187\141n \196\145\225\186\163o \196\145\225\187\131 teleport",
@@ -8695,8 +8695,8 @@ if l_LocalPlayer_18.Character then
     v1135(l_LocalPlayer_18.Character)
 end
 v494:AddSlider({
-    Title = "Speed Ch\225\186\161y by NTT",
-    Min = 26,
+    Title = "Speed Chạy nhanh",
+    Min = 50,
     Max = 300,
     Default = getgenv().WalkSpeedValue,
     Callback = function(v1137)
@@ -8708,7 +8708,7 @@ v494:AddSlider({
     end
 })
 v494:AddSlider({
-    Title = "Nh\225\186\163y Cao by NTT",
+    Title = "Nhảy Cao",
     Min = 50,
     Max = 500,
     Default = getgenv().JumpValue,
@@ -8781,7 +8781,7 @@ v494:AddToggle({
 })
 v494:AddToggle({
     Title = "Esp Fruits",
-    Value = false,
+    Value = true,
     Callback = function(v1148)
         DevilFruitESP = v1148
         if DevilFruitESP then
@@ -8812,23 +8812,53 @@ v494:AddToggle({
         end
     end
 })
+
+local TweenService = game:GetService("TweenService")
+local CommF = game:GetService("ReplicatedStorage").Remotes.CommF_
+local plr = game.Players.LocalPlayer
+
+local function TweenTP(cf, speed)
+    local char = plr.Character
+    if not char or not char:FindFirstChild("HumanoidRootPart") then return end
+    
+    local hrp = char.HumanoidRootPart
+    local distance = (hrp.Position - cf.Position).Magnitude
+    local time = distance / speed
+
+    local tween = TweenService:Create(
+        hrp,
+        TweenInfo.new(time, Enum.EasingStyle.Linear),
+        {CFrame = cf}
+    )
+
+    tween:Play()
+    tween.Completed:Wait()
+end
+
+local function SmoothBuy(cf, func, ...)
+    TweenTP(cf,300)
+    task.wait(0.5)
+    return CommF:InvokeServer(func,...)
+end
+
+
 local _ = v495:AddSection({"Buy Melee V1"})
 v495:AddButton({
-    Title = "Buy Black Leg $150,000",
+    Title = "Buy Black Leg",
     Callback = function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
+        SmoothBuy(CFrame.new(-1347,71,-1325),"BuyBlackLeg")
     end
 })
 v495:AddButton({
-    Title = "Buy Electro $550,000",
+    Title = "Buy Electro",
     Callback = function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
+        SmoothBuy(CFrame.new(-7859,5545,-380),"BuyElectro")
     end
 })
 v495:AddButton({
-    Title = "Buy Water Kung Fu $750,000",
+    Title = "Buy Water Kung Fu",
     Callback = function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyFishmanKarate")
+        SmoothBuy(CFrame.new(-3396,239,-10542),"BuyFishmanKarate")
     end
 })
 v495:AddButton({
@@ -8842,45 +8872,49 @@ local _ = v495:AddSection({"Buy Melee V2"})
 v495:AddButton({
     Title = "Buy Superhuman $3,000,000",
     Callback = function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman")
+        SmoothBuy(CFrame.new(-260,73,-12240),"BuySuperhuman")
     end
 })
 v495:AddButton({
-    Title = "Buy Death Step $5,000,000 5,000F",
+    Title = "Buy Death Step",
     Callback = function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep")
+        SmoothBuy(CFrame.new(-9500,172,6150),"BuyDeathStep")
     end
 })
 v495:AddButton({
-    Title = "Buy Sharkman Karate $2,500,000 5,000F",
+    Title = "Buy Sharkman Karate",
     Callback = function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true)
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate")
+        TweenTP(CFrame.new(-260,73,-12240),300)
+        task.wait(0.5)
+        CommF:InvokeServer("BuySharkmanKarate",true)
+        CommF:InvokeServer("BuySharkmanKarate")
     end
 })
 v495:AddButton({
-    Title = "Buy Electric Claw $3,000,000 5,000F",
+    Title = "Buy Electric Claw",
     Callback = function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw")
+        SmoothBuy(CFrame.new(-10300,330,-10100),"BuyElectricClaw")
     end
 })
 v495:AddButton({
-    Title = "Buy Dragon Talon $3,000,000 5,000F",
+    Title = "Buy Dragon Talon",
     Callback = function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
+        SmoothBuy(CFrame.new(-12100,332,-10500),"BuyDragonTalon")
     end
 })
 v495:AddButton({
-    Title = "Buy God Human $5,000,000 5,000F",
+    Title = "Buy Godhuman",
     Callback = function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman")
+        SmoothBuy(CFrame.new(-14000,20,-15000),"BuyGodhuman")
     end
 })
 v495:AddButton({
-    Title = "Buy Sanguine Art $5,000,000 5,000F",
+    Title = "Buy Sanguine Art",
     Callback = function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt", true)
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySanguineArt")
+        TweenTP(CFrame.new(-18000,20,-12000),300)
+        task.wait(0.5)
+        CommF:InvokeServer("BuySanguineArt",true)
+        CommF:InvokeServer("BuySanguineArt")
     end
 })
 local _ = v495:AddSection({"Buy Sea Event Crafting"})
@@ -9208,7 +9242,9 @@ spawn(function()
         end
     end
 end)
-v496:AddToggle({Title = "Infinite Soru", Value = false, Callback = function(v1170)
+v496:AddToggle({Title = "bật haki ",
+    Value = true, 
+    Callback = function(v1170)
     _G.AutoHaki = v1170
 end})
 spawn(function()
