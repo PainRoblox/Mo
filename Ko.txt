@@ -3670,28 +3670,24 @@ local v466 = loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/L
 local l_ScreenGui_0 = Instance.new("ScreenGui")
 l_ScreenGui_0.Name = "ControlGUI"
 l_ScreenGui_0.Parent = game.CoreGui
+
 local l_ImageButton_0 = Instance.new("ImageButton")
-l_ImageButton_0.Size = UDim2.new(0, 50, 0, 50)
+l_ImageButton_0.Size = UDim2.new(0, 35, 0, 35) -- sửa lại 35x35
 l_ImageButton_0.Position = UDim2.new(0.15, 0, 0.15, 0)
 l_ImageButton_0.Image = "rbxassetid://119980166507719"
 l_ImageButton_0.BackgroundTransparency = 1
 l_ImageButton_0.Parent = l_ScreenGui_0
-local l_UICorner_0 = Instance.new("UICorner")
-l_UICorner_0.CornerRadius = UDim.new(0.25, 0)
-l_UICorner_0.Parent = l_ImageButton_0
+
+-- bỏ UICorner để vuông hoàn toàn
+
 local l_UIStroke_0 = Instance.new("UIStroke")
 l_UIStroke_0.Thickness = 2
 l_UIStroke_0.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 l_UIStroke_0.Parent = l_ImageButton_0
-local v471 = {
-    Color3.fromRGB(255, 0, 0),
-    Color3.fromRGB(255, 127, 0),
-    Color3.fromRGB(255, 255, 0),
-    Color3.fromRGB(0, 255, 0),
-    Color3.fromRGB(0, 255, 255),
-    Color3.fromRGB(0, 0, 255),
-    Color3.fromRGB(139, 0, 255)
-}
+
+-- Màu xanh biển cố định
+l_ImageButton_0.ImageColor3 = Color3.fromRGB(0, 170, 255)
+l_UIStroke_0.Color = Color3.fromRGB(0, 170, 255)
 task.spawn(function()
     local v472 = 1
     while true do
@@ -3741,7 +3737,7 @@ l_ImageButton_0.MouseButton1Click:Connect(function()
 end)
 local v484 = v466:MakeTab({"Thông tin", "info"})
 local v485 = v466:MakeTab({"farm chính", "home"})
-local v486 = v466:MakeTab({"Tự câi cá", "rbxassetid://127664059821666"})
+local v486 = v466:MakeTab({"Tự câu cá", "rbxassetid://127664059821666"})
 local v487 = v466:MakeTab({"Quest | Items", "swords"})
 local v488 = v466:MakeTab({"Volcano Dojo", "cake"})
 local v489 = v466:MakeTab({"Sự kiện biển", "waves"})
@@ -3808,7 +3804,7 @@ local _ = v485:AddDropdown({
 local _ = v485:AddSection({"Main Farm"})
 v485:AddToggle({
     Name = "Auto Farm Level 1-2650",
-    Description = "T\225\187\177 \196\145\225\187\153ng farm c\225\186\165p",
+    Description = "",
     Default = false,
     Callback = function(v509)
         _G.AutoFarm = v509
@@ -9255,11 +9251,13 @@ spawn(function()
         end
     end
 end)
+
 v496:AddToggle({
-     Title = "bật haki", 
-     Value = true, 
-     Callback = function(v1170)
-    _G.AutoHaki = v1170
+    Name = "Bât haki",
+    Description = "",
+    Default = true,
+    Callback = function(v1170)
+   _G.AutoHaki = v1170
 end})
 spawn(function()
     while task.wait(0.1) do
@@ -9374,11 +9372,13 @@ spawn(function()
         end
     end
 end)
-v496:AddToggle({
-    Title = "Walk on Water", 
-    Value = true, 
+
+v4896:AddToggle({
+    Name = "Đi trên nước",
+    Description = "",
+    Default = true,
     Callback = function(v1188)
-    _G.WalkWater = v1188
+_G.WalkWater = v1188
 end})
 spawn(function()
     while task.wait() do
