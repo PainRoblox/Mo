@@ -7549,36 +7549,36 @@ local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
-getgenv().TweenGreatTree = false
+getgenv().FlyToGreatTree = false
+getgenv().SpeedGreatTree = 50
+
+local target = Vector3.new(3030.3945, 2280.6171, -7320.1835)
 
 v490:AddToggle({
-    Name = "Bay lên NPC Great Tree",
+    Name = "Bay tới NPC Great Tree",
     Default = false,
-    Callback = function(Value)
+    Callback = function(state)
 
-        getgenv().TweenGreatTree = Value
-        
-        if Value then
+        getgenv().FlyToGreatTree = state
+
+        if state then
             task.spawn(function()
 
                 local char = player.Character or player.CharacterAdded:Wait()
                 local hrp = char:WaitForChild("HumanoidRootPart")
 
-                local target = CFrame.new(3030.3945, 2280.6171, -7320.1835)
-
-                local distance = (hrp.Position - target.Position).Magnitude
-                local speed = 280
+                local distance = (hrp.Position - target).Magnitude
 
                 local tween = TweenService:Create(
                     hrp,
-                    TweenInfo.new(distance / speed, Enum.EasingStyle.Linear),
-                    {CFrame = target}
+                    TweenInfo.new(distance / getgenv().SpeedGreatTree, Enum.EasingStyle.Linear),
+                    {CFrame = CFrame.new(target)}
                 )
 
                 tween:Play()
                 tween.Completed:Wait()
 
-                getgenv().TweenGreatTree = false
+                getgenv().FlyToGreatTree = false
 
             end)
         end
