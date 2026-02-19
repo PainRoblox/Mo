@@ -4383,18 +4383,15 @@ spawn(function()
                     else
                         for _, v598 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                             if (v598.Name == "Reborn Skeleton" or v598.Name == "Living Zombie" or v598.Name == "Demonic Soul" or v598.Name == "Posessed Mummy") and v598:FindFirstChild("Humanoid") and v598:FindFirstChild("HumanoidRootPart") and v598.Humanoid.Health > 0 then
-repeat task.wait(_G.Fast_Delay or 0.1)
+repeat 
 
+    task.wait()
     AutoHaki()
     NoAttackAnimation = true
     NeedAttacking = true
     EquipWeapon(_G.SelectWeapon)
 
-    -- Gom mob mạnh hơn
-    v598.HumanoidRootPart.Size = Vector3.new(60,60,60)
-    v598.HumanoidRootPart.Transparency = 1
     v598.HumanoidRootPart.CanCollide = false
-
     v598.Humanoid.WalkSpeed = 0
     v598.Humanoid.JumpPower = 0
 
@@ -4406,8 +4403,8 @@ repeat task.wait(_G.Fast_Delay or 0.1)
     MonFarm = v598.Name
     PosMon = v598.HumanoidRootPart.CFrame
 
-    topos(v598.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
-    sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
+    topos(v598.HumanoidRootPart.CFrame * CFrame.new(0, 30, 0))
+    sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
 
 until not _G.FarmBone 
    or not v598.Parent 
