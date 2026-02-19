@@ -7593,11 +7593,10 @@ local RunService = game:GetService("RunService")
 local player = game.Players.LocalPlayer
 
 getgenv().AutoTemple = false
-
 local TempleCF = CFrame.new(28286.35546875,14895.3017578125,102.62469482421875)
 
 v490:AddToggle({
-    Name = "⚡ Frame Teleport Temple",
+    Name = "⚡ Smooth Temple",
     Default = false,
     Callback = function(Value)
         getgenv().AutoTemple = Value
@@ -7609,7 +7608,7 @@ v490:AddToggle({
                 local hrp = char:WaitForChild("HumanoidRootPart")
 
                 local connection
-                connection = RunService.RenderStepped:Connect(function()
+                connection = RunService.Heartbeat:Connect(function()
 
                     if not getgenv().AutoTemple then
                         connection:Disconnect()
@@ -7625,9 +7624,10 @@ v490:AddToggle({
                         return
                     end
 
-                    local speedPerFrame = 500
+                    -- Di chuyển nhẹ hơn
+                    local speedStep = 350 -- giảm để bớt lag
                     local direction = (TempleCF.Position - hrp.Position).Unit
-                    hrp.CFrame = hrp.CFrame + direction * speedPerFrame
+                    hrp.CFrame = hrp.CFrame + direction * speedStep
 
                 end)
 
