@@ -7549,14 +7549,14 @@ local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
-getgenv().UpGreatTreeNPC = false
+getgenv().TweenGreatTree = false
 
 v490:AddToggle({
     Name = "Bay lên NPC Great Tree",
     Default = false,
     Callback = function(Value)
 
-        getgenv().UpGreatTreeNPC = Value
+        getgenv().TweenGreatTree = Value
         
         if Value then
             task.spawn(function()
@@ -7564,35 +7564,21 @@ v490:AddToggle({
                 local char = player.Character or player.CharacterAdded:Wait()
                 local hrp = char:WaitForChild("HumanoidRootPart")
 
-                -- Tọa độ NPC trên đỉnh cây
                 local target = CFrame.new(3030.3945, 2280.6171, -7320.1835)
 
-                local speed = 200
-                local maxStep = 500     -- bước nhỏ để không giật
+                local distance = (hrp.Position - target.Position).Magnitude
+                local speed = 280
 
-                while getgenv().UpGreatTreeNPC do
-                    
-                    local distance = (hrp.Position - target.Position).Magnitude
-                    if distance < 5 then
-                        hrp.CFrame = target
-                        break
-                    end
+                local tween = TweenService:Create(
+                    hrp,
+                    TweenInfo.new(distance / speed, Enum.EasingStyle.Linear),
+                    {CFrame = target}
+                )
 
-                    local step = math.min(maxStep, distance)
-                    local direction = (target.Position - hrp.Position).Unit
-                    local nextPos = hrp.Position + direction * step
+                tween:Play()
+                tween.Completed:Wait()
 
-                    local tween = TweenService:Create(
-                        hrp,
-                        TweenInfo.new(step / speed, Enum.EasingStyle.Linear),
-                        {CFrame = CFrame.new(nextPos)}
-                    )
-
-                    tween:Play()
-                    tween.Completed:Wait()
-                end
-
-                getgenv().UpGreatTreeNPC = false
+                getgenv().TweenGreatTree = false
 
             end)
         end
