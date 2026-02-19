@@ -132,7 +132,7 @@ function CheckQuest()
                                                 NameMon = "Prisoner"
                                                 CFrameQuest = CFrame.new(5308.93115, 1.65517521, 475.120514, -0.0894274712, -5.00292918E-9, -0.995993316, 1.60817859E-9, 1, -5.16744869E-9, 0.995993316, -2.06384709E-9, -0.0894274712)
                                                 CFrameMon = CFrame.new(5098.9736328125, -0.3204058110713959, 474.2373352050781)
-                                            elseif (MyLevel < 210 or MyLevel > 249) and SelectMonster ~= "Dangerous Prisone" then
+                                            elseif (MyLevel < 210 or MyLevel > 249) and SelectMonster ~= "Dangerous Prisoner" then
                                                 if MyLevel >= 250 and MyLevel <= 274 or SelectMonster == "Toga Warrior" then
                                                     Mon = "Toga Warrior"
                                                     LevelQuest = 1
@@ -4853,7 +4853,6 @@ task.spawn(function()
     end
 end)
 local v658 = {}
-
 if World1 then
     v658 = {
         "The Gorilla King",
@@ -4871,8 +4870,22 @@ if World1 then
         "Cyborg",
         "Saber Expert"
     }
-
-elseif World2 then
+elseif not World2 then
+    if World3 then
+        v658 = {
+            "Tyrant of the Skies",
+            "Stone",
+            "Island Empress",
+            "Kilo Admiral",
+            "Captain Elephant",
+            "Beautiful Pirate",
+            "rip_indra True Form",
+            "Longma",
+            "Soul Reaper",
+            "Cake Queen"
+        }
+    end
+else
     v658 = {
         "Diamond",
         "Jeremy",
@@ -4884,20 +4897,6 @@ elseif World2 then
         "Order",
         "Awakened Ice Admiral",
         "Tide Keeper"
-    }
-
-elseif World3 then
-    v658 = {
-        "Tyrant of the Skies",
-        "Stone",
-        "Island Empress",
-        "Kilo Admiral",
-        "Captain Elephant",
-        "Beautiful Pirate",
-        "rip_indra True Form",
-        "Longma",
-        "Soul Reaper",
-        "Cake Queen"
     }
 end
 v485:AddDropdown({
