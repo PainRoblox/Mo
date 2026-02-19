@@ -11,6 +11,9 @@ elseif game.PlaceId == 4442272183 then
 elseif game.PlaceId == 7449423635 then
     World3 = true
 end
+elseif game.Placeld == 73902483975735 then
+    World4 = true
+end
 function MaterialMon()
     if _G.SelectMaterial ~= "Radiactive Material" then
         if _G.SelectMaterial ~= "Leather + Scrap Metal" then
@@ -8072,6 +8075,155 @@ spawn(function()
                     end
                 end
             end)
+        end
+    end
+end)
+local lp = game.Players.LocalPlayer
+
+_G.AutoJoinDungeon = false
+_G.AutoDungeon = false
+_G.AutoPickCard = false
+
+-- =====================================
+-- SECTION
+-- =====================================
+
+local _ = v491:AddSection({"Farm Dungeon"})
+
+-- =====================================
+-- TOGGLES
+-- =====================================
+
+v491:AddToggle({
+    Name = "Auto Join Dungeon",
+    Default = false,
+    Callback = function(v1070)
+        _G.AutoJoinDungeon = v1070
+    end
+})
+
+v491:AddToggle({
+    Name = "Auto Dungeon",
+    Default = false,
+    Callback = function(v1070)
+        _G.AutoDungeon = v1070
+    end
+})
+
+v491:AddToggle({
+    Name = "Auto Pick Card",
+    Default = false,
+    Callback = function(v1070)
+        _G.AutoPickCard = v1070
+    end
+})
+local function GetBestPad()
+    local bestPad = nil
+    local maxPlayers = -1
+
+    for i = 1, 3 do
+        local pad = workspace.Map["Simulation Hub"].Pads:FindFirstChild("DUNGEON_TELEPORTER" .. i)
+        if pad then
+            local playersOnPad = pad:GetAttribute("NumPlayersOnPad") or 0
+            if playersOnPad < 4 and playersOnPad > maxPlayers then
+                maxPlayers = playersOnPad
+                bestPad = pad
+            end
+        end
+    end
+
+    return bestPad
+end
+
+local function GetCurrentZone()
+    local nearestZone = nil
+    local minDistance = math.huge
+
+    local dungeonFolder = workspace.Map:FindFirstChild("Dungeon")
+    if not dungeonFolder then return nil end
+
+    if not lp.Character or not lp.Character:FindFirstChild("HumanoidRootPart") then
+        return nil
+    end
+
+    local hrp = lp.Character.HumanoidRootPart
+
+    for _, zone in ipairs(dungeonFolder:GetChildren()) do
+        local root = zone:FindFirstChild("Root")
+        if root and zone:FindFirstChild("ExitTeleporter") then
+            local dist = (root.Position - hrp.Position).Magnitude
+            if dist < minDistance then
+                minDistance = dist
+                nearestZone = zone
+            end
+        end
+    end
+
+    return nearestZone
+end
+
+local CardPriority = {
+    "Overflow",
+    "Lifesteal",
+    "Unbreakable",
+    "Health",
+    "Defense",
+    "Armor",
+    "Melee",
+    "Sword"
+}
+
+local function AutoPickCard()
+    local playerGui = lp:WaitForChild("PlayerGui")
+
+    for _, cardName in ipairs(CardPriority) do
+        for _, gui in ipairs(playerGui:GetDescendants()) do
+            if gui:IsA("TextButton") and gui:FindFirstChild("DisplayName") then
+                if string.find(gui.DisplayName.Text, cardName) then
+                    firesignal(gui.Activated)
+                    return
+                end
+            end
+        end
+    end
+end
+task.spawn(function()
+    while task.wait(0.5) do
+        if not _G.AutoDungeon then continue end
+        if game.PlaceId ~= DungeonPlaceId then continue end
+
+        if noindungeon then
+            if _G.AutoJoinDungeon then
+                local pad = GetBestPad()
+                if pad then
+                    TP(pad.Pad.CFrame * CFrame.new(0,5,0))
+                end
+            end
+        else
+            local currentZone = GetCurrentZone()
+            if not currentZone then continue end
+
+            local enemies = workspace.Enemies:GetChildren()
+
+            if #enemies > 0 then
+                for _, enemy in ipairs(enemies) do
+                    if enemy:FindFirstChild("Humanoid")
+                    and enemy.Humanoid.Health > 0 then
+                        Attack(enemy, function()
+                            return not _G.AutoDungeon
+                        end)
+                    end
+                end
+            else
+                if _G.AutoPickCard then
+                    AutoPickCard()
+                end
+
+                local exitRoot = currentZone.ExitTeleporter:FindFirstChild("Root")
+                if exitRoot then
+                    TP(exitRoot.CFrame)
+                end
+            end
         end
     end
 end)
