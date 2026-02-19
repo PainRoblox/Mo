@@ -4383,8 +4383,8 @@ spawn(function()
                     else
                         for _, v598 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                             if (v598.Name == "Reborn Skeleton" or v598.Name == "Living Zombie" or v598.Name == "Demonic Soul" or v598.Name == "Posessed Mummy") and v598:FindFirstChild("Humanoid") and v598:FindFirstChild("HumanoidRootPart") and v598.Humanoid.Health > 0 then
-repeat 
 
+repeat 
     task.wait()
     AutoHaki()
     NoAttackAnimation = true
@@ -8238,7 +8238,7 @@ end)
 pcall(function()
     v1112:Set(v1111())
 end)
-local _ = v493:AddSection({"Teleport Island | Di Chuy\225\187\131n \196\144\225\186\191n \196\144\225\186\163o"})
+local _ = v493:AddSection({"Teleport Island | Dịch chuyển"})
 local function v1116(v1114)
     pcall(function()
         if type(topos) == "function" then
@@ -8280,10 +8280,8 @@ elseif World3 then
     }
 
 else
-    v1117 = {"Spawn"}
-end
 v493:AddDropdown({
-    Name = "Select Island",
+    Name = "Chọn đảo",
     Description = "Ch\225\187\141n \196\145\225\186\163o \196\145\225\187\131 teleport",
     Options = v1117,
     Default = v1117[1],
@@ -8292,7 +8290,7 @@ v493:AddDropdown({
     end
 })
 v493:AddToggle({
-    Name = "Auto Tween To Island",
+    Name = "Bay tới đảo đã chọn",
     Description = "T\225\187\177 \196\145\225\187\153ng di chuy\225\187\131n t\225\187\155i \196\145\225\186\163o \196\145\195\163 ch\225\187\141n",
     Default = false,
     Callback = function(v1119)
