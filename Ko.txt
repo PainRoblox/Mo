@@ -4856,26 +4856,50 @@ task.spawn(function()
     end
 end)
 local v658 = {}
-
 if World1 then
     v658 = {
-        "The Gorilla King","Bobby","Yeti","Mob Leader","Vice Admiral",
-        "Warden","Chief Warden","Swan","Magma Admiral","Fishman Lord",
-        "Wysper","Thunder God","Cyborg","Saber Expert"
+        "The Gorilla King",
+        "Bobby",
+        "Yeti",
+        "Mob Leader",
+        "Vice Admiral",
+        "Warden",
+        "Chief Warden",
+        "Swan",
+        "Magma Admiral",
+        "Fishman Lord",
+        "Wysper",
+        "Thunder God",
+        "Cyborg",
+        "Saber Expert"
     }
-
-elseif World2 then
+elseif not World2 then
+    if World3 then
+        v658 = {
+            "Tyrant of the Skies",
+            "Stone",
+            "Island Empress",
+            "Kilo Admiral",
+            "Captain Elephant",
+            "Beautiful Pirate",
+            "rip_indra True Form",
+            "Longma",
+            "Soul Reaper",
+            "Cake Queen"
+        }
+    end
+else
     v658 = {
-        "Diamond","Jeremy","Fajita","Don Swan","Smoke Admiral",
-        "Cursed Captain","Darkbeard","Order",
-        "Awakened Ice Admiral","Tide Keeper"
-    }
-
-elseif World3 then
-    v658 = {
-        "Tyrant of the Skies","Stone","Island Empress",
-        "Kilo Admiral","Captain Elephant","Beautiful Pirate",
-        "rip_indra True Form","Longma","Soul Reaper","Cake Queen"
+        "Diamond",
+        "Jeremy",
+        "Fajita",
+        "Don Swan",
+        "Smoke Admiral",
+        "Cursed Captain",
+        "Darkbeard",
+        "Order",
+        "Awakened Ice Admiral",
+        "Tide Keeper"
     }
 end
 v485:AddDropdown({
@@ -8253,48 +8277,49 @@ local function v1116(v1114)
 end
 
 
-local v1117
-
-if World3 then
-    v1117 = {
-        "Mansion",
-        "Port Town",
-        "Great Tree",
-        "Castle On The Sea",
-        "MiniSky",
-        "Hydra Island",
-        "Floating Turtle",
-        "Haunted Castle",
-        "Ice Cream Island",
-        "Peanut Island",
-        "Cake Island",
-        "Cocoa Island",
-        "Candy Island",
-        "Tiki Outpost",
-        "Dragon Dojo",
-    }
-
-elseif World2 then
-    v1117 = {
-        "The Cafe",
-        "Frist Spot",
-        "Dark Area",
-        "Flamingo Mansion",
-        "Flamingo Room",
-        "Green Zone",
-        "Factory",
-        "Colossuim",
-        "Zombie Island",
-        "Two Snow Mountain",
-        "Punk Hazard",
-        "Cursed Ship",
-        "Ice Castle",
-        "Forgotten Island",
-        "Ussop Island",
-        "Mini Sky Island"
-    }
-
-elseif World1 then
+local v1117 = nil
+if not World1 then
+    if World2 then
+        v1117 = {
+            "The Cafe",
+            "Frist Spot",
+            "Dark Area",
+            "Flamingo Mansion",
+            "Flamingo Room",
+            "Green Zone",
+            "Factory",
+            "Colossuim",
+            "Zombie Island",
+            "Two Snow Mountain",
+            "Punk Hazard",
+            "Cursed Ship",
+            "Ice Castle",
+            "Forgotten Island",
+            "Ussop Island",
+            "Mini Sky Island"
+        }
+    elseif World3 then
+        v1117 = {
+            "Mansion",
+            "Port Town",
+            "Great Tree",
+            "Castle On The Sea",
+            "MiniSky",
+            "Hydra Island",
+            "Floating Turtle",
+            "Haunted Castle",
+            "Ice Cream Island",
+            "Peanut Island",
+            "Cake Island",
+            "Cocoa Island",
+            "Candy Island",
+            "Tiki Outpost",
+            "Dragon Dojo"
+        }
+    else
+        v1117 = {"Spawn"}
+    end
+else
     v1117 = {
         "WindMill",
         "Marine",
@@ -8315,9 +8340,6 @@ elseif World1 then
         "Shank Room",
         "Mob Island"
     }
-
-else
-    v1117 = {"Spawn"}
 end
 v493:AddDropdown({
     Name = "Chọn đảo",
