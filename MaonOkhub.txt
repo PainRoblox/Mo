@@ -3730,18 +3730,18 @@ l_ImageButton_0.MouseButton1Click:Connect(function()
     end
 end)
 local v484 = v466:MakeTab({"Th\195\180ng Tin | Info", "info"})
-local v485 = v466:MakeTab({"Farming", "home"})
-local v486 = v466:MakeTab({"Auto Fishing", "rbxassetid://127664059821666"})
+local v485 = v466:MakeTab({"Farm chính", "home"})
+local v486 = v466:MakeTab({"Câu cá", "rbxassetid://127664059821666"})
 local v487 = v466:MakeTab({"Quest | Items", "swords"})
 local v488 = v466:MakeTab({"Volcano Dojo", "cake"})
 local v489 = v466:MakeTab({"Sea Event", "waves"})
 local v490 = v466:MakeTab({"Race V4", "crown"})
 local v491 = v466:MakeTab({"Raid Fruits", "cherry"})
 local v492 = v466:MakeTab({"Fruits | Check Stock", "apple"})
-local v493 = v466:MakeTab({"Teleport", "locate"})
+local v493 = v466:MakeTab({"Dịch chuy6", "locate"})
 local v494 = v466:MakeTab({"PvP,Player", "user"})
-local v495 = v466:MakeTab({"Shop", "shoppingCart"})
-local v496 = v466:MakeTab({"Settings", "settings"})
+local v495 = v466:MakeTab({"Cửa hàng", "shoppingCart"})
+local v496 = v466:MakeTab({"Cài đặt", "settings"})
 v484:AddDiscordInvite({
     Name = "Ok hub",
     Description = "",
