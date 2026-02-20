@@ -8134,11 +8134,11 @@ spawn(function()
     end
 end)
 v492:AddToggle({
-    Name = "Teleport To Fruit Spawn",
+    Name = "Bay tới trái ác quỷ",
     Description = "T\225\187\177 \196\144\225\187\153ng Nh\225\186\183t Tr\195\161i \195\129c Qu\225\187\183 N\225\186\191u Xu\225\186\165t Hi\225\187\135n Trong Sever",
     Default = false,
     Callback = function(v1084)
-        _G.Tweenfruit = v1084
+        _G.TweenFruit = v1084
     end
 })
 spawn(function()
@@ -8153,7 +8153,7 @@ spawn(function()
     end
 end)
 v492:AddToggle({
-    Name = "Auto Teleport Fruits",
+    Name = "Dịch chuyển Fruits",
     Description = "T\225\187\177 \196\144\225\187\153ng Teleport \196\144\225\186\191n Tr\195\161i \195\129c Qu\225\187\183",
     Default = false,
     Callback = function(v1087)
@@ -8171,7 +8171,7 @@ spawn(function()
         end
     end
 end)
-local _ = v492:AddSection({"Check Stock Fruits"})
+local _ = v492:AddSection({"Check Cửa hàng Fruits | valentine"})
 local function v1096(v1091)
     local v1092 = tostring(v1091)
     repeat
@@ -8222,8 +8222,37 @@ local function v1111()
     else
         v1098 = v1098 .. "- \226\157\140 L\225\187\151i khi l\225\186\165y d\225\187\175 li\225\187\135u.\n"
     end
+    v1098 = v1098 .. "\nValentine Shop\n"
+
+    local l_status_4, l_result_4 = pcall(function()
+        return l_CommF__1:InvokeServer("ValentineShop")
+    end)
+
+    getgenv().ValentineItems = {}
+
+    if l_status_4 and l_result_4 then
+        local v1113 = false
+        for _, v1114 in pairs(l_result_4) do
+            if v1114.OnSale then
+                v1113 = true
+                local price = v1096(v1114.Price or 0)
+
+                table.insert(getgenv().ValentineItems, v1114.Name)
+
+                v1098 = v1098 .. v1114.Name .. " - $" .. price .. "\n"
+            end
+        end
+        if not v1113 then
+            v1098 = v1098 .. "- Không có vật phẩm nào.\n"
+        end
+    else
+        v1098 = v1098 .. "- ❌ Event chưa mở.\n"
+    end
+
     return v1098
 end
+
+
 local v1112 = v492:AddParagraph({
     Title = "Stock Tr\195\161i C\195\162y",
     Content = "\196\144ang t\225\186\163i d\225\187\175 li\225\187\135u..."
@@ -8238,19 +8267,31 @@ end)
 pcall(function()
     v1112:Set(v1111())
 end)
-local _ = v493:AddSection({"Teleport Island | Dịch chuyển"})
-local function v1116(v1114)
-    pcall(function()
-        if type(topos) == "function" then
-            topos(v1114)
-        else
-            local l_LocalPlayer_17 = game:GetService("Players").LocalPlayer
-            if l_LocalPlayer_17 and l_LocalPlayer_17.Character and l_LocalPlayer_17.Character:FindFirstChild("HumanoidRootPart") then
-                l_LocalPlayer_17.Character.HumanoidRootPart.CFrame = v1114
-            end
+local ValentineDropdown = v492:AddDropdown({
+    Name = "Chọn vật phẩm Valentine",
+    Options = {},
+    Default = "",
+    Callback = function(Value)
+        getgenv().SelectedValentine = Value
+    end
+})
+
+v492:AddButton({
+    Name = "Mua Valentine Item",
+    Callback = function()
+        if getgenv().SelectedValentine then
+            game:GetService("ReplicatedStorage")
+                .Remotes.CommF_:InvokeServer(
+                    "BuyValentineItem",
+                    getgenv().SelectedValentine
+                )
         end
-    end)
-end
+    end
+})
+
+
+
+
 local v1117
 
 if World3 then
@@ -8270,7 +8311,6 @@ if World3 then
         "Candy Island",
         "Tiki Outpost",
         "Dragon Dojo",
-        "Submerged Island",
     }
 
 elseif World2 then
@@ -8426,24 +8466,6 @@ local function v1120()
                                                                                                                                 end
 
                                                                                                                             else
-  elseif _G.SelectIsland == "Submerged Island" then
-        topos(CFrame.new(
-            -16269.7041, 25.2288494, 1373.65955,
-            0.997390985, 1.47309942e-09, -0.0721890926,
-            -4.00651912e-09, 0.99999994, -2.51183763e-09,
-            0.0721890852, 5.75363091e-10, 0.997390926
-        ))
-
-        task.wait(2)
-
-        local args = {"TravelToSubmergedIsland"}
-        game:GetService("ReplicatedStorage")
-            .Modules
-            .Net
-            :FindFirstChild("RF/SubmarineWorkerSpeak")
-            :InvokeServer(unpack(args))
-    end
-else
 
     v1116(CFrame.new(-16218.683, 9.086, 445.618))
 end                                                                                      v1116(CFrame.new(-16218.683, 9.086, 445.618))
