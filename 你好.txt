@@ -3665,20 +3665,27 @@ local v466 = loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/L
 local l_ScreenGui_0 = Instance.new("ScreenGui")
 l_ScreenGui_0.Name = "ControlGUI"
 l_ScreenGui_0.Parent = game.CoreGui
-
 local l_ImageButton_0 = Instance.new("ImageButton")
-l_ImageButton_0.Size = UDim2.new(0, 35, 0, 35) -- sửa lại 35x35
+l_ImageButton_0.Size = UDim2.new(0, 30, 0, 30)
 l_ImageButton_0.Position = UDim2.new(0.15, 0, 0.15, 0)
 l_ImageButton_0.Image = "rbxassetid://119980166507719"
 l_ImageButton_0.BackgroundTransparency = 1
 l_ImageButton_0.Parent = l_ScreenGui_0
-
--- bỏ UICorner để vuông hoàn toàn
-
+local l_UICorner_0 = Instance.new("UICorner")
+l_UICorner_0.Parent = l_ImageButton_0
 local l_UIStroke_0 = Instance.new("UIStroke")
 l_UIStroke_0.Thickness = 2
 l_UIStroke_0.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 l_UIStroke_0.Parent = l_ImageButton_0
+local v471 = {
+    Color3.fromRGB(255, 0, 0),
+    Color3.fromRGB(255, 127, 0),
+    Color3.fromRGB(255, 255, 0),
+    Color3.fromRGB(0, 255, 0),
+    Color3.fromRGB(0, 255, 255),
+    Color3.fromRGB(0, 0, 255),
+    Color3.fromRGB(139, 0, 255)
+}
 task.spawn(function()
     local v472 = 1
     while true do
@@ -3687,6 +3694,7 @@ task.spawn(function()
         task.wait(0.3)
     end
 end)
+local v473 = true
 local v473 = true
 local v474 = nil
 local v475 = nil
@@ -9310,7 +9318,11 @@ spawn(function()
         end
     end
 end)
-v496:AddToggle({Title = "Walk on Water", Value = true, Callback = function(v1188)
+v496:AddToggle({
+    Name = "Walk on water",
+    Description = "",
+    Default = true,
+    Callback = function(v1188)
     _G.WalkWater = v1188
 end})
 spawn(function()
