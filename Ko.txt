@@ -1,3 +1,4 @@
+
 hookfunction(require(game:GetService("ReplicatedStorage").Effect.Container.Death), function()
     -- empty block
 end)
@@ -11,9 +12,8 @@ elseif game.PlaceId == 4442272183 then
 elseif game.PlaceId == 7449423635 then
     World3 = true
 end
-
 function MaterialMon()
-    if _G.SelectMaterial ~= "Radioactive Material" then
+    if _G.SelectMaterial ~= "Radiactive Material" then
         if _G.SelectMaterial ~= "Leather + Scrap Metal" then
             if _G.SelectMaterial ~= "Magma Ore" then
                 if _G.SelectMaterial ~= "Fish Tail" then
@@ -495,6 +495,45 @@ function CheckQuest()
                                                                             CFrameMon = CFrame.new(-16855.043, 122.457253, 1478.15308, -0.999392271, -0, -0.0348687991, -0, 1, -0, 0.0348687991, -0, -0.999392271)
                                                                         end
                                                                     else
+                                                                    
+      elseif (MyLevel < 2600or MyLevel > 2624) and SelectMonster ~= "SubmergedQuest1" then
+      
+      if MyLevel >= 2575 or SelectMonster == "Reef Bandit" then
+                                                                
+        Mon = "Reef Bandit"
+        LevelQuest = 1
+        NameQuest = "SubmergedQuest1"
+        NameMon = "Reef Bandit"
+        CFrameQuest = CFrame.new(10882.264, -2086.322, 10034.226)
+        CFrameMon = CFrame.new(10736.6191, -2087.8439, 9338.4882)
+        
+        elseif (MyLevel < 2625or MyLevel > 2649) and SelectMonster ~= "SubmergedQuest2" then
+      
+      if MyLevel >= 2575 or SelectMonster == "Sea Chanter" then
+       
+            Mon = "Sea Chanter"
+            LevelQuest = 1
+            NameQuest = "SubmergedQuest2"
+            NameMon = "Sea Chanter"
+            CFrameQuest = CFrame.new(10882.264, -2086.322, 10034.226)
+            CFrameMon = CFrame.new(10621.0342, -2087.844, 10102.0332)
+        elseif l_Value_0 >= 2675 and l_Value_0 <= 2750 then
+            Mon = "Ocean Prophet"
+            LevelQuest = 2
+            NameQuest = "SubmergedQuest2"
+            NameMon = "Ocean Prophet"
+            CFrameQuest = CFrame.new(10882.264, -2086.322, 10034.226)
+            CFrameMon = CFrame.new(11056.1445, -2001.6717, 10117.4493)
+        end
+    else
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
                                                                         Mon = "Serpent Hunter"
                                                                         LevelQuest = 1
                                                                         NameQuest = "TikiQuest3"
@@ -3289,9 +3328,9 @@ function CheckNearestTeleporter(v393)
     local v396 = nil
     local l_PlaceId_1 = game.PlaceId
     local v398 = {}
-   if l_PlaceId_1 ~= 2753915549 then
-    if l_PlaceId_1 ~= 4442272183 then
-        if l_PlaceId_1 == 7449423635 then
+    if l_PlaceId_1 ~= 2753915549 then
+        if l_PlaceId_1 ~= 4442272183 then
+            if l_PlaceId_1 == 7449423635 then
                 v398 = {
                     ["Floating Turtle"] = Vector3.new(-12462, 375, -7552),
                     ["Hydra Island"] = Vector3.new(5657.88623046875, 1013.0790405273438, -335.4996337890625),
@@ -3664,7 +3703,7 @@ function CheckItemBPCRBPCR(v463)
     end
 end
 local v466 = loadstring(game:HttpGet("https://raw.githubusercontent.com/tlredz/Library/refs/heads/main/V5/Source.lua"))():MakeWindow({
-    Title = "OK Hub",
+    Title = "ok Hub",
     SubTitle = "blox fruit",
     SaveFolder = "Ok | redz lib v5.lua"
 })
@@ -3673,7 +3712,7 @@ l_ScreenGui_0.Name = "ControlGUI"
 l_ScreenGui_0.Parent = game.CoreGui
 
 local l_ImageButton_0 = Instance.new("ImageButton")
-l_ImageButton_0.Size = UDim2.new(0, 35, 0, 35) -- sửa lại 35x35
+l_ImageButton_0.Size = UDim2.new(0, 30, 0, 30) -- sửa lại 35x35
 l_ImageButton_0.Position = UDim2.new(0.15, 0, 0.15, 0)
 l_ImageButton_0.Image = "rbxassetid://119980166507719"
 l_ImageButton_0.BackgroundTransparency = 1
@@ -3732,22 +3771,22 @@ l_ImageButton_0.MouseButton1Click:Connect(function()
         v466:Minimize(true)
     end
 end)
-local v484 = v466:MakeTab({"Thông tin", "info"})
-local v485 = v466:MakeTab({"farm chính", "home"})
-local v486 = v466:MakeTab({"Tự câu cá", "rbxassetid://127664059821666"})
+local v484 = v466:MakeTab({"Thông Tin | Info", "info"})
+local v485 = v466:MakeTab({"Farm chính", "home"})
+local v486 = v466:MakeTab({"Câu Cá", "rbxassetid://127664059821666"})
 local v487 = v466:MakeTab({"Quest | Items", "swords"})
 local v488 = v466:MakeTab({"Volcano Dojo", "cake"})
 local v489 = v466:MakeTab({"Sự kiện biển", "waves"})
 local v490 = v466:MakeTab({"Tộc V4", "crown"})
 local v491 = v466:MakeTab({"Raid Fruits", "cherry"})
 local v492 = v466:MakeTab({"Fruits | Check Stock", "apple"})
-local v493 = v466:MakeTab({"TP | dịch chuyển", "locate"})
-local v494 = v466:MakeTab({"PvP | Player", "user"})
+local v493 = v466:MakeTab({"Dịch chuyển", "locate"})
+local v494 = v466:MakeTab({"PvP, Người chơi", "user"})
 local v495 = v466:MakeTab({"Cửa hàng", "shoppingCart"})
 local v496 = v466:MakeTab({"Cài đặt", "settings"})
 v484:AddDiscordInvite({
     Name = "Ok",
-    Description = "5555",
+    Description = "",
     Logo = "rbxassetid://119980166507719",
     Invite = ""
 })
@@ -3801,7 +3840,7 @@ local _ = v485:AddDropdown({
 local _ = v485:AddSection({"Main Farm"})
 v485:AddToggle({
     Name = "Auto Farm Level 1-2650",
-    Description = "",
+    Description = "T\225\187\177 \196\145\225\187\153ng farm c\225\186\165p",
     Default = false,
     Callback = function(v509)
         _G.AutoFarm = v509
@@ -3837,7 +3876,7 @@ spawn(function()
                                                 v512.HumanoidRootPart.CanCollide = false
                                                 v512.Humanoid.WalkSpeed = 0
                                                 v512.Head.CanCollide = false
-                                                v512.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
+                                                v512.HumanoidRootPart.Size = Vector3.new(70, 70, 70)
                                                 StartBring = true
                                                 MonFarm = v512.Name
                                                 game:GetService("VirtualUser"):CaptureController()
@@ -3900,6 +3939,52 @@ spawn(function()
                     end
                     if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuest.Position).Magnitude <= 20 then
                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, LevelQuest)
+                    end
+                end
+            end)
+        end
+    end
+end)
+spawn(function()
+    while task.wait() do
+        if _G.AutoFarmLevelNew then
+            pcall(function()
+                local l_Quest_0 = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
+                CheckQuestNew()
+                if l_Quest_0.Visible == false then
+                    StartBring = false
+                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrameQuestNew.Position).Magnitude > 20 then
+                        TP1(CFrameQuestNew)
+                    else
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuestNew, LevelQuestNew)
+                    end
+                else
+                    for _, v519 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v519.Name == MonNew and v519:FindFirstChild("HumanoidRootPart") and v519:FindFirstChild("Humanoid") and v519.Humanoid.Health > 0 then
+                            if not string.find(l_Quest_0.Container.QuestTitle.Title.Text, NameMonNew) then
+                                StartBring = false
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                            else
+                                repeat
+                                    task.wait()
+                                    EquipWeapon(_G.SelectWeapon)
+                                    AutoHaki()
+                                    topos(v519.HumanoidRootPart.CFrame * CFrame.new(0, 30, 0))
+                                    v519.HumanoidRootPart.CanCollide = false
+                                    v519.Humanoid.WalkSpeed = 0
+                                    v519.Head.CanCollide = false
+                                    v519.HumanoidRootPart.Size = Vector3.new(70, 70, 70)
+                                    StartBring = true
+                                    MonFarmNew = v519.Name
+                                    game:GetService("VirtualUser"):CaptureController()
+                                    game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 672))
+                                until not _G.AutoFarmLevelNew or v519.Humanoid.Health <= 0 or not v519.Parent or l_Quest_0.Visible == false
+                            end
+                        end
+                    end
+                    if not game:GetService("Workspace").Enemies:FindFirstChild(MonNew) then
+                        TP1(CFrameMonNew)
+                        StartBring = false
                     end
                 end
             end)
@@ -4355,7 +4440,7 @@ spawn(function()
                         TP1(l_v592_0)
                         wait(0.1)
                         for _ = 1, 8 do
-                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = (l_v592_0)
+                            game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(l_v592_0)
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
                             wait(0.1)
                         end
@@ -4383,32 +4468,21 @@ spawn(function()
                     else
                         for _, v598 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                             if (v598.Name == "Reborn Skeleton" or v598.Name == "Living Zombie" or v598.Name == "Demonic Soul" or v598.Name == "Posessed Mummy") and v598:FindFirstChild("Humanoid") and v598:FindFirstChild("HumanoidRootPart") and v598.Humanoid.Health > 0 then
-
-repeat 
-    task.wait()
-    AutoHaki()
-    NoAttackAnimation = true
-    NeedAttacking = true
-    EquipWeapon(_G.SelectWeapon)
-
-    v598.HumanoidRootPart.CanCollide = false
-    v598.Humanoid.WalkSpeed = 0
-    v598.Humanoid.JumpPower = 0
-
-    if v598:FindFirstChild("Head") then
-        v598.Head.CanCollide = false
-    end
-
-    StartBring = true
-    MonFarm = v598.Name
-    PosMon = v598.HumanoidRootPart.CFrame
-
-    topos(v598.HumanoidRootPart.CFrame * CFrame.new(0, 30, 0))
-    sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
-
-until not _G.FarmBone 
-   or not v598.Parent 
-   or v598.Humanoid.Health <= 0
+                                repeat
+                                    task.wait()
+                                    AutoHaki()
+                                    NoAttackAnimation = true
+                                    NeedAttacking = true
+                                    EquipWeapon(_G.SelectWeapon)
+                                    v598.HumanoidRootPart.CanCollide = false
+                                    v598.Humanoid.WalkSpeed = 0
+                                    v598.Head.CanCollide = false
+                                    StartBring = true
+                                    MonFarm = v598.Name
+                                    PosMon = v598.HumanoidRootPart.CFrame
+                                    topos(v598.HumanoidRootPart.CFrame * CFrame.new(0, 30, 0))
+                                    sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+                                until not _G.FarmBone or not v598.Parent or v598.Humanoid.Health <= 0
                             end
                         end
                     end
@@ -4416,7 +4490,7 @@ until not _G.FarmBone
             end
         end
     end
-end)+
+end)
 v485:AddToggle({
     Name = "Seperator Hallow Scythe",
     Description = "Tri\225\187\135u h\225\187\147i v\195\160 ti\195\170u di\225\187\135t Soul Reaper",
@@ -4876,6 +4950,7 @@ if World1 then
 elseif not World2 then
     if World3 then
         v658 = {
+            "",
             "Tyrant of the Skies",
             "Stone",
             "Island Empress",
@@ -4906,7 +4981,7 @@ v485:AddDropdown({
     Name = "Auto Select Boss",
     Description = "Ch\225\187\141n Boss C\225\186\167n Farm",
     Options = v658,
-    Default =_G.SelectBoss or v658[1],
+    Default = v658[1],
     Callback = function(v659)
         _G.SelectBoss = v659
     end
@@ -5153,9 +5228,9 @@ v486:AddDropdown({
     end
 })
 if World1 then
-    local _ = v487:AddSection({"Nhiệm vụ ở Sea 1"})
+    local _ = v487:AddSection({"Quest Sea 1"})
     v487:AddToggle({
-        Name = "Làm nhiệm vụ lên sea 2",
+        Name = "AutoSecondSea",
         Description = "T\225\187\177 \196\145\225\187\153ng Auto Quest Sea 2",
         Default = false,
         Callback = function(v693)
@@ -5211,9 +5286,9 @@ if World1 then
             end
         end
     end)
-    local _ = v487:AddSection({"Boss Râu xám"})
+    local _ = v487:AddSection({"Boss Greybeard"})
     v487:AddToggle({
-        Name = "Kill Râu xám",
+        Name = "Kill Greybeard",
         Description = "T\225\187\177 \196\145\225\187\153ng \196\144\195\161nh Greybeard",
         Default = false,
         Callback = function(v698)
@@ -5256,9 +5331,9 @@ if World1 then
             end
         end
     end)
-    local _ = v487:AddSection({"Nhiệm vụ kiếm"})
+    local _ = v487:AddSection({"Quest Sword"})
     v487:AddToggle({
-        Name = "Tự lấy Saber",
+        Name = "Auto Get Saber",
         Description = "T\225\187\177 \196\145\225\187\153ng L\225\186\165y Ki\225\186\191m Saber",
         Default = false,
         Callback = function(v702)
@@ -5365,7 +5440,7 @@ if World1 then
         end
     end)
     v487:AddToggle({
-        Name = "Tự lấy lôi gậy",
+        Name = "Auto Get Sword Pole",
         Description = "T\225\187\177 \196\145\225\187\153ng L\225\186\165y Ki\225\186\191m Pole",
         Default = false,
         Callback = function(v707)
@@ -5401,7 +5476,7 @@ if World1 then
         end
     end)
     v487:AddToggle({
-        Name = "Tự lấy kiếm Saw",
+        Name = "Auto Get Sword Saw",
         Description = "T\225\187\177 \196\145\225\187\153ng L\225\186\165y Ki\225\186\191m Saw",
         Default = false,
         Callback = function(v710)
@@ -5452,7 +5527,7 @@ if World1 then
             end
         end)
         v487:AddToggle({
-            Name = "Tự lấy kiếm Wardens",
+            Name = "Auto Get Sword Wardens",
             Description = "T\225\187\177 \196\145\225\187\153ng L\225\186\165y Ki\225\186\191m Wardens",
             Default = false,
             Callback = function(v715)
@@ -5488,7 +5563,7 @@ if World1 then
             end
         end)
         v487:AddToggle({
-            Name = "Tự động lấy kiếm đinh ba",
+            Name = "Auto Get Sword Trident",
             Description = "T\225\187\177 \196\145\225\187\153ng L\225\186\165y Ki\225\186\191m Trident",
             Default = false,
             Callback = function(v718)
@@ -5526,9 +5601,9 @@ if World1 then
     end
 end
 if World2 then
-    local _ = v487:AddSection({"Nhiệm vụ ở Sea 2"})
+    local _ = v487:AddSection({"Quest Sea 2"})
     v487:AddToggle({
-        Name = "Tự làm nhiệm vụ Bartilo",
+        Name = "Auto Quest Sea Bartilo",
         Description = "T\225\187\177 \196\145\225\187\153ng L\195\160m Nhi\225\187\135m V\225\187\165 Sea Bartilo",
         Default = false,
         Callback = function(v722)
@@ -5669,7 +5744,7 @@ if World2 then
         end)
     end)
     v487:AddToggle({
-        Name = "Tự làm nhiệm vụ sea 3",
+        Name = "Auto Quest Sea 3",
         Description = "T\225\187\177 \196\145\225\187\153ng L\195\160m Nhi\225\187\135m V\225\187\165 Sang Sea 3",
         Default = false,
         Callback = function(v728)
@@ -5722,7 +5797,7 @@ if World2 then
     end)
     local _ = v487:AddSection({"Factory Sea 2"})
     v487:AddToggle({
-        Name = "Tự đánh nhà máy",
+        Name = "Auto Factory",
         Description = "T\225\187\177 \196\145\225\187\153ng \196\144\195\161nh Nh\195\160 M\195\161y",
         Default = false,
         Callback = function(v732)
@@ -5754,9 +5829,9 @@ if World2 then
             end)
         end
     end)
-    local _ = v487:AddSection({"Boss Râu đen | thuyền trưởng"})
+    local _ = v487:AddSection({"Boss Dark Beard"})
     v487:AddToggle({
-        Name = "Tự kill Râu Đen",
+        Name = "Auto Kill Dark Beard",
         Description = "T\225\187\177 \196\145\225\187\153ng \196\144\195\161nh R\195\162u \196\144en",
         Default = false,
         Callback = function(v736)
@@ -5794,7 +5869,7 @@ if World2 then
         end
     end)
     v487:AddToggle({
-        Name = "Tự kill thuyền trưởng bị ám",
+        Name = "Auto Kill Cursed Captain",
         Description = "T\225\187\177 \196\145\225\187\153ng \196\144\195\161nh Cursed Captain",
         Default = false,
         Callback = function(v739)
@@ -5833,7 +5908,7 @@ if World2 then
     end)
     local _ = v487:AddSection({"Auto Buy Haki M\195\160u"})
     v487:AddToggle({
-        Name = "Mua haki color",
+        Name = "Auto Buy Haki Colors",
         Description = "T\225\187\177 \196\145\225\187\153ng Mua Haki",
         Default = false,
         Callback = function(v743)
@@ -5850,7 +5925,7 @@ if World2 then
         end
     end)
     v487:AddToggle({
-        Title = "Mua thanh kiếm legendary",
+        Title = "Auto Buy Legendary Sword",
         Value = false,
         Callback = function(v745)
             _G.AutoBuyLegendarySword = v745
@@ -5872,8 +5947,8 @@ if World2 then
     end)
     local _ = v487:AddSection({"Quest Sword"})
     v487:AddToggle({
-        Name = "Tự lấy kiếm dài",
-        Description = "",
+        Name = "Auto Get Longsword",
+        Description = "T\225\187\177 \196\145\225\187\153ng Get Longsword",
         Default = false,
         Callback = function(v750)
             _G.Longsword = v750
@@ -5908,8 +5983,8 @@ if World2 then
         end
     end)
     v487:AddToggle({
-        Name = "Tự lấy Gravity Blade",
-        Description = "",
+        Name = "Auto Get Sword Gravity Blade",
+        Description = "T\225\187\177 \196\145\225\187\153ng L\225\186\165y Gravity Blade",
         Default = false,
         Callback = function(v753)
             _G.GravityBlade = v753
@@ -5946,7 +6021,7 @@ if World2 then
         end
     end)
     v487:AddToggle({
-        Name = "Tự lấy chùi xích",
+        Name = "Auto Get Sword Flail",
         Description = "T\225\187\177 \196\145\225\187\153ng L\225\186\165y Flail",
         Default = false,
         Callback = function(v756)
@@ -5982,7 +6057,7 @@ if World2 then
         end
     end)
     v487:AddToggle({
-        Name = "Tự lấy kiếm Rengoku",
+        Name = "Auto Get Sword Rengoku",
         Description = "T\225\187\177 \196\145\225\187\153ng L\225\186\165y Rengoku",
         Default = false,
         Callback = function(v759)
@@ -6024,7 +6099,7 @@ if World2 then
         end)
     end)
     v487:AddToggle({
-        Name = "Tự lấy đinh ba rồng",
+        Name = "Auto Get Sword Dragon Trident",
         Description = "T\225\187\177 \196\145\225\187\153ng L\225\186\165y Dragon Trident",
         Default = false,
         Callback = function(v762)
@@ -6060,11 +6135,11 @@ if World2 then
         end
     end)
 end
-
 if World3 then
-    local _ = v487:AddSection({"Nhiệm vụ ở Sea 3"})
+    local _ = v487:AddSection({"Quest Sea 3"})
+    local _ = v487:AddSection({"Boss Rip indra"})
     v487:AddToggle({
-        Name = "Tự killl Rip Indra",
+        Name = "Auto kill Rip Indra",
         Description = "T\225\187\177 \196\145\225\187\153ng \196\144\195\161nh Rip Indra",
         Default = false,
         Callback = function(v767)
@@ -6124,7 +6199,7 @@ if World3 then
             end)
         end)
         v487:AddToggle({
-            Name = "Tự mở màu haki",
+            Name = "Auto Haki Colors",
             Description = "T\225\187\177 \196\144\225\187\153ng Haki Colors",
             Default = false,
             Callback = function(v775)
@@ -6140,9 +6215,9 @@ if World3 then
                 end
             end
         end)
-        local _ = v487:AddSection({"Nhiệm vụ súng Guitar"})
+        local _ = v487:AddSection({"Quest Skull Guitar"})
         v487:AddToggle({
-            Name = "Tự động lấy Guitar",
+            Name = "Auto Skull Guitar",
             Description = "T\225\187\177 \196\144\225\187\153ng L\225\186\165y \196\144\195\160n GuiTar",
             Default = false,
             Callback = function(v778)
@@ -6363,7 +6438,7 @@ if World3 then
             end
         end)
         v487:AddToggle({
-            Name = "Tự lấy kiếm Yama",
+            Name = "Auto Get Yama",
             Description = "T\225\187\177 \196\144\225\187\153ng L\225\186\165y Ki\225\186\191m Yama",
             Default = false,
             Callback = function(v807)
@@ -6382,7 +6457,7 @@ if World3 then
             end
         end)
         v487:AddToggle({
-            Name = "Tự thắp đuốc lấy Tushita",
+            Name = "Auto Holy Torch Tushita",
             Description = "T\225\187\177 \196\144\225\187\153ng Torch Tushita",
             Default = false,
             Callback = function(v808)
@@ -6428,7 +6503,7 @@ if World3 then
             end
         end)
         v487:AddToggle({
-            Name = "Tự lấy Tushita",
+            Name = "Auto Get Tushita",
             Description = "T\225\187\177 \196\144\225\187\153ng L\225\186\165y Tushita",
             Default = false,
             Callback = function(v809)
@@ -6465,7 +6540,7 @@ if World3 then
         end)
         local _ = v487:AddSection({"Quest Sword"})
         v487:AddToggle({
-            Name = "Tự lấy kiếm song móc",
+            Name = "Auto Get Sword Twin Hooks",
             Description = "T\225\187\177 \196\144\225\187\153ng L\225\186\165y Ki\225\186\191m Twin Hooks",
             Default = false,
             Callback = function(v813)
@@ -6503,7 +6578,7 @@ if World3 then
             end
         end)
         v487:AddToggle({
-            Name = "Tự lấy kiếm Canvander",
+            Name = "Auto Get Sword Canvander",
             Description = "T\225\187\177 \196\144\225\187\153ng L\225\186\165y Ki\225\186\191m Canvander",
             Default = false,
             Callback = function(v816)
@@ -6539,7 +6614,7 @@ if World3 then
             end
         end)
         v487:AddToggle({
-            Name = "Tự lấy kiếm Buddy",
+            Name = "Auto Get Sword Buddy",
             Description = "T\225\187\177 \196\144\225\187\153ng L\225\186\165y Ki\225\186\191m Buddy",
             Default = false,
             Callback = function(v819)
@@ -6579,7 +6654,7 @@ if World3 then
     end
 end
 v488:AddButton({
-    Title = "Bay tới Dragon Dojo",
+    Title = "Tween Dragon Dojo",
     Value = false,
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(5661.53, 1013.09, -334.96))
@@ -6587,7 +6662,7 @@ v488:AddButton({
     end
 })
 v488:AddToggle({
-    Name = "Tự động Dragon Hunter",
+    Name = "Auto Dragon Huntery",
     Description = "T\225\187\177 \196\144\225\187\153ng Farm Blaze",
     Default = false,
     Callback = function(v822)
@@ -6711,7 +6786,7 @@ spawn(function()
 end)
 local _ = v488:AddSection({"Volcanic Island"})
 v488:AddButton({
-    Title = "CHế Volcanic Magnet",
+    Title = "Craft Volcanic Magnet",
     Value = false,
     Callback = function()
         local v849 = {[1] = "CraftItem", [2] = "Craft", [3] = "Volcanic Magnet"}
@@ -6731,7 +6806,7 @@ task.spawn(function()
     end
 end)
 v488:AddToggle({
-    Name = "Tự động tìm Prehistoric",
+    Name = "Auto Find Prehistoric",
     Description = "T\225\187\177 \196\144\225\187\153ng T\195\172m \196\144\225\186\163o Th\225\187\157i Ti\225\187\129n S\225\187\173 ( \196\144\225\186\163o N\195\186i L\225\187\173a )",
     Default = false,
     Callback = function(v851)
@@ -6843,7 +6918,7 @@ l_RunService_0.RenderStepped:Connect(function()
     end
 end)
 v488:AddToggle({
-    Name = "Bay vô đảo Prehistoric",
+    Name = "Auto Tween Prehistoric Island",
     Description = "T\225\187\177 \196\144\225\187\153ng Bay V\195\160o \196\144\225\186\163o N\195\186i L\225\187\173a Volcano",
     Default = false,
     Callback = function(v882)
@@ -6872,7 +6947,7 @@ spawn(function()
     end
 end)
 v488:AddToggle({
-    Name = "Xoa lava trên đảo",
+    Name = "Auto Defend Prehistoric",
     Description = "Xo\195\161 Lava",
     Default = false,
     Callback = function(v887)
@@ -6978,7 +7053,7 @@ spawn(function()
 end)
 local _ = v488:AddSection({"Auto Skill"})
 v488:AddToggle({
-    Name = "Sử dụng Melee",
+    Name = "Auto Use Melee",
     Description = "D\195\185ng Melee \196\144\225\187\131 Ph\195\161 Lava",
     Default = false,
     Callback = function(v918)
@@ -6987,7 +7062,7 @@ v488:AddToggle({
     end
 })
 v488:AddToggle({
-    Name = "Sử dụng kiếm",
+    Name = "Auto Use Sword",
     Description = "D\195\185ng Sword \196\144\225\187\131 Ph\195\161 Lava",
     Default = false,
     Callback = function(v919)
@@ -6996,7 +7071,7 @@ v488:AddToggle({
     end
 })
 v488:AddToggle({
-    Name = "Sử dụng súng",
+    Name = "Auto Use Gun",
     Description = "D\195\185ng Gun \196\144\225\187\131 Ph\195\161 Lava",
     Default = false,
     Callback = function(v920)
@@ -7006,7 +7081,7 @@ v488:AddToggle({
 })
 local _ = v488:AddSection({"Auto Kill Golem"})
 v488:AddToggle({
-    Name = "Tự Kill Golem",
+    Name = "Auto Kill Golem",
     Description = "T\225\187\177 \196\144\225\187\153ng Kill Golem",
     Default = false,
     Callback = function(v922)
@@ -7044,7 +7119,7 @@ spawn(function()
     end
 end)
 v488:AddToggle({
-    Name = "Tự Kill Aura Golem",
+    Name = "Auto Kill Aura Golem",
     Description = "T\225\187\177 \196\144\225\187\153ng Kill Aura Golem",
     Default = false,
     Callback = function(v925)
@@ -7083,9 +7158,9 @@ spawn(function()
         end
     end)
 end)
-local _ = v488:AddSection({"Chỗ nhặt xương , trứng"})
+local _ = v488:AddSection({"Auto Collect Bone,Egg"})
 v488:AddToggle({
-    Name = "Tự Nhặt xương",
+    Name = "Auto Collect Bone",
     Description = "T\225\187\177 \196\144\225\187\153ng Nh\225\186\183t S\198\176\198\161ng",
     Default = false,
     Callback = function(v934)
@@ -7105,7 +7180,7 @@ spawn(function()
     end
 end)
 v488:AddToggle({
-    Name = "Tự Nhặt trứng",
+    Name = "Auto Collect Egg",
     Description = "T\225\187\177 \196\144\225\187\153ng Nh\225\186\183t Tr\225\187\169ng",
     Default = false,
     Callback = function(v937)
@@ -7136,8 +7211,8 @@ task.spawn(function()
     end
 end)
 v489:AddToggle({
-    Name = " Tự bay vô đảo Kitsune",
-    Description = "",
+    Name = "Auto Tween Kitsune island",
+    Description = "Bay V\195\180 \196\144\225\186\163o Kitsune",
     Default = false,
     Callback = function(v940)
         _G.TweenToKitsune = v940
@@ -7173,8 +7248,25 @@ spawn(function()
     end)
 end)
 v489:AddToggle({
-    Name = "Tự farm tàn lửa xanh",
-    Description = "",
+    Title = "Esp Kitsune Island",
+    Value = false,
+    Callback = function(v945)
+        KitsuneIslandEsp = v945
+        if KitsuneIslandEsp then
+            task.spawn(function()
+                while KitsuneIslandEsp do
+                    UpdateIslandKisuneESP()
+                    task.wait(1)
+                end
+            end)
+        else
+            UpdateIslandKisuneESP()
+        end
+    end
+})
+v489:AddToggle({
+    Name = "Auto Azuer Ember",
+    Description = "Tự động nhặt linh hồn xanh",
     Default = false,
     Callback = function(v946)
         _G.AutoAzuerEmber = v946
@@ -7192,9 +7284,9 @@ spawn(function()
         end
     end
 end)
-local _ = v489:AddSection({"Sự kiện biển"})
+local _ = v489:AddSection({"Sea Events"})
 v489:AddToggle({
-    Name = "Tự lái thuyền",
+    Name = "Auto Drive Boats",
     Description = "T\225\187\177 \196\144\225\187\153ng L\195\161i Thuy\225\187\129n",
     Default = false,
     Callback = function(v948)
@@ -7253,7 +7345,7 @@ spawn(function()
     end)
 end)
 v489:AddToggle({
-    Name = "Tự kill cá mật mẹ",
+    Name = "Auto Kill Terror Shank",
     Description = "Tự động đánh Terror Shank",
     Default = false,
     Callback = function(v952)
@@ -7368,7 +7460,7 @@ spawn(function()
     end
 end)
 v489:AddToggle({
-    Name = "Tự Kill Shark",
+    Name = "Auto Kill Shark",
     Description = "T\225\187\177 \196\144\225\187\153ng \196\144\195\161nh Shark",
     Default = false,
     Callback = function(v968)
@@ -7412,7 +7504,7 @@ spawn(function()
     end
 end)
 v489:AddToggle({
-    Name = "Tự Kill Piranha",
+    Name = "Auto Kill Piranha",
     Description = "T\225\187\177 \196\144\225\187\153ng \196\144\195\161nh Piranha",
     Default = false,
     Callback = function(v973)
@@ -7456,7 +7548,7 @@ spawn(function()
     end
 end)
 v489:AddToggle({
-    Name = "Tự Kill Fish Crew Member",
+    Name = "Auto Kill Fish Crew Member",
     Description = "T\225\187\177 \196\144\225\187\153ng Th\195\160nh vi\195\170n phi h\195\160nh \196\145o\195\160n Auto Kill Fish",
     Default = false,
     Callback = function(v978)
@@ -7511,7 +7603,7 @@ task.spawn(function()
     end
 end)
 v489:AddToggle({
-    Name = "Bay vô đảo Mirage",
+    Name = "Tween Mirage Island",
     Description = "T\225\187\177 \196\144\225\187\153ng Bay T\225\187\155i \196\144\225\186\163o B\195\173 \225\186\168n",
     Default = false,
     Callback = function(v985)
@@ -7533,8 +7625,8 @@ spawn(function()
     end
 end)
 v489:AddToggle({
-    Name = "Nhìn trăng + Bật v3",
-    Description = "",
+    Name = "Look Moon + Auto V3",
+    Description = "T\225\187\177 \196\144\225\187\153ng Nh\195\172n Tr\196\131ng V\195\160 B\225\186\173t T\225\187\153c V3",
     Default = false,
     Callback = function(v989)
         _G.AutoDooHee = v989
@@ -7558,8 +7650,8 @@ spawn(function()
     end
 end)
 v489:AddToggle({
-    Name = "Tự bay đến Gear",
-    Description = "",
+    Name = "Auto Tween To Gear",
+    Description = "T\225\187\177 \196\144\225\187\153ng Bay \196\144\225\186\191n Gear",
     Default = false,
     Callback = function(v993)
         _G.TweenMGear = v993
@@ -7579,7 +7671,7 @@ spawn(function()
         end
     end)
 end)
-local _ = v490:AddSection({"Dịch chuyển V4"})
+local _ = v490:AddSection({"Teleport V4"})
 v490:AddButton({
     Title = "Teleport To Top GreatTree",
     Value = false,
@@ -7587,7 +7679,13 @@ v490:AddButton({
         Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3030.39453125, 2280.6171875, -7320.18359375)
     end
 })
-local TempleCF = CFrame.new(28286.35546875,14895.3017578125,102.62469482421875)
+v490:AddButton({
+    Title = "Teleport Temple Of Time",
+    Value = false,
+    Callback = function()
+        Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+    end
+})
 v490:AddButton({
     Title = "Teleport Lever Pull",
     Value = false,
@@ -8070,9 +8168,27 @@ spawn(function()
     end
 end)
 local _ = v492:AddSection({"Fruits"})
+
+v492:AddToggle({
+    Name = "Random Fruits Valentine",
+    Description = "",
+    Default = false,
+    Callback = function(v1073)
+        _G.RandomValentine = v1073
+    end
+})
+spawn(function()
+    pcall(function()
+        while wait() do
+            if _G.RandomValentine then
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CousinValentine", "Buy")
+            end
+        end
+    end)
+end)
 v492:AddToggle({
     Name = "Random Fruits",
-    Description = "T\225\187\177 \196\144\225\187\153ng Random Tr\195\161i \195\129c Qu\225\187\183",
+    Description = "",
     Default = false,
     Callback = function(v1074)
         _G.RandomAuto = v1074
@@ -8088,7 +8204,7 @@ spawn(function()
     end)
 end)
 v492:AddToggle({
-    Title = "Auto Store Fruits",
+    Title = "Lưu Fruits",
     Description = "T\225\187\177 \196\144\225\187\153ng L\198\176u Tr\195\161i \195\129c Qu\225\187\183 V\195\160o Kho \196\144\225\187\147",
     Value = false,
     Callback = function(v1075)
@@ -8158,11 +8274,11 @@ spawn(function()
     end
 end)
 v492:AddToggle({
-    Name = "Bay tới trái ác quỷ",
-    Description = "T\225\187\177 \196\144\225\187\153ng Nh\225\186\183t Tr\195\161i \195\129c Qu\225\187\183 N\225\186\191u Xu\225\186\165t Hi\225\187\135n Trong Sever",
+    Name = "TP tới trái spawn",
+    Description = "",
     Default = false,
     Callback = function(v1084)
-        _G.TweenFruit = v1084
+        _G.Tweenfruit = v1084
     end
 })
 spawn(function()
@@ -8177,7 +8293,7 @@ spawn(function()
     end
 end)
 v492:AddToggle({
-    Name = "Dịch chuyển Fruits",
+    Name = "TP Fruits",
     Description = "T\225\187\177 \196\144\225\187\153ng Teleport \196\144\225\186\191n Tr\195\161i \195\129c Qu\225\187\183",
     Default = false,
     Callback = function(v1087)
@@ -8195,7 +8311,7 @@ spawn(function()
         end
     end
 end)
-local _ = v492:AddSection({"Check Stock Fruits"})
+local _ = v492:AddSection({"Check Cửa hàng Fruits"})
 local function v1096(v1091)
     local v1092 = tostring(v1091)
     repeat
@@ -8208,7 +8324,7 @@ local function v1096(v1091)
 end
 local l_CommF__1 = game:GetService("ReplicatedStorage").Remotes.CommF_
 local function v1111()
-    local v1098 = "Advance Fruit Stock\n"
+    local v1098 = "STOCK TRÁI ADVANCE"
     local l_status_2, l_result_2 = pcall(function()
         return l_CommF__1:InvokeServer("GetFruits", true)
     end)
@@ -8227,7 +8343,7 @@ local function v1111()
             v1098 = v1098 .. "- Kh\195\180ng c\195\179 tr\195\161i n\195\160o.\n"
         end
     end
-    v1098 = v1098 .. "\nNormal Fruit Stock\n"
+    v1098 = v1098 .. "STOCK TRÁI THƯỜNG"
     local l_status_3, l_result_3 = pcall(function()
         return l_CommF__1:InvokeServer("GetFruits")
     end)
@@ -8249,8 +8365,8 @@ local function v1111()
     return v1098
 end
 local v1112 = v492:AddParagraph({
-    Title = "Stock Tr\195\161i C\195\162y",
-    Content = "\196\144ang t\225\186\163i d\225\187\175 li\225\187\135u..."
+    Title = "Stock Trái",
+    Content = "",
 })
 task.spawn(function()
     while task.wait(60) do
@@ -8275,20 +8391,18 @@ local function v1116(v1114)
         end
     end)
 end
-
-
-local v1117 = nil
+local v1117 
 if not World1 then
     if World2 then
         v1117 = {
             "The Cafe",
-            "Frist Spot",
+            "First Spot",
             "Dark Area",
             "Flamingo Mansion",
             "Flamingo Room",
             "Green Zone",
             "Factory",
-            "Colossuim",
+            "Colosseum",
             "Zombie Island",
             "Two Snow Mountain",
             "Punk Hazard",
@@ -8351,7 +8465,7 @@ v493:AddDropdown({
     end
 })
 v493:AddToggle({
-    Name = "Tự bay lên đảo đã chọn",
+    Name = "Bay đến đảo đã chọn",
     Description = "T\225\187\177 \196\145\225\187\153ng di chuy\225\187\131n t\225\187\155i \196\145\225\186\163o \196\145\195\163 ch\225\187\141n",
     Default = false,
     Callback = function(v1119)
@@ -8367,91 +8481,69 @@ local function v1120()
                     if _G.SelectIsland ~= "Jungle" then
                         if _G.SelectIsland == "Pirate Village" then
                             v1116(CFrame.new(-1181.309, 4.751, 3803.546))
-
                         elseif _G.SelectIsland ~= "Desert" then
                             if _G.SelectIsland == "Snow Island" then
                                 v1116(CFrame.new(1347.807, 104.668, -1319.737))
-
                             elseif _G.SelectIsland == "MarineFord" then
                                 v1116(CFrame.new(-4914.821, 50.964, 4281.028))
-
                             elseif _G.SelectIsland ~= "Colosseum" then
                                 if _G.SelectIsland ~= "Sky Island 1" then
                                     if _G.SelectIsland ~= "Sky Island 2" then
                                         if _G.SelectIsland ~= "Sky Island 3" then
                                             if _G.SelectIsland ~= "Prison" then
-
                                                 if _G.SelectIsland == "Magma Village" then
                                                     v1116(CFrame.new(-5247.716, 12.884, 8504.969))
-
                                                 elseif _G.SelectIsland ~= "Under Water Island" then
                                                     if _G.SelectIsland == "Fountain City" then
                                                         v1116(CFrame.new(5127.128, 59.501, 4105.446))
-
                                                     elseif _G.SelectIsland ~= "Shank Room" then
                                                         if _G.SelectIsland ~= "Mob Island" then
                                                             if _G.SelectIsland == "The Cafe" then
                                                                 v1116(CFrame.new(-380.479, 77.22, 255.826))
-
-                                                            elseif _G.SelectIsland ~= "Frist Spot" then
+                                                            elseif _G.SelectIsland ~= "First Spot" then
                                                                 if _G.SelectIsland == "Dark Area" then
                                                                     v1116(CFrame.new(3780.03, 22.652, -3498.586))
-
                                                                 elseif _G.SelectIsland ~= "Flamingo Mansion" then
                                                                     if _G.SelectIsland ~= "Flamingo Room" then
                                                                         if _G.SelectIsland ~= "Green Zone" then
-
                                                                             if _G.SelectIsland == "Factory" then
                                                                                 v1116(CFrame.new(424.127, 211.162, -427.54))
-
-                                                                            elseif _G.SelectIsland == "Colossuim" then
+                                                                            elseif _G.SelectIsland == "Colosseum" then
                                                                                 v1116(CFrame.new(-1503.622, 219.796, 1369.31))
-
                                                                             elseif _G.SelectIsland ~= "Zombie Island" then
                                                                                 if _G.SelectIsland == "Two Snow Mountain" then
                                                                                     v1116(CFrame.new(753.143, 408.236, -5274.615))
-
                                                                                 elseif _G.SelectIsland == "Punk Hazard" then
                                                                                     v1116(CFrame.new(-6127.654, 15.952, -5040.286))
-
                                                                                 elseif _G.SelectIsland ~= "Cursed Ship" then
                                                                                     if _G.SelectIsland ~= "Ice Castle" then
                                                                                         if _G.SelectIsland ~= "Forgotten Island" then
                                                                                             if _G.SelectIsland == "Ussop Island" then
                                                                                                 v1116(CFrame.new(4816.862, 8.46, 2863.82))
-
                                                                                             elseif _G.SelectIsland == "Mini Sky Island" or _G.SelectIsland == "MiniSky" then
                                                                                                 v1116(CFrame.new(-288.741, 49326.316, -35248.594))
-
                                                                                             elseif _G.SelectIsland ~= "Great Tree" then
                                                                                                 if _G.SelectIsland ~= "Castle On The Sea" then
                                                                                                     if _G.SelectIsland ~= "Port Town" then
                                                                                                         if _G.SelectIsland ~= "Hydra Island" then
                                                                                                             if _G.SelectIsland == "Floating Turtle" then
                                                                                                                 v1116(CFrame.new(-13274.528, 531.821, -7579.223))
-
                                                                                                             elseif _G.SelectIsland ~= "Mansion" then
                                                                                                                 if _G.SelectIsland ~= "Haunted Castle" then
                                                                                                                     if _G.SelectIsland == "Ice Cream Island" then
                                                                                                                         v1116(CFrame.new(-902.568, 79.932, -10988.848))
-
                                                                                                                     elseif _G.SelectIsland == "Peanut Island" then
                                                                                                                         v1116(CFrame.new(-2062.748, 50.474, -10232.568))
-
                                                                                                                     elseif _G.SelectIsland ~= "Cake Island" then
                                                                                                                         if _G.SelectIsland ~= "Cocoa Island" then
                                                                                                                             if _G.SelectIsland == "Candy Island" then
                                                                                                                                 v1116(CFrame.new(-1014.424, 149.111, -14555.963))
-
                                                                                                                             elseif _G.SelectIsland ~= "Tiki Outpost" then
                                                                                                                                 if _G.SelectIsland == "Dragon Dojo" then
                                                                                                                                     v1116(CFrame.new(5743.319, 1206.91, 936.011))
                                                                                                                                 end
-
                                                                                                                             else
-
-    v1116(CFrame.new(-16218.683, 9.086, 445.618))
-end                                                                                      v1116(CFrame.new(-16218.683, 9.086, 445.618))
+                                                                                                                                v1116(CFrame.new(-16218.683, 9.086, 445.618))
                                                                                                                             end
                                                                                                                         else
                                                                                                                             v1116(CFrame.new(87.943, 73.555, -12319.465))
@@ -8540,12 +8632,11 @@ end                                                                             
         else
             v1116(CFrame.new(979.799, 16.516, 1429.047))
         end
-        return
+        return 
     else
-        return
+        return 
     end
 end
-
 task.spawn(function()
     while task.wait(0.5) do
         if _G.TeleportIsland then
@@ -8553,7 +8644,6 @@ task.spawn(function()
         end
     end
 end)
-
 local _ = v493:AddSection({"Teleport Sea | Di Chuy\225\187\131n Sea 1,2,3"})
 v493:AddButton({
     Name = "Sea 1",
@@ -8583,15 +8673,15 @@ for _, v1125 in pairs(game.Players:GetPlayers()) do
 end
 local _ = nil
 v494:AddButton({
-    Title = "Get Quest Elite Players",
-    Description = "Nh\225\186\173n Nhi\225\187\135m V\225\187\165 Ng\198\176\225\187\157i Ch\198\161i",
+    Title = "Nhận NV người chơi hunter",
+    Description = "",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("PlayerHunter")
     end
 })
 v494:AddToggle({
-    Title = "Auto Kill Player Quest",
-    Description = "Bay \196\144\225\186\191n Ng\198\176\225\187\157i Ch\198\161i \196\144\198\176\225\187\163c Nh\225\186\173n Nhi\225\187\135m V\225\187\165",
+    Title = "Kill người chơi đã nhận",
+    Description = "",
     Value = false,
     Callback = function(v1127)
         _G.AutoPlayerHunter = v1127
@@ -8644,8 +8734,8 @@ spawn(function()
     end
 end)
 v494:AddToggle({
-    Name = "Auto Safe Mode",
-    Description = "T\225\187\177 \196\144\225\187\153ng An To\195\160n Di Chuy\225\187\131n L\195\170n Tr\225\187\157i An To\195\160n",
+    Name = "Chế độ an toàn",
+    Description = "",
     Default = false,
     Callback = function(v1130)
         _G.SafeMode = v1130
@@ -8682,8 +8772,8 @@ if l_LocalPlayer_18.Character then
     v1135(l_LocalPlayer_18.Character)
 end
 v494:AddSlider({
-    Title = "Speed Ch\225\186\161y by NTT",
-    Min = 26,
+    Title = "Speed chạy",
+    Min = 60,
     Max = 300,
     Default = getgenv().WalkSpeedValue,
     Callback = function(v1137)
@@ -8695,7 +8785,7 @@ v494:AddSlider({
     end
 })
 v494:AddSlider({
-    Title = "Nh\225\186\163y Cao by NTT",
+    Title = "Nhảy cao",
     Min = 50,
     Max = 500,
     Default = getgenv().JumpValue,
@@ -8708,8 +8798,8 @@ v494:AddSlider({
     end
 })
 v494:AddToggle({
-    Name = "Delete Lava",
-    Description = "Xo\195\161 Lava Tr\195\161nh B\225\187\139 M\225\186\165y Th\225\186\177ng Kid L\225\187\143 D\195\172m Lava :))",
+    Name = "Xoá Lava",
+    Description = "",
     Default = false,
     Callback = function(v1141)
         _G.RemoveLava = v1141
@@ -8731,9 +8821,9 @@ spawn(function()
         end
     end
 end)
-local _ = v494:AddSection({"Esp | \196\144\225\187\139nh V\225\187\139..."})
+local _ = v494:AddSection({"ĐỊNH VỊ"})
 v494:AddToggle({
-    Title = "Esp Players",
+    Title = "Định vị player",
     Value = false,
     Callback = function(v1146)
         ESPPlayer = v1146
@@ -8750,7 +8840,7 @@ v494:AddToggle({
     end
 })
 v494:AddToggle({
-    Title = "Esp Chest",
+    Title = "Định vị rương",
     Value = false,
     Callback = function(v1147)
         _G.ChestESP = v1147
@@ -8767,7 +8857,7 @@ v494:AddToggle({
     end
 })
 v494:AddToggle({
-    Title = "Esp Fruits",
+    Title = "Định vị Fruits",
     Value = false,
     Callback = function(v1148)
         DevilFruitESP = v1148
@@ -8784,7 +8874,7 @@ v494:AddToggle({
     end
 })
 v494:AddToggle({
-    Title = "Esp Berry",
+    Title = "Định vị Berry",
     Value = false,
     Callback = function(v1149)
         Berry = v1149
@@ -8800,10 +8890,28 @@ v494:AddToggle({
     end
 })
 v494:AddToggle({
-    Title = "Esp Kitsune Island",
+    Title = "Định vị Mirage",
+    Description = "",
     Value = false,
-    Callback = function(v1149)
-        KitsuneIslandEsp = v1149
+    Callback = function(v1150)
+        MirageIslandESP = v1150
+        if MirageIslandESP then
+            task.spawn(function()
+                while MirageIslandESP do
+                    UpdateIslandMirageESP()
+                    task.wait(1)
+                end
+            end)
+        else
+            UpdateIslandMirageESP()
+        end
+    end
+})
+v494:AddToggle({
+    Title = "Định vị đảo Kitsune",
+    Value = false,
+    Callback = function(v1151)
+        KitsuneIslandEsp = v1151
         if KitsuneIslandEsp then
             task.spawn(function()
                 while KitsuneIslandEsp do
@@ -8817,66 +8925,49 @@ v494:AddToggle({
     end
 })
 v494:AddToggle({
-    Title = "Esp Mirage Island",
-    Description = "",
+    Title = "Định vị đảo núi lửa",
     Value = false,
-    Callback = function(v1149)
-        MirageIslandESP = v1149
-        if MirageIslandESP then
+    Callback = function(v1152)
+        PrehistoricIslandEsp = v1152
+        if PrehistoricEsp then
             task.spawn(function()
-                while MirageIslandESP do
-                    UpdateIslandMirageESP()
+                while PrehistoricIslandEsp do
+                    UpdateIslandPrehistoricESP()
                     task.wait(1)
                 end
             end)
         else
-            UpdateIslandMirageESP()
+            UpdateIslandPrehistoricESP()
         end
     end
 })
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Remotes = ReplicatedStorage:WaitForChild("Remotes")
-local CommF_Remote = Remotes:WaitForChild("CommF_")
+local CommF_Remote = game:GetService("ReplicatedStorage")
+    :WaitForChild("Remotes")
+    :WaitForChild("CommF_")
 
-local _ = v495:AddSection({"Buy Melee V1"})
-v495:AddButton({
-    Title = "Buy Black Leg $150,000",
-    Callback = function()
-        local success, result = pcall(function()
-            return CommF_Remote:InvokeServer("BuyBlackLeg")
-        end)
-        if not success then            
-        end
-    end
-})
-
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Remotes = ReplicatedStorage:WaitForChild("Remotes")
-local CommF_Remote = Remotes:WaitForChild("CommF_")
 v495:AddButton({
     Title = "Buy Electro $550,000",
     Callback = function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
+        CommF_Remote:InvokeServer("BuyElectro")
     end
 })
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Remotes = ReplicatedStorage:WaitForChild("Remotes")
-local CommF_Remote = Remotes:WaitForChild("CommF_")
+
 v495:AddButton({
-    Title = "Buy Water Kung Fu $750,000",
+    Title = "Mua Water Kung Fu $750,000",
     Callback = function()
         local success, result = pcall(function()
-            return CommF_Remote:InvokeServer("Buy Water Kung Fu")
+            return CommF_Remote:InvokeServer("BuyWaterKungFu")
         end)
-        if not success then            
+
+        if success then
+            v495:Notify("Thành công", "Đã mua Water Kung Fu!", 3)
+        else
+            v495:Notify("Lỗi", "Không đủ tiền hoặc đã có.", 3)
         end
     end
 })
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Remotes = ReplicatedStorage:WaitForChild("Remotes")
-local CommF_Remote = Remotes:WaitForChild("CommF_")
 v495:AddButton({
-    Title = "Buy Dragon Claw 1,500F",
+    Title = "Mua Dragon Claw 1,500F",
     Callback = function()
         local success1, result1 = pcall(function()
             return CommF_Remote:InvokeServer("BlackbeardReward", "DragonClaw", "1")
@@ -8894,7 +8985,7 @@ v495:AddButton({
 })
 local _ = v495:AddSection({"Buy Melee V2"})
 v495:AddButton({
-    Title = "Buy Superhuman $3,000,000",
+    Title = "Mua Superhuman $3,000,000",
     Callback = function()
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
         local CommF_ = ReplicatedStorage.Remotes.CommF_
@@ -8902,7 +8993,7 @@ v495:AddButton({
     end
 })
 v495:AddButton({
-    Title = "Buy Death Step $5,000,000 5,000F",
+    Title = "Mua Death Step $5,000,000 5,000F",
     Callback = function()
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
         local CommF_ = ReplicatedStorage.Remotes.CommF_
@@ -8910,7 +9001,7 @@ v495:AddButton({
     end
 })
 v495:AddButton({
-    Title = "Buy Sharkman Karate $2,500,000 5,000F",
+    Title = "Mua Sharkman Karate $2,500,000 5,000F",
     Callback = function()
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
         local CommF_ = ReplicatedStorage.Remotes.CommF_
@@ -8920,7 +9011,7 @@ v495:AddButton({
     end
 })
 v495:AddButton({
-    Title = "Buy Electric Claw $3,000,000 5,000F",
+    Title = "Mua Electric Claw $3,000,000 5,000F",
     Callback = function()
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
         local CommF_ = ReplicatedStorage.Remotes.CommF_
@@ -8928,7 +9019,7 @@ v495:AddButton({
     end
 })
 v495:AddButton({
-    Title = "Buy Dragon Talon $3,000,000 5,000F",
+    Title = "Mua Dragon Talon $3,000,000 5,000F",
     Callback = function()
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
         local CommF_ = ReplicatedStorage.Remotes.CommF_
@@ -8936,7 +9027,7 @@ v495:AddButton({
     end
 })
 v495:AddButton({
-    Title = "Buy God Human $5,000,000 5,000F",
+    Title = "Mua God Human $5,000,000 5,000F",
     Callback = function()
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
         local CommF_ = ReplicatedStorage.Remotes.CommF_
@@ -8944,7 +9035,7 @@ v495:AddButton({
     end
 })
 v495:AddButton({
-    Title = "Buy Sanguine Art $5,000,000 5,000F",
+    Title = "Mua Sanguine Art $5,000,000 5,000F",
     Callback = function()
         local ReplicatedStorage = game:GetService("ReplicatedStorage")
         local CommF_ = ReplicatedStorage.Remotes.CommF_
@@ -9260,33 +9351,8 @@ function InMyNetWork(v1168)
     end
 end
 v496:AddToggle({
-    Name = "Auto Spin Position",
-    Default = true,
-    Callback = function(v1169)
-       _G.RandomCFrame = v1169
-    end
-})
-task.spawn(function()
-    while task.wait(0.5) do
-        if not _G.RandomCFrame then continue end
-        if not model then continue end
-        if not model:FindFirstChild("HumanoidRootPart") then continue end
-
-        local root = model.HumanoidRootPart
-
-        topos(root.CFrame * CFrame.new(0, 30, 25))
-        task.wait(0.4)
-        topos(root.CFrame * CFrame.new(25, 30, 0))
-        task.wait(0.4)
-        topos(root.CFrame * CFrame.new(-25, 30, 0))
-        task.wait(0.4)
-        topos(root.CFrame * CFrame.new(0, 30, -25))
-        task.wait(0.4)
-    end
-end)
-v496:AddToggle({
     Title = "Lưu điểm hồi sinh",
-    Description = "L\198\176u \196\144i\225\187\131m H\225\187\147i Sinh",
+    Description = "",
     Value = false,
     Callback = function(v1169)
         _G.CheckPoint = v1169
@@ -9316,7 +9382,7 @@ spawn(function()
 end)
 v496:AddToggle({
     Title = "Tự Bật V3",
-    Description = "T\225\187\177 \196\144\225\187\153ng B\225\186\173t T\225\187\153c V3",
+    Description = "",
     Value = false,
     Callback = function(v1171)
         _G.AutoRaceV3 = v1171
@@ -9333,7 +9399,7 @@ spawn(function()
 end)
 v496:AddToggle({
     Title = "Tự Bật V4",
-    Description = "T\225\187\177 \196\144\225\187\153ng B\225\186\173t T\225\187\153c V4",
+    Description = "",
     Value = false,
     Callback = function(v1172)
         _G.AutoRaceV4 = v1172
@@ -9523,143 +9589,71 @@ spawn(function()
 end)
 local _ = v496:AddSection({"Sea 1,2,3"})
 v496:AddButton({
-    Title = "Join Sea 1",
+    Title = "Xuống Sea 1",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
     end
 })
 v496:AddButton({
-    Title = "Join Sea 2",
+    Title = "Sang Sea 2",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
     end
 })
 v496:AddButton({
-    Title = "Join Sea 3",
+    Title = "lên Sea 3",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
     end
 })
 local _ = v496:AddSection({"Other"})
 v496:AddButton({
-    Title = "Join Pirates Team",
+    Title = "Tham gia hải tặc",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam", "Pirates")
     end
 })
 v496:AddButton({
-    Title = "Join Marines Team",
+    Title = "Tham gia hải quân",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam", "Marines")
     end
 })
 v496:AddButton({
-    Title = "Open Title Name",
+    Title = "Mở danh hiệu",
     Callback = function()
         local v1209 = {[1] = "getTitles"}
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(v1209))
         game.Players.localPlayer.PlayerGui.Main.Titles.Visible = true
     end
 })
-v496:AddButton({
-    Title = "FPS Boost",
-    Description = "T\196\131ng Fps",
-    Callback = function()
-        local v1210 = true
-        local l_game_0 = game
-        local l_Workspace_2 = l_game_0.Workspace
-        local _ = l_game_0.Lighting
-        local _ = l_Workspace_2.Terrain
-        settings().Rendering.QualityLevel = "Level01"
-        for _, v1216 in pairs(l_game_0:GetDescendants()) do
-            if not v1216:IsA("Part") and not v1216:IsA("Union") and not v1216:IsA("CornerWedgePart") and not v1216:IsA("TrussPart") then
-                if v1216:IsA("Decal") or v1216:IsA("Texture") and v1210 then
-                    v1216.Transparency = 1
-                elseif v1216:IsA("ParticleEmitter") or v1216:IsA("Trail") then
-                    v1216.Lifetime = NumberRange.new(0)
-                elseif not v1216:IsA("Explosion") then
-                    if v1216:IsA("Fire") or v1216:IsA("SpotLight") or v1216:IsA("Smoke") then
-                        v1216.Enabled = false
-                    end
-                else
-                    v1216.BlastPressure = 1
-                    v1216.BlastRadius = 1
-                end
-            else
-                v1216.Material = "Plastic"
-                v1216.Reflectance = 0
-            end
-        end
-    end
-})
-local _ = v496:AddSection({"Auto Codes"})
+local _ = v496:AddSection({"Chỗ nhập code"})
 local v1218 = {
-    "NOMOREHACK",
-    "BANEXPLOIT",
-    "WildDares",
-    "BossBuild",
-    "GetPranked",
-    "EARN_FRUITS",
-    "FIGHT4FRUIT",
-    "NOEXPLOITER",
-    "NOOB2ADMIN",
-    "CODESLIDE",
-    "ADMINHACKED",
-    "ADMINDARES",
-    "fruitconcepts",
-    "krazydares",
-    "TRIPLEABUSE",
-    "SEATROLLING",
-    "24NOADMIN",
-    "REWARDFUN",
-    "Chandler",
-    "NEWTROLL",
-    "KITT_RESET",
-    "Sub2CaptainMaui",
-    "kittgaming",
-    "Sub2Fer999",
-    "Enyu_is_Pro",
-    "Magicbus",
-    "JCWK",
-    "Starcodeheo",
-    "Bluxxy",
-    "fudd10_v2",
-    "SUB2GAMERROBOT_EXP1",
-    "Sub2NoobMaster123",
-    "Sub2UncleKizaru",
-    "Sub2Daigrock",
-    "Axiore",
-    "TantaiGaming",
-    "StrawHatMaine",
-    "Sub2OfficialNoobie",
-    "Fudd10",
-    "Bignews",
-    "TheGreatAce",
-    "SECRET_ADMIN",
-    "SUB2GAMERROBOT_RESET1",
-    "SUB2OFFICIALNOOBIE",
-    "AXIORE",
-    "BIGNEWS",
-    "BLUXXY",
-    "CHANDLER",
-    "ENYU_IS_PRO",
-    "FUDD10",
-    "FUDD10_V2",
-    "KITTGAMING",
-    "MAGICBUS",
-    "STARCODEHEO",
-    "STRAWHATMAINE",
-    "SUB2CAPTAINMAUI",
-    "SUB2DAIGROCK",
-    "SUB2FER999",
-    "SUB2NOOBMASTER123",
-    "SUB2UNCLEKIZARU",
-    "TANTAIGAMING",
-    "THEGREATACE"
+     "SUB2GAMERROBOT_RESET1",
+     "KITT_RESET",
+     "SUB2GAMERROBOT_EXP1",
+     "Sub2CaptainMaui",
+     "Sub2Daigrock",
+     "Sub2Fer999",
+     "Sub2UncleKizaru",
+     "Sub2NoobMaster123",
+     "Sub2OfficialNoobie",
+     "Enyu_is_Pro",
+     "Magicbus",
+     "JCWK",
+     "Starcodeheo",
+     "Bluxxy",
+     "Fudd10",
+     "FUDD10_V2",
+     "Bignews",
+     "TheGreatAce",
+     "TantaiGaming",
+     "StrawHatMaine",
+     "Axiore",
 }
 v496:AddButton({
-    Title = "Codes",
-    Description = "T\225\187\177 \196\144\225\187\153ng Nh\225\186\173p H\225\186\191t Code",
+    Title = "Nhập Codes",
+    Description = "",
     Callback = function()
         for _, v1220 in ipairs(v1218) do
             local v1221 = {v1220}
@@ -9680,6 +9674,8 @@ v496:AddButton({
         game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
     end
 })
-v496:AddButton({Title = "Server Hop", Callback = function()
+v496:AddButton({
+     Title = "Server Hop", 
+     Callback = function()
     Hop()
 end})
