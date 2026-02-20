@@ -8480,13 +8480,13 @@ if World1 then
             "Sky Island 2", "Sky Island 3", "Prison", "Magma Village",
             "Under Water Island", "Fountain City", "Shank Room", "Mob Island",
         },
-        Callback = function(v1120)
-            getgenv().SelectIsland = v1120
+        Callback = function(v1121)
+            getgenv().SelectIsland = v1121
         end
     })
 end
 if World2 then
-    LocalPlayer:AddDropdown({
+    v493:AddDropdown({
         Name = "Select Island",
         Default = false,
         Options = {
@@ -8495,13 +8495,13 @@ if World2 then
             "Punk Hazard", "Cursed Ship", "Ice Castle", "Forgotten Island",
             "Ussop Island", "Mini Sky Island",
         },
-        Callback = function(v1120)
-            getgenv().SelectIsland = v1120
+        Callback = function(v1121)
+            getgenv().SelectIsland = v1121
         end
     })
 end
 if World3 then
-    LocalPlayer:AddDropdown({
+    v493:AddDropdown({
         Name = "Select Island",
         Default = false,
         Options = {
@@ -8510,16 +8510,16 @@ if World3 then
             "Peanut Island", "Cake Island", "Cocoa Island", "Candy Island",
             "Tiki Outpost", "Submerged Island",
         },
-        Callback = function(v1120)
-            getgenv().SelectIsland = v1120
+        Callback = function(v1121)
+            getgenv().SelectIsland = v1121
         end
     })
 end
-LocalPlayer:AddToggle({
+v493:AddToggle({
     Name = "Teleport Island",
     Default = false,
-    Callback = function(v1120)
-        getgenv().TeleportIsland = v1120
+    Callback = function(v1121)
+        getgenv().TeleportIsland = v1121
         if getgenv().TeleportIsland == true then
             repeat
                 wait()
