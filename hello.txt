@@ -1,6 +1,4 @@
-if game.CoreGui:FindFirstChild("ControlGUI") then
-    game.CoreGui:FindFirstChild("ControlGUI"):Destroy()
-end
+
 local L_1_ = {}
 L_1_[2] = table["concat"]
 do
