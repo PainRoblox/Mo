@@ -2210,6 +2210,25 @@ L_1_[38] = L_1_[16]:MakeWindow({
 	["SubTitle"] = "",
 	["SaveFolder"] = "redz library V5.json"
 })
+local l_ScreenGui_0 = Instance.new("ScreenGui")
+l_ScreenGui_0.Name = "ControlGUI"
+l_ScreenGui_0.Parent = game.CoreGui
+
+local l_ImageButton_0 = Instance.new("ImageButton")
+l_ImageButton_0.Size = UDim2.new(0, 50, 0, 50)
+l_ImageButton_0.Position = UDim2.new(0.15, 0, 0.15, 0)
+l_ImageButton_0.Image = "rbxassetid://112495182650520"
+l_ImageButton_0.BackgroundTransparency = 1
+l_ImageButton_0.Parent = l_ScreenGui_0
+
+local l_UICorner_0 = Instance.new("UICorner")
+l_UICorner_0.CornerRadius = UDim.new(0, 0) -- ← Vuông hoàn toàn
+l_UICorner_0.Parent = l_ImageButton_0
+
+local l_UIStroke_0 = Instance.new("UIStroke")
+l_UIStroke_0.Thickness = 2
+l_UIStroke_0.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+l_UIStroke_0.Parent = l_ImageButton_0
 L_1_[78] = false
 L_1_[73] = function(L_182_arg0)
 	local L_183_ = {}
